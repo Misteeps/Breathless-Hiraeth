@@ -15,6 +15,7 @@ TagManager:
   - 
   - 
   - 
+  - Player
   - 
   - 
   - 
@@ -24,9 +25,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Map Floor
+  - Map Wall
   - 
   - 
   - 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 205000013733710172}
   - component: {fileID: 136000012230939912}
   - component: {fileID: 208779752760032894}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Pine_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4000012758816714}
   - component: {fileID: 33000012080160558}
   - component: {fileID: 23000013277286684}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Pine_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4000011797282588}
   - component: {fileID: 33000011549053856}
   - component: {fileID: 23000011964538050}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Pine_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4000010647187216}
   - component: {fileID: 33000012120887476}
   - component: {fileID: 23000010695216190}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Pine_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 4000014153811012}
   - component: {fileID: 33000010581754288}
   - component: {fileID: 23000012524483472}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Pine_A_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}

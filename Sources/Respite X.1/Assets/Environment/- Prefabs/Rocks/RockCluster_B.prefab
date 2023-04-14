@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000013057730642}
   - component: {fileID: 33000012048141290}
   - component: {fileID: 23000013365511612}
-  m_Layer: 6
+  m_Layer: 20
   m_Name: RockCluster_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4000012732892068}
   - component: {fileID: 205000011764795230}
   - component: {fileID: 3530028580687212806}
-  m_Layer: 6
+  m_Layer: 20
   m_Name: RockCluster_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4000013264346344}
   - component: {fileID: 33000010541401032}
   - component: {fileID: 23000012275828844}
-  m_Layer: 6
+  m_Layer: 20
   m_Name: RockCluster_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000011549873352}
   - component: {fileID: 33000010520420964}
   - component: {fileID: 23000012210223742}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Spruce_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 205000011277626434}
   - component: {fileID: 136000010943234186}
   - component: {fileID: 208461383150380896}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Spruce_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4000012002236324}
   - component: {fileID: 33000010012225406}
   - component: {fileID: 23000012739225380}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Spruce_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4000010845136958}
   - component: {fileID: 33000011670238142}
   - component: {fileID: 23000010110600136}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Spruce_B_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 4000010169681578}
   - component: {fileID: 33000010487221946}
   - component: {fileID: 23000011383578852}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Spruce_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

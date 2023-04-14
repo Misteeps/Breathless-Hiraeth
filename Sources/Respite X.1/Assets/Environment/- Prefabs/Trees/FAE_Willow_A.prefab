@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000010727915410}
   - component: {fileID: 33000012986555546}
   - component: {fileID: 23000012057224434}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Willow_A_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4000014269997776}
   - component: {fileID: 33000012997226534}
   - component: {fileID: 23000011607325578}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Willow_A_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4000010641817094}
   - component: {fileID: 33000012627841510}
   - component: {fileID: 23000011641194010}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Willow_A_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010517872440}
   - component: {fileID: 136000014147644774}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 4000012727282144}
   - component: {fileID: 205000012104691478}
   - component: {fileID: 208016709373303690}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Willow_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 4000010791903814}
   - component: {fileID: 33000011002899368}
   - component: {fileID: 23000012138531776}
-  m_Layer: 7
+  m_Layer: 21
   m_Name: FAE_Willow_A_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
