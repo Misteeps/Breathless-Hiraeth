@@ -86,13 +86,30 @@ namespace Game
         {
             ConsoleUtilities.Log($"Loading scene {scene:info}");
 
+            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 0, 1).Curve(Function.Quadratic, Direction.In, 400).Start();
+            UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(0, LengthUnit.Percent);
+            UI.Overlay.Instance.loading.AddToClassList("show");
+
+            await GeneralUtilities.DelayMS(440);
+            Player.Enable(false, Vector3.zero);
+
             AsyncOperation operation = SceneManager.LoadSceneAsync(scene, new LoadSceneParameters(LoadSceneMode.Single, LocalPhysicsMode.None));
             operation.allowSceneActivation = false;
 
             while (operation.progress < 0.9f)
-                await GeneralUtilities.DelayMS(40);
+            {
+                UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(operation.progress * 100, LengthUnit.Percent);
+                await GeneralUtilities.DelayMS(10);
+            }
 
+            UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(operation.progress * 100, LengthUnit.Percent);
             await GeneralUtilities.DelayMS(400);
+
+            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Quadratic, Direction.Out, 600).Start();
+            UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(90, LengthUnit.Percent);
+            UI.Overlay.Instance.loading.RemoveFromClassList("show");
+
+            Player.Enable(true, playerPosition);
             operation.allowSceneActivation = true;
 
             ConsoleUtilities.Log($"Loaded scene {scene:info}");

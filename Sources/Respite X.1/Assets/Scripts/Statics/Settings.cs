@@ -254,7 +254,7 @@ namespace Game
         public static Choice<FullScreenMode> windowMode = new Choice<FullScreenMode>("Window Mode", FullScreenMode.FullScreenWindow, WindowModes, _ => ApplyResolution());
         public static Choice<(int width, int height)> resolution = new Choice<(int width, int height)>("Resolution", Resolutions, _ => ApplyResolution());
         public static Int fpsLimit = new Int("FPS Limit", 361, 0, int.MaxValue, value => Application.targetFrameRate = (value == 361) ? 0 : value);
-        public static Bool fpsCounter = new Bool("FPS Counter", false);
+        public static Bool fpsCounter = new Bool("FPS Counter", false, value => UI.Overlay.Instance.fps.Display(value));
         public static Bool vSync = new Bool("V-Sync", true, value => QualitySettings.vSyncCount = (value) ? 1 : 0);
         public static Choice<int> textureQuality = new Choice<int>("Texture Quality", TextureQualities, value => QualitySettings.globalTextureMipmapLimit = value);
         public static Choice<int> anisotropicFiltering = new Choice<int>("Anisotropic Filtering", AnisotropicFilterings, value => Texture.SetGlobalAnisotropicFilteringLimits(0, value));
