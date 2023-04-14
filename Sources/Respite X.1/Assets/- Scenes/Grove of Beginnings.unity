@@ -4221,7 +4221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   refs:
-    audioMixer: {fileID: 0}
+    audioMixer: {fileID: 24100000, guid: 3a3a3520091135044b814b15ebcc7566, type: 2}
     uiDocument: {fileID: 0}
     uiStyle: {fileID: 0}
 --- !u!4 &1590200030
