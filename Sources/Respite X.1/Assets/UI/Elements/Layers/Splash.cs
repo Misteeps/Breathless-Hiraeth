@@ -39,6 +39,7 @@ namespace Game.UI
 
         public override async void Show(int milliseconds)
         {
+            Monolith.Player.Enable(false);
             base.Show(milliseconds);
             await GeneralUtilities.DelayMS(milliseconds);
 
@@ -61,6 +62,7 @@ namespace Game.UI
 #endif
 
             Hide();
+            Monolith.Player.Enable(true);
         }
         public override async void Hide(int milliseconds)
         {

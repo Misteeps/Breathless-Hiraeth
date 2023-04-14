@@ -34,7 +34,7 @@ namespace Game
         public static Camera Camera { get; private set; }
 
         public static GameObject PlayerObject { get; private set; }
-        //public static Player Player { get; private set; }
+        public static Player Player { get; private set; }
 
 
         private void Awake()
@@ -73,7 +73,7 @@ namespace Game
             DontDestroyOnLoad(CameraObject);
 
             PlayerObject = GameObject.FindWithTag("Player");
-            //Player = PlayerObject.GetComponent<Player>();
+            Player = PlayerObject.GetComponent<Player>();
             DontDestroyOnLoad(PlayerObject);
         }
         private void Start()

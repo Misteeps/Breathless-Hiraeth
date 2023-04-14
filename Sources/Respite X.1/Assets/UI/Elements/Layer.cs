@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Simplex;
 
+
 namespace Game.UI
 {
     public abstract class Layer<T> : Layer where T : Layer, new()

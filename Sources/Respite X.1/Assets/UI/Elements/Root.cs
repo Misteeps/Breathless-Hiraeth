@@ -19,7 +19,7 @@ namespace Game.UI
             set
             {
                 layer = value;
-                //Monolith.Player.enabled = layer == null;
+                Monolith.Player.enabled = layer == null;
                 Time.timeScale = (layer == null) ? 1 : 0;
             }
         }
