@@ -1,0 +1,517 @@
+/*
+https://docs.unity3d.com/Manual/UIE-USS-Properties-Reference.html
+
+Appearance
+    display:                                flex | none
+    visibility:                             visible | hidden
+    opacity:                                <number>
+    overflow:                               hidden | visible
+    -unity-overflow-clip-box:               padding-box | content-box
+Position
+    position:                               absolute | relative
+    top:                                    <length> | auto
+    bottom:                                 <length> | auto
+    left:                                   <length> | auto
+    right:                                  <length> | auto
+Layout
+    margin:                                 <length> | auto
+    padding:                                <length>
+    width:                                  <length> | auto
+    min-width:                              <length> | auto
+    max-width:                              <length> | none
+    height:                                 <length> | auto
+    min-height:                             <length> | auto
+    max-height:                             <length> | none
+Flex
+    flex:                                   none | <number> [0-2] & <length> (grow, shrink, basis)
+    flex-grow:                              <number>
+    flex-shrink:                            <number>
+    flex-basis:                             <length> | auto
+    flex-direction:                         row | row-reverse | column | column-reverse
+    flex-wrap:                              nowrap | wrap | wrap-reverse
+    align-self:                             auto | flex-start | flex-end | center | stretch
+    align-items:                            flex-start | flex-end | center | stretch
+    align-content:                          flex-start | flex-end | center | stretch
+    justify-content:                        flex-start | flex-end | center | space-between | space-around
+Text
+    -unity-font:                            <resource> | <url>
+    -unity-font-definition:                 <resource> | <url>
+    font-size:                              <number>
+    -unity-font-style:                      normal | italic | bold | bold-and-italic
+    -unity-text-align:                      upper-left | middle-left | lower-left | upper-center | middle-center | lower-center | upper-right | middle-right | lower-right
+    white-space:                            normal | nowrap
+    text-overflow:                          clip | ellipsis
+    -unity-text-overflow-position:          start | middle | end
+    color:                                  <color>
+    text-shadow:                            <length> [2-3] & <color> (offset X, offset Y, blur, color)
+    -unity-text-outline:                    <length> & <color>
+    -unity-text-outline-width:              <length>
+    -unity-text-outline-color:              <color>
+    letter-spacing:                         <length>
+    word-spacing:                           <length>
+    -unity-paragraph-spacing:               <length>
+Background
+    border-width:                           <length>
+    border-radius:                          <length>
+    border-color:                           <color>
+    background-color:                       <color>
+    background-image:                       <resource> | <url> | none
+    background-position:                    ?
+    background-size:                        ?
+    background-repeat:                      ?
+    -unity-slice:                           <integer>
+    -unity-slice-scale:                     <length>
+    -unity-background-scale-mode:           stretch-to-fill | scale-and-crop | scale-to-fit
+    -unity-background-image-tint-color:     <color>
+*/
+
+@import url('project://database/Assets/UI/Styles/Simplex Game Dark.uss?fileID=7433441132597879392&guid=5fbd5c4f870439447a0de1c27af5fe43&type=3#Simplex Game Dark');
+
+/* gui background */
+
+.gui.background1 {
+    padding: 40px 60px 80px 60px;
+    background-image: url('project://database/Assets/UI/Images GUI/Background 1.png?fileID=2800000&guid=f750cb7570196794586d52bf87e7f8ab&type=3#Background 1');
+    -unity-slice-top: 37;
+    -unity-slice-bottom: 79;
+    -unity-slice-left: 56;
+    -unity-slice-right: 55;
+}
+
+.gui.background2 {
+    padding: 40px 60px 80px 60px;
+    background-image: url('project://database/Assets/UI/Images GUI/Background 2.png?fileID=2800000&guid=d7e621258f735c145b97f7aa6c7e3c04&type=3#Background 2');
+    -unity-slice-top: 37;
+    -unity-slice-bottom: 79;
+    -unity-slice-left: 56;
+    -unity-slice-right: 56;
+}
+
+.gui.background3 {
+    padding: 40px 60px 80px 60px;
+    background-image: url('project://database/Assets/UI/Images GUI/Background 3.png?fileID=2800000&guid=74d68eef156895d468901fdedd35ddba&type=3#Background 3');
+    -unity-slice-top: 35;
+    -unity-slice-bottom: 73;
+    -unity-slice-left: 56;
+    -unity-slice-right: 56;
+}
+
+/* gui button circle */
+
+.gui.button.circle.gray {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Gray.png?fileID=2800000&guid=33ecea018b21b2849b012bdb0eb79ba2&type=3#Button Circle Gray');
+}
+
+.gui.button.circle.gray.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Gray Lit.png?fileID=2800000&guid=d3ce00c12c3484e45b55418c3709e664&type=3#Button Circle Gray Lit');
+}
+
+.gui.button.circle.gray:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Gray Lit.png?fileID=2800000&guid=d3ce00c12c3484e45b55418c3709e664&type=3#Button Circle Gray Lit');
+}
+
+.gui.button.circle.green {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Green.png?fileID=2800000&guid=edf016a7acf800f48886dcca5ab8e25a&type=3#Button Circle Green');
+}
+
+.gui.button.circle.green.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Green Lit.png?fileID=2800000&guid=94b770ef0c0ef4642b468b4f28700c1c&type=3#Button Circle Green Lit');
+}
+
+.gui.button.circle.green:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Green Lit.png?fileID=2800000&guid=94b770ef0c0ef4642b468b4f28700c1c&type=3#Button Circle Green Lit');
+}
+
+.gui.button.circle.purple {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Purple.png?fileID=2800000&guid=71d827a1f5b45044cbef65c136566e77&type=3#Button Circle Purple');
+}
+
+.gui.button.circle.purple.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Purple Lit.png?fileID=2800000&guid=2482175dd1dfad5408928055ef9523b3&type=3#Button Circle Purple Lit');
+}
+
+.gui.button.circle.purple:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Purple Lit.png?fileID=2800000&guid=2482175dd1dfad5408928055ef9523b3&type=3#Button Circle Purple Lit');
+}
+
+.gui.button.circle.red {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Red.png?fileID=2800000&guid=a0f75d0934b4d7645b7b8286e01e3321&type=3#Button Circle Red');
+}
+
+.gui.button.circle.red.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Red Lit.png?fileID=2800000&guid=3c3b3b90722251b48b93c45bece0e0f0&type=3#Button Circle Red Lit');
+}
+
+.gui.button.circle.red:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Red Lit.png?fileID=2800000&guid=3c3b3b90722251b48b93c45bece0e0f0&type=3#Button Circle Red Lit');
+}
+
+.gui.button.circle.yellow {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Yellow.png?fileID=2800000&guid=3da165c267d96fa488b9157c989e9c09&type=3#Button Circle Yellow');
+}
+
+.gui.button.circle.yellow.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Yellow Lit.png?fileID=2800000&guid=20d9f43d702119f4faa48982f751160d&type=3#Button Circle Yellow Lit');
+}
+
+.gui.button.circle.yellow:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Circle Yellow Lit.png?fileID=2800000&guid=20d9f43d702119f4faa48982f751160d&type=3#Button Circle Yellow Lit');
+}
+
+/* gui button square */
+
+.gui.button.square.gray {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Gray.png?fileID=2800000&guid=c165560f4de0e5c45b1d2ef099b8fe01&type=3#Button Square Gray');
+}
+
+.gui.button.square.gray.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Gray Lit.png?fileID=2800000&guid=8f56568dcaf56204b95d553eb452b8e7&type=3#Button Square Gray Lit');
+}
+
+.gui.button.square.gray:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Gray Lit.png?fileID=2800000&guid=8f56568dcaf56204b95d553eb452b8e7&type=3#Button Square Gray Lit');
+}
+
+.gui.button.square.green {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Green.png?fileID=2800000&guid=41e0ae341eb09d4448714a071796e281&type=3#Button Square Green');
+}
+
+.gui.button.square.green.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Green Lit.png?fileID=2800000&guid=f4051d348f0c7f94a9b5ecbe96a8e4d1&type=3#Button Square Green Lit');
+}
+
+.gui.button.square.green:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Green Lit.png?fileID=2800000&guid=f4051d348f0c7f94a9b5ecbe96a8e4d1&type=3#Button Square Green Lit');
+}
+
+.gui.button.square.purple {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Purple.png?fileID=2800000&guid=43408c719a5e92e4592361ce606e4431&type=3#Button Square Purple');
+}
+
+.gui.button.square.purple.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Purple Lit.png?fileID=2800000&guid=4c09baca4023e0046b0745a1bc25d984&type=3#Button Square Purple Lit');
+}
+
+.gui.button.square.purple:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Purple Lit.png?fileID=2800000&guid=4c09baca4023e0046b0745a1bc25d984&type=3#Button Square Purple Lit');
+}
+
+.gui.button.square.red {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Red.png?fileID=2800000&guid=a6d0383d99800c246a4eafe9bce58551&type=3#Button Square Red');
+}
+
+.gui.button.square.red.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Red Lit.png?fileID=2800000&guid=0a9866d156415a048a27b1a54add17e9&type=3#Button Square Red Lit');
+}
+
+.gui.button.square.red:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Red Lit.png?fileID=2800000&guid=0a9866d156415a048a27b1a54add17e9&type=3#Button Square Red Lit');
+}
+
+.gui.button.square.yellow {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Yellow.png?fileID=2800000&guid=21b0b74943580d244b5efe27e8b9f653&type=3#Button Square Yellow');
+}
+
+.gui.button.square.yellow.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Yellow Lit.png?fileID=2800000&guid=14d92a4a1462e9c4990d65645f927073&type=3#Button Square Yellow Lit');
+}
+
+.gui.button.square.yellow:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Square Yellow Lit.png?fileID=2800000&guid=14d92a4a1462e9c4990d65645f927073&type=3#Button Square Yellow Lit');
+}
+
+/* gui button rectangle */
+
+.gui.button.rectangle.gray {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Gray.png?fileID=2800000&guid=878946ffac7004244a8ff05388d33345&type=3#Button Rectangle Gray');
+}
+
+.gui.button.rectangle.gray.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Gray Lit.png?fileID=2800000&guid=495e86dc6da01fb4db3e9b90dfe550fe&type=3#Button Rectangle Gray Lit');
+}
+
+.gui.button.rectangle.gray:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Gray Lit.png?fileID=2800000&guid=495e86dc6da01fb4db3e9b90dfe550fe&type=3#Button Rectangle Gray Lit');
+}
+
+.gui.button.rectangle.green {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Green.png?fileID=2800000&guid=e1c9f4864c573144d974743d8630e007&type=3#Button Rectangle Green');
+}
+
+.gui.button.rectangle.green.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Green Lit.png?fileID=2800000&guid=f0998dd9a3cb9da4a85d946f419f775f&type=3#Button Rectangle Green Lit');
+}
+
+.gui.button.rectangle.green:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Green Lit.png?fileID=2800000&guid=f0998dd9a3cb9da4a85d946f419f775f&type=3#Button Rectangle Green Lit');
+}
+
+.gui.button.rectangle.purple {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Purple.png?fileID=2800000&guid=104a576e5fbdf284bb74cd915e9333b1&type=3#Button Rectangle Purple');
+}
+
+.gui.button.rectangle.purple.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Purple Lit.png?fileID=2800000&guid=675230ba3472f8d45ac5b0c51a0edb60&type=3#Button Rectangle Purple Lit');
+}
+
+.gui.button.rectangle.purple:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Purple Lit.png?fileID=2800000&guid=675230ba3472f8d45ac5b0c51a0edb60&type=3#Button Rectangle Purple Lit');
+}
+
+.gui.button.rectangle.red {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Red.png?fileID=2800000&guid=2c79512cb881a7c42adf57e52c898b79&type=3#Button Rectangle Red');
+}
+
+.gui.button.rectangle.red.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Red Lit.png?fileID=2800000&guid=15ba497c8c36f064fb5927fd3ea0e00a&type=3#Button Rectangle Red Lit');
+}
+
+.gui.button.rectangle.red:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Red Lit.png?fileID=2800000&guid=15ba497c8c36f064fb5927fd3ea0e00a&type=3#Button Rectangle Red Lit');
+}
+
+.gui.button.rectangle.yellow {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Yellow.png?fileID=2800000&guid=21897d1a27b749c4eae99c138b930990&type=3#Button Rectangle Yellow');
+}
+
+.gui.button.rectangle.yellow.lit {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Yellow Lit.png?fileID=2800000&guid=d5ec3cdbe57e9ed44b10aaca4272c987&type=3#Button Rectangle Yellow Lit');
+}
+
+.gui.button.rectangle.yellow:hover {
+    background-image: url('project://database/Assets/UI/Images GUI/Button Rectangle Yellow Lit.png?fileID=2800000&guid=d5ec3cdbe57e9ed44b10aaca4272c987&type=3#Button Rectangle Yellow Lit');
+}
+
+/* field */
+
+.field.gui.button {
+    margin: 4px;
+    padding-bottom: 6px;
+    width: 240px;
+    height: 64px;
+    font-size: 24px;
+    -unity-font-style: bold;
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.field.slider {
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.field.slider > .gauge {
+    height: 100%;
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Gauge.png?fileID=2800000&guid=691f7a1f6b55caa4f9e9e143d0cc67f7&type=3#Slider Gauge');
+}
+
+.field.slider > .gauge > .fill {
+    height: 60%;
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Bar Yellow.png?fileID=2800000&guid=d613a18f6c1d50e4fa75c618722aa784&type=3#Slider Bar Yellow');
+}
+
+.field.slider > .gauge > .fill > .knob {
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Knob.png?fileID=2800000&guid=7b56f8b8b8cfb6344bb44dffaaec0179&type=3#Slider Knob');
+}
+
+/* */
+
+.root {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.layer {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+/* Splash */
+
+.layer#Splash {
+    background-color: black;
+    transition: bottom 400ms ease-in-out-cubic;
+}
+
+.layer#Splash.hide {
+	bottom: 100%;
+}
+
+.layer#Splash > .cover {
+	position: absolute;
+    top: 100%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    transition: top 400ms ease-out-cubic;
+}
+
+.layer#Splash > .cover.show {
+    top: 0%;
+}
+
+.layer#Splash > .area {
+	position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.layer#Splash > .area >.image {
+    opacity: 0;
+	margin: 20px;
+    scale: 0.6;
+}
+
+.layer#Splash > .area >.image.top {
+    width: 500px;
+    height: 500px;
+    background-image: url('project://database/Assets/UI/Images/Awesome Duo Plate.png?fileID=2800000&guid=7ed81262d5d9fe7409caa1301927d1a5&type=3#Awesome Duo Plate');
+    background-size: 80%;
+}
+
+.layer#Splash > .area >.image.bottom {
+    width: 420px;
+    height: 200px;
+    background-image: url('project://database/Assets/UI/Images/Lv99.png?fileID=2800000&guid=8433cdf7ff6f2a54b82fa1f472cda770&type=3#Lv99');
+    background-size: 80%;
+}
+
+.layer#Splash > .area >.image.show {
+    opacity: 1;
+    scale: 1;
+    transition: all 400ms ease-out-elastic;
+}
+
+.layer#Splash > .area >.warning {
+    opacity: 0;
+	margin: 20px;
+    font-size: 60px;
+    -unity-font-style: bold;
+    scale: 0.6;
+}
+
+.layer#Splash > .area > .warning.show {
+    opacity: 1;
+    scale: 1;
+    transition: all 400ms ease-out-elastic;
+}
+
+.layer#Splash > .area > .warning.hide {
+    opacity: 0;
+    scale: 1.04;
+    transition: all 200ms ease-in-circ;
+}
+
+/* Overlay */
+
+.layer#Overlay > .fps {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+.layer#Overlay > .loading {
+    opacity: 0;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    height: 200px;
+    transition: opacity 400ms ease-out;
+}
+
+.layer#Overlay > .loading.show {
+    opacity: 1;
+    transition: opacity 600ms ease-in;
+}
+
+.layer#Overlay > .loading > .bar {
+    position: absolute;
+    bottom: 8px;
+    left: 5%;
+    width: 90%;
+    height: 20px;
+    background-color: white;
+}
+
+/* Menu */
+
+.layer#Menu > .viewport {
+    padding-top: 16px;
+    flex-direction: row;
+}
+
+.layer#Menu > .viewport > .map {
+    width: 65%;
+}
+
+.layer#Menu > .viewport > .stats {
+    width: 10%;
+}
+
+.layer#Menu > .viewport > .character {
+    width: 25%;
+}
+
+.layer#Menu > .options {
+    padding-top: 48px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Settings */
+
+.layer#Settings > .center {
+    margin: auto;
+    padding-top: 16px;
+    width: 720px;
+}
+
+.layer#Settings > .center > .panel {
+    padding-right: 27px;
+    height: 840px;
+}
+
+.layer#Settings > .center > .panel .labeled {
+    margin-right: 33px;
+    padding: 0 12px;
+    height: 32px;
+    align-items: center;
+}
+
+.layer#Settings > .center > .panel .labeled > .label {
+    width: 200px;
+    font-size: 18px;
+}
+
+.layer#Settings > .center > .panel .labeled.header > .label {
+    font-size: 24px;
+    -unity-font-style: bold;
+}
+
+.layer#Settings > .center > .options {
+    padding-top: 48px;
+    flex-direction: row;
+    justify-content: space-around;
+}
