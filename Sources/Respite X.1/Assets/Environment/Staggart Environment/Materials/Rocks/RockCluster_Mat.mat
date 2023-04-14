@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RockCluster_Mat
-  m_Shader: {fileID: -6465566751694194690, guid: 5666065488ed57a4d9f76658a82b25c7,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 5666065488ed57a4d9f76658a82b25c7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
