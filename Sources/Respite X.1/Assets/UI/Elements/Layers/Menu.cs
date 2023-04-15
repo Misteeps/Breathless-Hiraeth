@@ -13,9 +13,9 @@ namespace Game.UI
         {
             Div viewport = this.Create<Div>("viewport", "flexible");
 
-            Div map = viewport.Create<Div>("gui", "background1", "map");
+            Div map = viewport.Create<Div>("gui", "background1", "map", "flexible");
+            Div inventory = viewport.Create<Div>("gui", "background2", "inventory");
             Div stats = viewport.Create<Div>("gui", "background2", "stats");
-            Div character = viewport.Create<Div>("gui", "background2", "character");
 
             Div options = this.Create<Div>("gui", "background3", "options");
             options.Create<Button>("gui", "rectangle", "green").Modify("Resume").Bind(_ => UI.Menu.Hide());

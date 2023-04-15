@@ -296,6 +296,22 @@ Background
     background-color: rgba(0, 0, 0, 0);
 }
 
+.field.toggle.check {
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UI/Images GUI/Toggle Blank.png?fileID=2800000&guid=6009c985fafc7dd44b71e05d27af5f2e&type=3#Toggle Blank');
+    background-size: auto 100%;
+}
+
+.field.toggle.check.on {
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Assets/UI/Images GUI/Toggle Check.png?fileID=2800000&guid=77d9940786514c04a9d46135904c59df&type=3#Toggle Check');
+    background-size: auto 100%;
+}
+
 .field.slider {
     border-width: 0px;
     border-radius: 0px;
@@ -303,7 +319,9 @@ Background
 }
 
 .field.slider > .gauge {
-    height: 100%;
+    margin-top: 2px;
+    padding: 6px 10px 11px 10px;
+    height: 24px;
     border-width: 0px;
     border-radius: 0px;
     background-color: rgba(0, 0, 0, 0);
@@ -311,18 +329,31 @@ Background
 }
 
 .field.slider > .gauge > .fill {
-    height: 60%;
+    height: auto;
+    flex-grow: 1;
     border-width: 0px;
-    border-radius: 0px;
     background-color: rgba(0, 0, 0, 0);
     background-image: url('project://database/Assets/UI/Images GUI/Slider Bar Yellow.png?fileID=2800000&guid=d613a18f6c1d50e4fa75c618722aa784&type=3#Slider Bar Yellow');
 }
 
 .field.slider > .gauge > .fill > .knob {
+    right: -6px;
+    width: 12px;
+    height: 320%;
     border-width: 0px;
     border-radius: 0px;
     background-color: rgba(0, 0, 0, 0);
     background-image: url('project://database/Assets/UI/Images GUI/Slider Knob.png?fileID=2800000&guid=7b56f8b8b8cfb6344bb44dffaaec0179&type=3#Slider Knob');
+}
+
+.field.slider:hover > .gauge {
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.field.slider:hover > .gauge > .fill {
+    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 /* */
@@ -463,15 +494,14 @@ Background
 }
 
 .layer#Menu > .viewport > .map {
-    width: 65%;
+}
+
+.layer#Menu > .viewport > .inventory {
+    width: 480px;
 }
 
 .layer#Menu > .viewport > .stats {
-    width: 10%;
-}
-
-.layer#Menu > .viewport > .character {
-    width: 25%;
+    width: 320px;
 }
 
 .layer#Menu > .options {

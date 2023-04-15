@@ -15,6 +15,7 @@ namespace Game.UI
 
             Div panel = center.Create<Div>("gui", "background1", "panel");
             VerticalScrollView contents = panel.Create<VerticalScrollView>("flexible");
+            CreateGeneral(contents);
             CreateGraphics(contents);
             CreateAudio(contents);
             CreateKeybinds(contents);
@@ -25,6 +26,18 @@ namespace Game.UI
             options.Create<Button>("gui", "rectangle", "green").Modify("Return").Bind(_ => UI.Settings.Hide());
         }
 
+        private void CreateGeneral(VerticalScrollView contents)
+        {
+            contents.Create<VerticalSpace>().Size(Size.Huge);
+            contents.Create<Labeled>("header").Modify("General", highlight: false);
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.zoom).Elements(e => e.Modify(0, 15));
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.abilityAimZoom);
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.autoExitCombat);
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.cameraShake);
+            contents.Create<VerticalSpace>().Size(Size.Huge);
+        }
         private void CreateGraphics(VerticalScrollView contents)
         {
             contents.Create<VerticalSpace>().Size(Size.Huge);
@@ -33,8 +46,8 @@ namespace Game.UI
             contents.Create<Labeled<Dropdown<FullScreenMode>>>().Bind(Game.Settings.windowMode);
             contents.Create<Labeled<Dropdown<(int, int)>>>().Bind(Game.Settings.resolution);
             contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.fpsLimit).Elements(e => e.Modify(30, 361).OnRefresh(async _ => { await GeneralUtilities.DelayFrame(1); if (Game.Settings.fpsLimit == 361) e.input.text = "Inf."; }));
-            contents.Create<Labeled<ToggleSlide>>().Bind(Game.Settings.fpsCounter);
-            contents.Create<Labeled<ToggleSlide>>().Bind(Game.Settings.vSync);
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.fpsCounter);
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.vSync);
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
         private void CreateAudio(VerticalScrollView contents)

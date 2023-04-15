@@ -19,31 +19,31 @@
 /* field */
 
 .field.inset {
-    border-color: rgb(33, 33, 33);
-    border-top-color: rgb(13, 13, 13);
-    background-color: rgb(42, 42, 42);
+    border-color: rgba(33, 33, 33, 0.6);
+    border-top-color: rgba(13, 13, 13, 0.6);
+    background-color: rgba(42, 42, 42, 0.6);
 }
 
 .field.inset:hover {
-    border-color: rgb(101, 101, 101);
+    border-color: rgba(101, 101, 101, 0.6);
 }
 
 .field.inset:hover:focus {
-    border-color: rgb(58, 121, 187);
+    border-color: rgba(58, 121, 187, 0.6);
 }
 
 .field.outset {
-    border-color: rgb(48, 48, 48);
-    border-bottom-color: rgb(36, 36, 36);
-    background-color: rgb(88, 88, 88);
+    border-color: rgba(48, 48, 48, 0.6);
+    border-bottom-color: rgba(36, 36, 36, 0.6);
+    background-color: rgba(88, 88, 88, 0.6);
 }
 
 .field.outset:hover {
-    background-color: rgb(103, 103, 103);
+    background-color: rgba(103, 103, 103, 0.6);
 }
 
 .field.outset:hover:focus {
-    border-color: rgb(58, 121, 187);
+    border-color: rgba(58, 121, 187, 0.6);
 }
 
 .field.toggle.slide > .fill {
