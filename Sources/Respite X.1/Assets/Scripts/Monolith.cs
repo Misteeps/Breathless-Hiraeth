@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ namespace Game
         [Serializable]
         public class References
         {
+            public VolumeProfile volumeProfile;
             public AudioMixer audioMixer;
             public UIDocument uiDocument;
             public StyleSheet uiStyle;
@@ -35,6 +37,23 @@ namespace Game
 
         public static GameObject PlayerObject { get; private set; }
         public static Player Player { get; private set; }
+
+        private float pressure;
+        public static float Pressure
+        {
+            get => Instance.pressure;
+            set
+            {
+                Instance.pressure = Mathf.Clamp(value, 0, 100);
+                float factor = Mathf.InverseLerp(20, 100, Pressure);
+
+                Game.Camera.FOV = Mathf.Lerp(90, 60, factor);
+                Game.Camera.Shake = (Settings.cameraShake) ? Mathf.Lerp(0, 4, factor) : 0;
+                Game.Camera.Vignette.intensity.value = Mathf.Lerp(0.2f, 0.7f, factor);
+                Game.Camera.ChromaticAberration.intensity.value = factor;
+                Game.Camera.ShadowsMidtonesHighlights.shadows.value = new Vector4(1, Mathf.Lerp(1, 0.4f, factor), Mathf.Lerp(1, 0.4f, factor), 0);
+            }
+        }
 
 
         private void Awake()

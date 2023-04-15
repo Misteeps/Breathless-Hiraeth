@@ -2,6 +2,7 @@ using System;
 
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering.Universal;
 
 using Cinemachine;
 using Simplex;
@@ -14,6 +15,13 @@ namespace Game
         public static CinemachineVirtualCamera VirtualCamera { get; } = Monolith.Camera.GetComponent<CinemachineVirtualCamera>();
         public static CinemachineBasicMultiChannelPerlin Noise { get; } = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         public static CinemachineTransposer Transposer { get; } = VirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+
+        public static Bloom Bloom { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is Bloom) as Bloom;
+        public static Vignette Vignette { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is Vignette) as Vignette;
+        public static ChromaticAberration ChromaticAberration { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is ChromaticAberration) as ChromaticAberration;
+        public static ShadowsMidtonesHighlights ShadowsMidtonesHighlights { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is ShadowsMidtonesHighlights) as ShadowsMidtonesHighlights;
+
+        public static float FOV { get => VirtualCamera.m_Lens.FieldOfView; set => VirtualCamera.m_Lens.FieldOfView = value; }
 
         public static float shake;
         public static float Shake
@@ -53,7 +61,7 @@ namespace Game
                 value = (30 - value + ZoomOffset);
 
                 Transposer.m_FollowOffset = new Vector3(0, value * 0.2f, value * -0.12f);
-                Monolith.CameraObject.transform.eulerAngles = new Vector3(51.35f, 0, 0);
+                Monolith.CameraObject.transform.eulerAngles = new Vector3(Mathf.Log10(3 * value - 30) * 19 + 17.5f, 0, 0);
             }
         }
 
