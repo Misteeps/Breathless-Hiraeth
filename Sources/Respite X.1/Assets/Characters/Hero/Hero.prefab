@@ -416,7 +416,7 @@ Animator:
   m_GameObject: {fileID: 7700983353943409781}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5c0c4d8b25373f4190a75382b35ce31, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -465,9 +465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6665f9b073361a49b1b73a4eab6f605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomMin: 10
-  zoomMax: 25
-  zoom: 20
   moveSpeed: 2
   sprintSpeed: 5.4
   rotationSpeed: 0.12
@@ -482,7 +479,6 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 1048576
-  camera: {fileID: 0}
   animator: {fileID: 8266243098872052024}
   controller: {fileID: 3142858220769582314}
   speed: 0
