@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 881b637c91bb599428a6b846bd8b3a8a
+guid: 3632f5ce35b2ade41907c3407b1410fc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -36,19 +36,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Spell Dive
+      name: Idle Calm
       takeName: mixamo.com
       internalID: 4061839508520268033
-      firstFrame: 13
-      lastFrame: 68
+      firstFrame: 0
+      lastFrame: 418
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
