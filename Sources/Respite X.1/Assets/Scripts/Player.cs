@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using Cinemachine;
+using Simplex;
 
 
 namespace Game
@@ -27,6 +28,7 @@ namespace Game
         public LayerMask groundLayers;
 
         [Header("References")]
+        public Transform sword;
         public Animator animator;
         public CharacterController controller;
 
@@ -41,6 +43,7 @@ namespace Game
 
         private const float terminalVelocity = 53.0f;
 
+        private bool swordVisible;
         private int animIDMoveX;
         private int animIDMoveY;
         private int animIDCombat;
@@ -158,12 +161,25 @@ namespace Game
 
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * acceleration);
             animator.SetFloat(animIDMoveY, animationBlend);
+            ShowSword(targetSpeed <= 2.4f);
         }
 
         private void CheckGround()
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundOffset, transform.position.z);
             grounded = Physics.CheckSphere(spherePosition, groundRadius, groundLayers, QueryTriggerInteraction.Ignore);
+        }
+
+        public void ShowSword(bool show)
+        {
+            if (show == swordVisible) return;
+            swordVisible = show;
+
+            (int start, int end) = (swordVisible) ? (0, 1) : (1, 0);
+
+            sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
+            sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
+            sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
         }
     }
 }
