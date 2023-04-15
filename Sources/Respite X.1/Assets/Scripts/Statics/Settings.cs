@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 using Simplex;
 
@@ -247,8 +248,24 @@ namespace Game
         }
         private static (string, int)[] AntiAliases
         {
-            get => new (string, int)[] { ("MSAA x8", 8), ("MSAA x4", 4), ("MSAA x2", 2), ("Off", 0) };
+            get => new (string, int)[] { ("MSAA x8", 8), ("MSAA x4", 4), ("MSAA x2", 2), ("Off", 1) };
         }
+        private static (string, SoftShadowQuality)[] ShadowQualities
+        {
+            get => new (string, SoftShadowQuality)[] { ("High", SoftShadowQuality.High), ("Medium", SoftShadowQuality.Medium), ("Low", SoftShadowQuality.Low) };
+        }
+
+#if UNITY_WEBGL
+        private static int DefaultAnisotropicFiltering => 4;
+        private static int DefaultAntiAliasing => 2;
+        private static SoftShadowQuality DefaultShadowQuality => SoftShadowQuality.Low;
+        private static int DefaultShadowDistance => 15;
+#else
+        private static int DefaultAnisotropicFiltering => 16;
+        private static int DefaultAntiAliasing => 8;
+        private static SoftShadowQuality DefaultShadowQuality => SoftShadowQuality.High;
+        private static int DefaultShadowDistance => 20;
+#endif
 
         [Header("General")]
         public static Int zoom = new Int("Zoom", 5, 0, 15, value => Camera.Zoom(value));
@@ -262,9 +279,12 @@ namespace Game
         public static Int fpsLimit = new Int("FPS Limit", 361, 0, int.MaxValue, value => Application.targetFrameRate = (value == 361) ? 0 : value);
         public static Bool fpsCounter = new Bool("FPS Counter", false, value => UI.Overlay.Instance.fps.Display(value));
         public static Bool vSync = new Bool("V-Sync", true, value => QualitySettings.vSyncCount = (value) ? 1 : 0);
+        public static Float renderScale = new Float("Render Scale", 1, 0.5f, 1.25f, value => Monolith.Refs.quality.renderScale = value);
         public static Choice<int> textureQuality = new Choice<int>("Texture Quality", TextureQualities, value => QualitySettings.globalTextureMipmapLimit = value);
-        public static Choice<int> anisotropicFiltering = new Choice<int>("Anisotropic Filtering", AnisotropicFilterings, value => Texture.SetGlobalAnisotropicFilteringLimits(0, value));
-        public static Choice<int> antiAliasing = new Choice<int>("Anti-Aliasing", AntiAliases, value => QualitySettings.antiAliasing = value);
+        public static Choice<int> anisotropicFiltering = new Choice<int>("Anisotropic Filtering", DefaultAnisotropicFiltering, AnisotropicFilterings, value => Texture.SetGlobalAnisotropicFilteringLimits(-1, value));
+        public static Choice<int> antiAliasing = new Choice<int>("Anti-Aliasing", DefaultAntiAliasing, AntiAliases, value => Monolith.Refs.quality.msaaSampleCount = value);
+        public static Choice<SoftShadowQuality> shadowQuality = new Choice<SoftShadowQuality>("Shadow Quality", DefaultShadowQuality, ShadowQualities, value => typeof(UniversalRenderPipelineAsset).GetProperty("softShadowQuality", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Monolith.Refs.quality, value));
+        public static Int shadowDistance = new Int("Shadow Distance", DefaultShadowDistance, 5, 30, value => Monolith.Refs.quality.shadowDistance = value * 10);
 
         [Header("Audio")]
         public static Int masterVolume = new Int("Master Volume", 100, 0, 100, Audio.Master.SetVolume);

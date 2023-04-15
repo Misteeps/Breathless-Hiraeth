@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,7 @@ namespace Game
         [Serializable]
         public class References
         {
+            public UniversalRenderPipelineAsset quality;
             public VolumeProfile volumeProfile;
             public AudioMixer audioMixer;
             public UIDocument uiDocument;
@@ -108,8 +110,8 @@ namespace Game
 
         private void Update()
         {
-            if (Inputs.ScrollUp || Inputs.ZoomIn.Down) Settings.zoom.Set(Settings.zoom + 1);
-            if (Inputs.ScrollDown || Inputs.ZoomOut.Down) Settings.zoom.Set(Settings.zoom - 1);
+            if ((Inputs.ScrollUp || Inputs.ZoomIn.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom + 1);
+            if ((Inputs.ScrollDown || Inputs.ZoomOut.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom - 1);
             if (Inputs.Escape.Down)
             {
                 if (UI.Root.Layer == null) UI.Menu.Show();

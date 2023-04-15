@@ -1,6 +1,7 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 using Simplex;
 
@@ -60,9 +61,13 @@ namespace Game.UI
             contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.fpsLimit).Elements(e => e.Modify(30, 361).OnRefresh(async _ => { await GeneralUtilities.DelayFrame(1); if (Game.Settings.fpsLimit == 361) e.input.text = "Inf."; }));
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.fpsCounter);
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.vSync);
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<FloatInputSlider>>().Bind(Game.Settings.renderScale).Elements(e => e.Modify(0.5f, 1.25f, 2));
             contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.textureQuality);
             contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.anisotropicFiltering);
             contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.antiAliasing);
+            contents.Create<Labeled<Dropdown<SoftShadowQuality>>>().BindDropdown(Game.Settings.shadowQuality);
+            contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.shadowDistance).Elements(e => e.Modify(5, 30));
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
         private void CreateAudio(VerticalScrollView contents)
