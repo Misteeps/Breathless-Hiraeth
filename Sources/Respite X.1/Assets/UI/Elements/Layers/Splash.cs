@@ -62,7 +62,6 @@ namespace Game.UI
 #endif
 
             Hide();
-            Monolith.Player.Enable(true);
         }
         public override async void Hide(int milliseconds)
         {
@@ -75,6 +74,7 @@ namespace Game.UI
 
             this.RemoveFromHierarchy();
             Monolith.Instance.enabled = true;
+            Monolith.Player.Enable(true);
         }
     }
 }

@@ -19,8 +19,6 @@ namespace Game.UI
 
         public Overlay()
         {
-            style.backgroundColor = Color.black;
-
             fps = this.Create<Label>("fps").Size(Size.Small);
             fps.schedule.Execute(UpdateFPS).Every(1000);
 

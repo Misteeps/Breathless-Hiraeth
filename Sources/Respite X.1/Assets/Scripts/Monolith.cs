@@ -99,12 +99,22 @@ namespace Game
         {
             Settings.Load();
             Pressure = 0;
+
+            UI.Menu.Hide();
+            UI.Settings.Hide();
+            UI.Overlay.Show();
+            UI.Splash.Show();
         }
 
         private void Update()
         {
             if (Inputs.ScrollUp || Inputs.ZoomIn.Down) Settings.zoom.Set(Settings.zoom + 1);
             if (Inputs.ScrollDown || Inputs.ZoomOut.Down) Settings.zoom.Set(Settings.zoom - 1);
+            if (Inputs.Escape.Down)
+            {
+                if (UI.Root.Layer == null) UI.Menu.Show();
+                else UI.Root.Layer.Hide();
+            }
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));
