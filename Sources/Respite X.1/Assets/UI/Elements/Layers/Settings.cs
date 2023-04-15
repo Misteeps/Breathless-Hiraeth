@@ -7,6 +7,13 @@ using Simplex;
 
 namespace Game.UI
 {
+    #region Dropdown Binder Extension
+    public static class DropdownBinderExtension
+    {
+        public static void BindDropdown<T>(this Labeled<Dropdown<T>> labeled, Game.Settings.Choice<T> setting) => labeled.Bind(setting).Elements(dropdown => dropdown.Bind(setting, setting.values, value => setting.Find(value)));
+    }
+    #endregion Dropdown Binder Extension
+
     public class Settings : Layer<Settings>
     {
         public Settings()
@@ -20,10 +27,15 @@ namespace Game.UI
             CreateAudio(contents);
             CreateKeybinds(contents);
 
-
             Div options = center.Create<Div>("gui", "background3", "options");
             options.Create<Button>("gui", "rectangle", "purple").Modify("Defaults").Bind(_ => Debug.Log("DEFAULTS"));
             options.Create<Button>("gui", "rectangle", "green").Modify("Return").Bind(_ => UI.Settings.Hide());
+        }
+
+        public override void Hide(int milliseconds)
+        {
+            base.Hide(milliseconds);
+            Game.Settings.Save();
         }
 
         private void CreateGeneral(VerticalScrollView contents)
@@ -43,11 +55,14 @@ namespace Game.UI
             contents.Create<VerticalSpace>().Size(Size.Huge);
             contents.Create<Labeled>("header").Modify("Graphics", highlight: false);
             contents.Create<VerticalSpace>();
-            contents.Create<Labeled<Dropdown<FullScreenMode>>>().Bind(Game.Settings.windowMode);
-            contents.Create<Labeled<Dropdown<(int, int)>>>().Bind(Game.Settings.resolution);
+            contents.Create<Labeled<Dropdown<FullScreenMode>>>().BindDropdown(Game.Settings.windowMode);
+            contents.Create<Labeled<Dropdown<(int, int)>>>().BindDropdown(Game.Settings.resolution);
             contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.fpsLimit).Elements(e => e.Modify(30, 361).OnRefresh(async _ => { await GeneralUtilities.DelayFrame(1); if (Game.Settings.fpsLimit == 361) e.input.text = "Inf."; }));
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.fpsCounter);
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.vSync);
+            contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.textureQuality);
+            contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.anisotropicFiltering);
+            contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.antiAliasing);
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
         private void CreateAudio(VerticalScrollView contents)

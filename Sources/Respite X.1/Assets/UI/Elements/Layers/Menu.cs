@@ -20,7 +20,7 @@ namespace Game.UI
             Div options = this.Create<Div>("gui", "background3", "options");
             options.Create<Button>("gui", "rectangle", "green").Modify("Resume").Bind(_ => UI.Menu.Hide());
             options.Create<Button>("gui", "rectangle", "yellow").Modify("Settings").Bind(_ => { UI.Menu.Hide(); UI.Settings.Show(); });
-            options.Create<Button>("gui", "rectangle", "red").Modify("Quit").Bind(_ => GeneralUtilities.Quit());
+            options.Create<Button>("gui", "rectangle", "red").Modify("Quit").Bind(_ => { Game.Settings.Save(); GeneralUtilities.Quit(); });
         }
     }
 }
