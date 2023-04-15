@@ -7,13 +7,6 @@ namespace Game
 {
     public class Player : MonoBehaviour
     {
-        [Header("Zoom")]
-        [Range(1, 10)]
-        public int zoomMin = 10;
-        [Range(10, 30)]
-        public int zoomMax = 25;
-        public int zoom = 20;
-
         [Header("Movement")]
         public float moveSpeed = 2.0f;
         public float sprintSpeed = 5.335f;
@@ -34,7 +27,6 @@ namespace Game
         public LayerMask groundLayers;
 
         [Header("References")]
-        public new CinemachineVirtualCamera camera;
         public Animator animator;
         public CharacterController controller;
 
@@ -66,13 +58,9 @@ namespace Game
             animIDJump = Animator.StringToHash("Jump");
             animIDFreeFall = Animator.StringToHash("FreeFall");
             animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-
-            UpdateZoom();
         }
         public void Update()
         {
-            Zoom();
-
             CheckGround();
             MoveVertical();
             MoveHorizontal();
@@ -101,22 +89,6 @@ namespace Game
             this.enabled = enabled;
             animator.enabled = enabled;
             controller.enabled = enabled;
-        }
-
-        private void Zoom()
-        {
-            int targetZoom = zoom;
-            if (Inputs.ScrollUp || Inputs.ZoomIn.Down) targetZoom = Mathf.Clamp(targetZoom - 1, zoomMin, zoomMax);
-            if (Inputs.ScrollDown || Inputs.ZoomOut.Down) targetZoom = Mathf.Clamp(targetZoom + 1, zoomMin, zoomMax);
-
-            if (targetZoom == zoom) return;
-            zoom = targetZoom;
-            UpdateZoom();
-        }
-        private void UpdateZoom()
-        {
-            CinemachineTransposer transposer = camera.GetCinemachineComponent<CinemachineTransposer>();
-            transposer.m_FollowOffset = new Vector3(0, zoom * 0.2f, zoom * -0.16f);
         }
 
         private void MoveVertical()

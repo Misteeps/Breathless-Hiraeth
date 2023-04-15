@@ -40,10 +40,10 @@ namespace Game
         public static bool ScrollDown => UnityEngine.Input.mouseScrollDelta.y < 0;
 
 
-        public static void UpdateWorldCursor(float distance) => worldCursor = Camera.main.ScreenToWorldPoint(new Vector3(MouseX, MouseY, distance));
+        public static void UpdateWorldCursor(float distance) => worldCursor = Monolith.Camera.ScreenToWorldPoint(new Vector3(MouseX, MouseY, distance));
         public static void UpdateScreenCursor(float width, float height)
         {
-            Vector2 position = Camera.main.ScreenToViewportPoint(new Vector3(MouseX, MouseY, 0));
+            Vector2 position = Monolith.Camera.ScreenToViewportPoint(new Vector3(MouseX, MouseY, 0));
             float x = Mathf.Lerp(0, width, position.x);
             float y = Mathf.Lerp(height, 0, position.y);
             screenCursor = new Vector2(x, y);

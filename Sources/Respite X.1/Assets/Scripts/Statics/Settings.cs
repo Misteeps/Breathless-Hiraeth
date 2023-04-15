@@ -250,6 +250,9 @@ namespace Game
             get => new (string, int)[] { ("MSAA x8", 8), ("MSAA x4", 4), ("MSAA x2", 2), ("Off", 0) };
         }
 
+        [Header("General")]
+        public static Int zoom = new Int("Zoom", 8, 0, 15, value => Camera.Zoom(value));
+
         [Header("Graphics")]
         public static Choice<FullScreenMode> windowMode = new Choice<FullScreenMode>("Window Mode", FullScreenMode.FullScreenWindow, WindowModes, _ => ApplyResolution());
         public static Choice<(int width, int height)> resolution = new Choice<(int width, int height)>("Resolution", Resolutions, _ => ApplyResolution());

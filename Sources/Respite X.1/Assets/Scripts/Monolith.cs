@@ -31,7 +31,7 @@ namespace Game
         public static Monolith Instance { get; private set; }
 
         public static GameObject CameraObject { get; private set; }
-        public static Camera Camera { get; private set; }
+        public static UnityEngine.Camera Camera { get; private set; }
 
         public static GameObject PlayerObject { get; private set; }
         public static Player Player { get; private set; }
@@ -69,7 +69,7 @@ namespace Game
             DontDestroyOnLoad(InstanceObject);
 
             CameraObject = GameObject.FindWithTag("MainCamera");
-            Camera = CameraObject.GetComponent<Camera>();
+            Camera = CameraObject.GetComponent<UnityEngine.Camera>();
             DontDestroyOnLoad(CameraObject);
 
             PlayerObject = GameObject.FindWithTag("Player");
@@ -79,6 +79,12 @@ namespace Game
         private void Start()
         {
             Settings.Load();
+        }
+
+        private void Update()
+        {
+            if (Inputs.ScrollUp || Inputs.ZoomIn.Down) Settings.zoom.Set(Settings.zoom + 1);
+            if (Inputs.ScrollDown || Inputs.ZoomOut.Down) Settings.zoom.Set(Settings.zoom - 1);
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));
