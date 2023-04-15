@@ -98,6 +98,7 @@ namespace Game
         private void Start()
         {
             Settings.Load();
+            Pressure = 0;
         }
 
         private void Update()
