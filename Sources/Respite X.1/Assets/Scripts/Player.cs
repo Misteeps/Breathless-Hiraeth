@@ -41,11 +41,12 @@ namespace Game
 
         private const float terminalVelocity = 53.0f;
 
-        private int animIDSpeed;
-        private int animIDGrounded;
+        private int animIDMoveX;
+        private int animIDMoveY;
+        private int animIDCombat;
         private int animIDJump;
+        private int animIDGrounded;
         private int animIDFreeFall;
-        private int animIDMotionSpeed;
 
 
         public void Start()
@@ -53,11 +54,12 @@ namespace Game
             jumpCooldownTimer = jumpCooldown;
             fallTimer = fallTime;
 
-            animIDSpeed = Animator.StringToHash("Speed");
-            animIDGrounded = Animator.StringToHash("Grounded");
+            animIDMoveX = Animator.StringToHash("Move X");
+            animIDMoveY = Animator.StringToHash("Move Y");
+            animIDCombat = Animator.StringToHash("Combat");
             animIDJump = Animator.StringToHash("Jump");
+            animIDGrounded = Animator.StringToHash("Grounded");
             animIDFreeFall = Animator.StringToHash("FreeFall");
-            animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
         public void Update()
         {
@@ -98,6 +100,7 @@ namespace Game
                 fallTimer = fallTime;
 
                 animator.SetBool(animIDJump, false);
+                animator.SetBool(animIDGrounded, true);
                 animator.SetBool(animIDFreeFall, false);
 
                 if (verticalVelocity < 0.0f)
@@ -116,10 +119,10 @@ namespace Game
             {
                 jumpCooldownTimer = jumpCooldown;
 
-                if (fallTimer >= 0.0f)
-                    fallTimer -= Time.deltaTime;
-                else
-                    animator.SetBool(animIDFreeFall, true);
+                animator.SetBool(animIDGrounded, true);
+
+                if (fallTimer >= 0.0f) fallTimer -= Time.deltaTime;
+                else animator.SetBool(animIDFreeFall, true);
             }
 
             if (verticalVelocity < terminalVelocity)
@@ -154,16 +157,13 @@ namespace Game
             }
 
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * acceleration);
-            animator.SetFloat(animIDSpeed, animationBlend);
-            animator.SetFloat(animIDMotionSpeed, 1);
+            animator.SetFloat(animIDMoveY, animationBlend);
         }
 
         private void CheckGround()
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundOffset, transform.position.z);
             grounded = Physics.CheckSphere(spherePosition, groundRadius, groundLayers, QueryTriggerInteraction.Ignore);
-
-            animator.SetBool(animIDGrounded, grounded);
         }
     }
 }
