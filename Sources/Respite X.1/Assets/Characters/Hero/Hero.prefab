@@ -108,6 +108,89 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9064014749996174373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214498343260920384}
+  - component: {fileID: 5424541708790871062}
+  - component: {fileID: 4808425619743592739}
+  m_Layer: 0
+  m_Name: Sword
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1214498343260920384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064014749996174373}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0.00063, z: 0.000283}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5145289617188631820}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!33 &5424541708790871062
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064014749996174373}
+  m_Mesh: {fileID: 4686849319519084627, guid: c32bada3e6a272d40a99d76f35edfc21, type: 3}
+--- !u!23 &4808425619743592739
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064014749996174373}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 0
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b12fae303fcb9f44ca52d801714c5f4d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &7358330244122769700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,6 +323,38 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b12fae303fcb9f44ca52d801714c5f4d, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02d57d3fec95ad64e9aca1a5a8368af2, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 222ab0b7388ab0747975bbcdeac42520, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5ce8a525f894dc4394b1e6a2d161fb9, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1e4d0e4aa387cb43964ea9dc553439f, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 76e3e3a0b2fa0a54287982f7b7504d08, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: edc8ed96739048e499fff94637a7f7d2, type: 2}
+    - target: {fileID: 7219867370428330978, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 54d2d4ef1241e5948b5f2b9eddc31940, type: 2}
     - target: {fileID: 8125607009494361997, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
@@ -262,6 +377,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
       insertIndex: 0
       addedObject: {fileID: 4927088589286394321}
+    - targetCorrespondingSourceObject: {fileID: 2412161367050800168, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1214498343260920384}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
       insertIndex: -1
@@ -273,6 +391,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4603446619649987803}
   m_SourcePrefab: {fileID: 100100000, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+--- !u!4 &5145289617188631820 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2412161367050800168, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
+  m_PrefabInstance: {fileID: 7358330244122769700}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7031441883457789647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
