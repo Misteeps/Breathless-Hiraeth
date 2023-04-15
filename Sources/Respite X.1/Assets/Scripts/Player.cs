@@ -71,7 +71,7 @@ namespace Game
             MoveHorizontal();
 
             if (transform.position.y < -20)
-                Enable(true, Vector3.zero);
+                Enable(true, new Vector3(0, 100, 0));
         }
 
         public void Enable(bool enabled, Vector3 position)
@@ -96,6 +96,11 @@ namespace Game
             controller.enabled = enabled;
         }
 
+        private void CheckGround()
+        {
+            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundOffset, transform.position.z);
+            grounded = Physics.CheckSphere(spherePosition, groundRadius, groundLayers, QueryTriggerInteraction.Ignore);
+        }
         private void MoveVertical()
         {
             if (grounded)
@@ -162,12 +167,6 @@ namespace Game
             animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * acceleration);
             animator.SetFloat(animIDMoveY, animationBlend);
             ShowSword(targetSpeed <= 2.4f);
-        }
-
-        private void CheckGround()
-        {
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundOffset, transform.position.z);
-            grounded = Physics.CheckSphere(spherePosition, groundRadius, groundLayers, QueryTriggerInteraction.Ignore);
         }
 
         public void ShowSword(bool show)
