@@ -471,7 +471,7 @@ MonoBehaviour:
   acceleration: 10
   jumpHeight: 1.2
   gravity: -15
-  jumpCooldown: 0
+  jumpCooldown: 0.1
   fallTime: 0.15
   grounded: 1
   groundOffset: -0.14

@@ -119,7 +119,7 @@ namespace Game
             {
                 jumpCooldownTimer = jumpCooldown;
 
-                animator.SetBool(animIDGrounded, true);
+                animator.SetBool(animIDGrounded, false);
 
                 if (fallTimer >= 0.0f) fallTimer -= Time.deltaTime;
                 else animator.SetBool(animIDFreeFall, true);
