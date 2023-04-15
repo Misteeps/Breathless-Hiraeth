@@ -34,10 +34,10 @@ namespace Game
 
         public static Vector3 worldCursor;
         public static Vector2 screenCursor;
-        public static float MouseX => UnityEngine.Input.mousePosition.x;
-        public static float MouseY => UnityEngine.Input.mousePosition.y;
-        public static bool ScrollUp => UnityEngine.Input.mouseScrollDelta.y > 0;
-        public static bool ScrollDown => UnityEngine.Input.mouseScrollDelta.y < 0;
+        public static float MouseX => Input.mousePosition.x;
+        public static float MouseY => Input.mousePosition.y;
+        public static bool ScrollUp => Input.mouseScrollDelta.y > 0;
+        public static bool ScrollDown => Input.mouseScrollDelta.y < 0;
 
 
         public static void UpdateWorldCursor(float distance) => worldCursor = Monolith.Camera.ScreenToWorldPoint(new Vector3(MouseX, MouseY, distance));

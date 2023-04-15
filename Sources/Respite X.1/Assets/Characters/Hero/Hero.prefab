@@ -465,8 +465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6665f9b073361a49b1b73a4eab6f605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  sprintSpeed: 5.4
+  moveSpeed: 2.4
+  combatSpeed: 3.6
+  sprintSpeed: 5.8
   rotationSpeed: 0.12
   acceleration: 10
   jumpHeight: 1.2
@@ -479,11 +480,14 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 1048576
+  visibleSword: 0
+  combatTimer: 0
   sword: {fileID: 1214498343260920384}
   animator: {fileID: 8266243098872052024}
   controller: {fileID: 3142858220769582314}
   speed: 0
-  animationBlend: 0
+  animationSpeedX: 0
+  animationSpeedY: 0
   targetRotation: 0
   rotationVelocity: 0
   verticalVelocity: 0
