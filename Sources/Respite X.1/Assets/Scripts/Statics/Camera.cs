@@ -41,7 +41,7 @@ namespace Game
             set
             {
                 zoomOffset = value;
-                Zoom(currentZoom, true);
+                Zoom(currentZoom, 1, true);
             }
         }
 
@@ -49,12 +49,12 @@ namespace Game
         private static bool hijacked;
 
 
-        public static void Zoom(float zoom) => Zoom(zoom, !hijacked);
-        private static void Zoom(float zoom, bool force)
+        public static void Zoom(float zoom, float speed = 1, bool hijack = false)
         {
-            if (hijacked && !force) return;
+            if (hijack) hijacked = true;
+            else if (hijacked) return;
 
-            new Transition(() => currentZoom, Set, currentZoom, zoom, "Camera Zoom").Curve(Function.Cubic, Direction.Out, 420).Start();
+            new Transition(() => currentZoom, Set, currentZoom, zoom, "Camera Zoom").Curve(Function.Cubic, Direction.Out, 420).Modify(speed, true).Start();
             static void Set(float value)
             {
                 currentZoom = value;
@@ -65,7 +65,6 @@ namespace Game
             }
         }
 
-        public static void HijackZoom(float zoom) => Zoom(zoom, true);
-        public static void HijackRelease() => hijacked = false;
+        public static void ReleaseHijack() => hijacked = false;
     }
 }
