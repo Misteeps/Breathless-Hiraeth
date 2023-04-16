@@ -39,8 +39,8 @@ ModelImporter:
       name: Attack Slash Right
       takeName: mixamo.com
       internalID: 4061839508520268033
-      firstFrame: 0
-      lastFrame: 50
+      firstFrame: 20
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

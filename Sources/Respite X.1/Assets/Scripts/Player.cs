@@ -259,10 +259,21 @@ namespace Game
             Combat = true;
 
             if (attackTimer > 0) return;
-            if (attackTimer < -2) attackChain = 0;
+            if (attackTimer < -0.6f) attackChain = 0;
 
-            attackChain++;
-            attackTimer = 0.5f;
+            switch (attackChain++)
+            {
+                default: attackChain = 1; goto case 0;
+                case 0:
+                    animator.CrossFade("Attack Slash Left", 0.3f);
+                    attackTimer = 0.2f;
+                    break;
+                case 1:
+                    animator.CrossFade("Attack Slash Right", 0.3f);
+                    attackTimer = 0.4f;
+                    attackChain = 0;
+                    break;
+            }
         }
         private void Ability1()
         {
