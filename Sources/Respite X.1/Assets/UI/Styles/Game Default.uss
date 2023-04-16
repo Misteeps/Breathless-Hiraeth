@@ -524,7 +524,7 @@ Background
 }
 
 .layer#Settings > .center > .panel .labeled {
-    margin-right: 33px;
+    margin-right: 17px;
     padding: 0 12px;
     height: 32px;
     align-items: center;

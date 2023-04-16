@@ -282,7 +282,7 @@ namespace Game
         public static Float renderScale = new Float("Render Scale", 1, 0.5f, 1.25f, value => Monolith.Refs.quality.renderScale = value);
         public static Choice<int> textureQuality = new Choice<int>("Texture Quality", TextureQualities, value => QualitySettings.globalTextureMipmapLimit = value);
         public static Choice<int> anisotropicFiltering = new Choice<int>("Anisotropic Filtering", DefaultAnisotropicFiltering, AnisotropicFilterings, value => Texture.SetGlobalAnisotropicFilteringLimits(-1, value));
-        public static Choice<int> antiAliasing = new Choice<int>("Anti-Aliasing", DefaultAntiAliasing, AntiAliases, value => Monolith.Refs.quality.msaaSampleCount = value);
+        public static Choice<int> antiAliasing = new Choice<int>("Anti-aliasing", DefaultAntiAliasing, AntiAliases, value => Monolith.Refs.quality.msaaSampleCount = value);
         public static Choice<SoftShadowQuality> shadowQuality = new Choice<SoftShadowQuality>("Shadow Quality", DefaultShadowQuality, ShadowQualities, value => typeof(UniversalRenderPipelineAsset).GetProperty("softShadowQuality", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(Monolith.Refs.quality, value));
         public static Int shadowDistance = new Int("Shadow Distance", DefaultShadowDistance, 5, 30, value => Monolith.Refs.quality.shadowDistance = value * 10);
 
