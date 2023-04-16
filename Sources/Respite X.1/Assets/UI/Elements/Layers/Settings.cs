@@ -29,7 +29,7 @@ namespace Game.UI
             CreateKeybinds(contents);
 
             Div options = center.Create<Div>("gui", "background3", "options");
-            options.Create<Button>("gui", "rectangle", "purple").Modify("Defaults").Bind(_ => Debug.Log("DEFAULTS"));
+            options.Create<Button>("gui", "rectangle", "purple").Modify("Defaults").Bind(_ => { Game.Settings.Defaults(null); this.Refresh(); });
             options.Create<Button>("gui", "rectangle", "green").Modify("Return").Bind(_ => UI.Settings.Hide());
         }
 
