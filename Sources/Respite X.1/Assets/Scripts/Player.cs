@@ -132,8 +132,8 @@ namespace Game
             if (transform.position.y < 0)
                 Enable(true, new Vector3(0, 100, 0));
 
-            if (Input.GetKeyDown(KeyCode.F1)) sprintSpeed = Mathf.Clamp(sprintSpeed - 10, 5.8f, 100);
-            if (Input.GetKeyDown(KeyCode.F2)) sprintSpeed = Mathf.Clamp(sprintSpeed + 10, 5.8f, 100);
+            if (Input.GetKeyDown(KeyCode.KeypadMinus)) sprintSpeed = Mathf.Clamp(sprintSpeed - 10, 5.8f, 100);
+            if (Input.GetKeyDown(KeyCode.KeypadMultiply)) sprintSpeed = Mathf.Clamp(sprintSpeed + 10, 5.8f, 100);
         }
 
         public void Enable(bool enabled, Vector3 position)
