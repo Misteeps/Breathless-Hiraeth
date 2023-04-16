@@ -129,8 +129,11 @@ namespace Game
             else if (Inputs.Ability4.Down) Ability4();
             else if (Inputs.Sprint.Down && attackTimer < 0.05f) Combat = false;
 
-            if (transform.position.y < -20)
+            if (transform.position.y < 0)
                 Enable(true, new Vector3(0, 100, 0));
+
+            if (Input.GetKeyDown(KeyCode.F1)) sprintSpeed = Mathf.Clamp(sprintSpeed - 10, 5.8f, 100);
+            if (Input.GetKeyDown(KeyCode.F2)) sprintSpeed = Mathf.Clamp(sprintSpeed + 10, 5.8f, 100);
         }
 
         public void Enable(bool enabled, Vector3 position)
