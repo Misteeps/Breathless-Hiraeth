@@ -99,6 +99,7 @@ namespace Game
         }
         private void Start()
         {
+            Progress.Load();
             Settings.Load();
             Pressure = 0;
 

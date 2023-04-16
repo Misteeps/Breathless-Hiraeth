@@ -331,21 +331,20 @@ namespace Game
         }
         public static void Load()
         {
-            if (!FileUtilities.Load("settings.ini", out FileUtilities.INI ini))
+            if (FileUtilities.Load("Settings.ini", out FileUtilities.INI ini))
+                foreach ((FieldInfo field, Setting setting) in SettingFields)
+                    try
+                    {
+                        FileUtilities.INI.Item item = ini.FindItem(setting.Name);
+                        if (item == null) setting.Default();
+                        else setting.Set((string)item.value);
+                    }
+                    catch (Exception exception) { exception.Error(ConsoleUtilities.settingsTag, $"Failed reading {field?.Name:info}"); }
+            else
             {
                 Defaults(null);
                 Save();
-                return;
             }
-
-            foreach ((FieldInfo field, Setting setting) in SettingFields)
-                try
-                {
-                    FileUtilities.INI.Item item = ini.FindItem(setting.Name);
-                    if (item == null) setting.Default();
-                    else setting.Set((string)item.value);
-                }
-                catch (Exception exception) { exception.Error(ConsoleUtilities.settingsTag, $"Failed reading {field?.Name:info}"); }
         }
         public static void Save()
         {
@@ -360,7 +359,7 @@ namespace Game
                 }
                 catch (Exception exception) { exception.Error(ConsoleUtilities.settingsTag, $"Failed writing {field?.Name:info}"); }
 
-            FileUtilities.Save("settings.ini", ini);
+            FileUtilities.Save("Settings.ini", ini);
         }
 
         private static void ApplyResolution()
