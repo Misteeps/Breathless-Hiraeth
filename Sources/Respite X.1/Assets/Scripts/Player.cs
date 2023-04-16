@@ -14,6 +14,7 @@ namespace Game
         public float moveSpeed = 2.4f;
         public float combatSpeed = 3.6f;
         public float sprintSpeed = 5.8f;
+        public float speedModifier = 1;
         [Range(0.0f, 0.3f)]
         public float rotationSpeed = 0.12f;
         public float acceleration = 10.0f;
@@ -76,6 +77,7 @@ namespace Game
         public CharacterController controller;
 
         [Header("Debug")]
+        [SerializeField] private bool lockActions;
         [SerializeField] private float speed;
         [SerializeField] private float animationSpeedX;
         [SerializeField] private float animationSpeedY;
@@ -124,7 +126,8 @@ namespace Game
                 }
             }
 
-            if (Inputs.Attack.Down) Attack();
+            if (lockActions) { }
+            else if (Inputs.Attack.Down) Attack();
             else if (Inputs.Ability1.Down) Ability1();
             else if (Inputs.Ability2.Down) Ability2();
             else if (Inputs.Ability3.Down) Ability3();
@@ -134,8 +137,8 @@ namespace Game
             if (transform.position.y < 0)
                 Enable(true, new Vector3(0, 100, 0));
 
-            if (Input.GetKeyDown(KeyCode.KeypadMinus)) sprintSpeed = Mathf.Clamp(sprintSpeed - 10, 5.8f, 100);
-            if (Input.GetKeyDown(KeyCode.KeypadMultiply)) sprintSpeed = Mathf.Clamp(sprintSpeed + 10, 5.8f, 100);
+            if (Input.GetKeyDown(KeyCode.KeypadMinus)) speedModifier = Mathf.Clamp(speedModifier - 1, 1, 20);
+            if (Input.GetKeyDown(KeyCode.KeypadMultiply)) speedModifier = Mathf.Clamp(speedModifier + 1, 1, 20);
         }
 
         public async void WakeUp()
@@ -215,7 +218,7 @@ namespace Game
         }
         private void MoveHorizontalNormal()
         {
-            float targetSpeed = Inputs.Sprint.Held ? sprintSpeed : moveSpeed;
+            float targetSpeed = ((Inputs.Sprint.Held) ? sprintSpeed : moveSpeed) * speedModifier;
             Vector3 direction = Vector3.zero;
             if (Input.GetKey(KeyCode.W)) direction += Vector3.forward;
             if (Input.GetKey(KeyCode.S)) direction += Vector3.back;
@@ -242,7 +245,7 @@ namespace Game
             Vector3 lookDirection = new Vector3(Inputs.MouseX - (Screen.width / 2), 0, Inputs.MouseY - (Screen.height / 2));
             transform.rotation = LerpRotation(Quaternion.LookRotation(lookDirection).eulerAngles.y);
 
-            float targetSpeed = combatSpeed;
+            float targetSpeed = combatSpeed * speedModifier;
             Vector3 moveDirection = Vector3.zero;
             if (Input.GetKey(KeyCode.W)) moveDirection += Vector3.forward;
             if (Input.GetKey(KeyCode.S)) moveDirection += Vector3.back;
@@ -307,6 +310,38 @@ namespace Game
         private void Ability4()
         {
             Combat = true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.name == "Fairy")
+                FairyTalk(other.GetComponent<Fairy>());
+        }
+        private async void FairyTalk(Fairy fairy)
+        {
+            fairy.SpinRadius = 0;
+            speedModifier = 0.4f;
+            lockActions = true;
+            Combat = false;
+
+            Camera.Zoom(17, 0.8f, true);
+            await GeneralUtilities.DelayMS(1000);
+
+            if (fairy.NextDialog())
+                while (Vector3.Distance(transform.position, fairy.transform.position) < 5)
+                {
+                    await GeneralUtilities.DelayFrame(1);
+                    if (Inputs.Click.Down || Inputs.Breath.Down)
+                        fairy.NextDialog();
+                }
+
+            Camera.Zoom(-4, 0.8f, true);
+            await GeneralUtilities.DelayMS(2400);
+
+            speedModifier = 1;
+            lockActions = false;
+            Combat = false;
+            Camera.ReleaseHijack();
         }
     }
 }
