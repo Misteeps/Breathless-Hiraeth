@@ -143,6 +143,9 @@ namespace Game
 
         public async void WakeUp()
         {
+#if UNITY_EDITOR
+            await GeneralUtilities.DelayFrame(1);
+#else
             enabled = false;
             VisibleSword = false;
             animator.CrossFade("Wake Up", 0);
@@ -151,6 +154,7 @@ namespace Game
 
             enabled = true;
             VisibleSword = true;
+#endif
         }
 
         public void Enable(bool enabled, Vector3 position)
@@ -194,7 +198,7 @@ namespace Game
                 if (verticalVelocity < 0.0f)
                     verticalVelocity = -2f;
 
-                if (Inputs.Jump.Down && jumpCooldownTimer <= 0.0f)
+                if (Inputs.Jump.Down && jumpCooldownTimer <= 0.0f && !lockActions)
                 {
                     verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
                     animator.SetBool(animIDJump, true);
@@ -315,33 +319,41 @@ namespace Game
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.name == "Fairy")
-                FairyTalk(other.GetComponent<Fairy>());
+                FairyTrigger(other.GetComponent<Fairy>());
         }
-        private async void FairyTalk(Fairy fairy)
+        private async void FairyTrigger(Fairy fairy)
         {
             fairy.SpinRadius = 0;
             speedModifier = 0.4f;
             lockActions = true;
             Combat = false;
 
-            Camera.Zoom(17, 0.8f, true);
-            await GeneralUtilities.DelayMS(1000);
-
-            if (fairy.NextDialog())
-                while (Vector3.Distance(transform.position, fairy.transform.position) < 5)
+            bool flyAway = false;
+            if (fairy.DisplayDialog(fairy.currentDialog))
+            {
+                Camera.ZoomOffset = 4;
+                while (Vector3.Distance(transform.position, fairy.transform.position) < 6)
                 {
                     await GeneralUtilities.DelayFrame(1);
                     if (Inputs.Click.Down || Inputs.Breath.Down)
-                        fairy.NextDialog();
+                        if (!fairy.DisplayDialog(fairy.currentDialog + 1))
+                        {
+                            flyAway = true;
+                            break;
+                        }
                 }
+            }
 
-            Camera.Zoom(-4, 0.8f, true);
-            await GeneralUtilities.DelayMS(2400);
-
+            Camera.ZoomOffset = 0;
             speedModifier = 1;
             lockActions = false;
             Combat = false;
-            Camera.ReleaseHijack();
+
+            if (flyAway)
+            {
+                Camera.ZoomOffset = -4;
+                await GeneralUtilities.DelayMS(2400);
+            }
         }
     }
 }

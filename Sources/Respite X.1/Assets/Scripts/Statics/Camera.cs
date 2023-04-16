@@ -41,7 +41,7 @@ namespace Game
             set
             {
                 zoomOffset = value;
-                Zoom(currentZoom, 1, true);
+                Zoom(Settings.zoom, 1, false);
             }
         }
 
@@ -54,11 +54,11 @@ namespace Game
             if (hijack) hijacked = true;
             else if (hijacked) return;
 
-            new Transition(() => currentZoom, Set, currentZoom, zoom, "Camera Zoom").Curve(Function.Cubic, Direction.Out, 420).Modify(speed, true).Start();
+            new Transition(() => currentZoom, Set, currentZoom, Mathf.Clamp(zoom + ZoomOffset, -15, 15), "Camera Zoom").Curve(Function.Cubic, Direction.Out, 420).Modify(speed, true).Start();
             static void Set(float value)
             {
                 currentZoom = value;
-                value = (30 - value + ZoomOffset);
+                value = (30 - value);
 
                 Transposer.m_FollowOffset = new Vector3(0, value * 0.2f, value * -0.12f);
                 Monolith.CameraObject.transform.eulerAngles = new Vector3(Mathf.Log10(3 * value - 30) * 19 + 17.5f, 0, 0);

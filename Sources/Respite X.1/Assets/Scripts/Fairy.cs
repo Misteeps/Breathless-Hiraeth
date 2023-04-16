@@ -20,6 +20,7 @@ namespace Game
 
 
         public ParticleSystem particles;
+        public SphereCollider trigger;
 
         public int spinSpeed = 200;
         public float SpinRadius
@@ -49,29 +50,34 @@ namespace Game
             transform.eulerAngles += new Vector3(0, spinSpeed * Time.deltaTime, 0);
         }
 
-        public bool NextDialog(bool autoNextPosition = true)
+        public bool DisplayDialog(int index, bool autoNextPosition = true)
         {
             Position position = positions[currentPosition];
-            if (position.dialog.OutOfRange(currentDialog))
+            if (position.dialog.OutOfRange(index))
             {
-                if (autoNextPosition) NextPosition();
+                if (autoNextPosition) GoToPosition(currentPosition + 1);
                 return false;
             }
             else
             {
-                string dialog = position.dialog[currentDialog++];
+                string dialog = position.dialog[index];
                 Debug.Log(dialog);
+                currentDialog = index;
                 return true;
             }
         }
-        public void NextPosition()
+        public async void GoToPosition(int index)
         {
+            trigger.enabled = false;
+
             transform.Transition(TransformField.Position, Unit.X, transform.position.x, transform.position.x + 150).Curve(Function.Sine, Direction.In, 10f).Start();
             transform.Transition(TransformField.Position, Unit.Z, transform.position.z, transform.position.z + 150).Curve(Function.Sine, Direction.In, 10f).Start();
-            transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y + 5).Curve(Function.Back, Direction.In, 2400).Start();
+            transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y + 5).Curve(Function.Back, Direction.In, 2.4f).Start();
+            await GeneralUtilities.DelayMS(2400);
 
             currentDialog = 0;
-            currentPosition++;
+            currentPosition = index;
+            trigger.enabled = true;
         }
 
         private static bool AdditiveLeave(Fairy fairy, string scene, int position)

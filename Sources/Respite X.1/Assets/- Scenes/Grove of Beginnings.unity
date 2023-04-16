@@ -2871,6 +2871,14 @@ PrefabInstance:
       propertyPath: positions.Array.data[0].position.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[0].dialog.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[0].dialog.Array.data[0]
+      value: I believe in you
+      objectReference: {fileID: 0}
     - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_Name
       value: Fairy
@@ -4092,7 +4100,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324286161}
-  m_LocalRotation: {x: 0.4331887, y: 0, z: 0, w: 0.9013033}
+  m_LocalRotation: {x: 0.38392034, y: 0, z: 0, w: 0.92336625}
   m_LocalPosition: {x: 0, y: 104, z: -3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

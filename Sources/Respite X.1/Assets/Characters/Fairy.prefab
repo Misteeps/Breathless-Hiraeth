@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 9062069500483370134}
+  trigger: {fileID: 1604624533153136260}
   spinSpeed: 200
   sceneWarp: 
+  currentDialog: 0
+  currentPosition: 0
   positions: []
 --- !u!135 &1604624533153136260
 SphereCollider:
