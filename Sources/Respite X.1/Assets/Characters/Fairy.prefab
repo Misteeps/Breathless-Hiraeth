@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cfb2435e6e18d4d940805731d85bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: {fileID: 9062069500483370134}
   spinSpeed: 200
+  positions: []
 --- !u!198 &9062069500483370134
 ParticleSystem:
   m_ObjectHideFlags: 0

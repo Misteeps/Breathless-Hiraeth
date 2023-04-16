@@ -93,7 +93,7 @@ namespace Game
         private int animIDFreeFall;
 
 
-        public void Start()
+        private void Start()
         {
             jumpCooldownTimer = jumpCooldown;
             fallTimer = fallTime;
@@ -105,7 +105,7 @@ namespace Game
             animIDGrounded = Animator.StringToHash("Grounded");
             animIDFreeFall = Animator.StringToHash("FreeFall");
         }
-        public void Update()
+        private void Update()
         {
             CheckGround();
             MoveVertical();
