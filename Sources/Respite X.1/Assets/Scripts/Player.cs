@@ -29,9 +29,11 @@ namespace Game
         public float groundRadius = 0.28f;
         public LayerMask groundLayers;
 
-        [Header("States")]
+        [Header("Combat")]
         [SerializeField] private bool visibleSword;
         [SerializeField] private float combatTimer;
+        public int attackChain;
+        public float attackTimer;
         public bool VisibleSword
         {
             get => visibleSword;
@@ -60,6 +62,7 @@ namespace Game
                 else
                 {
                     combatTimer = 0;
+                    attackChain = 0;
                     animator.SetBool(animIDCombat, false);
                 }
             }
@@ -104,21 +107,27 @@ namespace Game
         {
             CheckGround();
             MoveVertical();
-            if (Combat) MoveHorizontalCombat();
-            else MoveHorizontalNormal();
 
-            if (Inputs.Attack.Down) Combat = true;
-            if (Inputs.Ability1.Down) Combat = true;
-            if (Inputs.Ability2.Down) Combat = true;
-            if (Inputs.Ability3.Down) Combat = true;
-            if (Inputs.Ability4.Down) Combat = true;
-            else if (Inputs.Sprint.Down) Combat = false;
-            else if (Combat && Settings.autoExitCombat)
+            if (!Combat) MoveHorizontalNormal();
+            else
             {
-                combatTimer -= Time.deltaTime;
-                if (combatTimer < 0)
-                    Combat = false;
+                MoveHorizontalCombat();
+
+                attackTimer -= Time.deltaTime;
+                if (Settings.autoExitCombat)
+                {
+                    combatTimer -= Time.deltaTime;
+                    if (combatTimer < 0)
+                        Combat = false;
+                }
             }
+
+            if (Inputs.Attack.Down) Attack();
+            else if (Inputs.Ability1.Down) Ability1();
+            else if (Inputs.Ability2.Down) Ability2();
+            else if (Inputs.Ability3.Down) Ability3();
+            else if (Inputs.Ability4.Down) Ability4();
+            else if (Inputs.Sprint.Down) Combat = false;
 
             if (transform.position.y < -20)
                 Enable(true, new Vector3(0, 100, 0));
@@ -244,5 +253,32 @@ namespace Game
                 : targetSpeed;
         }
         private Quaternion LerpRotation(float targetRotation) => Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSpeed), 0.0f);
+
+        private void Attack()
+        {
+            Combat = true;
+
+            if (attackTimer > 0) return;
+            if (attackTimer < -2) attackChain = 0;
+
+            attackChain++;
+            attackTimer = 0.5f;
+        }
+        private void Ability1()
+        {
+            Combat = true;
+        }
+        private void Ability2()
+        {
+            Combat = true;
+        }
+        private void Ability3()
+        {
+            Combat = true;
+        }
+        private void Ability4()
+        {
+            Combat = true;
+        }
     }
 }
