@@ -17,12 +17,12 @@ namespace Game
         public static Settings.Keybind MoveDown => Settings.MoveDown;
         public static Settings.Keybind MoveLeft => Settings.moveLeft;
         public static Settings.Keybind MoveRight => Settings.moveRight;
-        public static Settings.Keybind Dash => Settings.dash;
+        public static Settings.Keybind Sprint => Settings.sprint;
         public static Settings.Keybind Jump => Settings.jump;
 
         public static Settings.Keybind Breath => Settings.breath;
         public static Settings.Keybind Attack => Settings.attack;
-        public static Settings.Keybind Cancel => Settings.cancel;
+        public static Settings.Keybind CancelAbility => Settings.cancelAbility;
         public static Settings.Keybind Ability1 => Settings.ability1;
         public static Settings.Keybind Ability2 => Settings.ability2;
         public static Settings.Keybind Ability3 => Settings.ability3;

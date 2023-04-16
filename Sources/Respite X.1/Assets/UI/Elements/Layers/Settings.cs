@@ -89,6 +89,26 @@ namespace Game.UI
             contents.Create<VerticalSpace>().Size(Size.Huge);
             contents.Create<VerticalSpace>();
             contents.Create<Labeled>("header").Modify("Keybinds", highlight: false);
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.click).Elements(e => e.Text(Game.Settings.click.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.escape).Elements(e => e.Text(Game.Settings.escape.Display()));
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.moveUp).Elements(e => e.Text(Game.Settings.moveUp.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.MoveDown).Elements(e => e.Text(Game.Settings.MoveDown.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.moveLeft).Elements(e => e.Text(Game.Settings.moveLeft.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.moveRight).Elements(e => e.Text(Game.Settings.moveRight.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.sprint).Elements(e => e.Text(Game.Settings.sprint.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.jump).Elements(e => e.Text(Game.Settings.jump.Display()));
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.breath).Elements(e => e.Text(Game.Settings.breath.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.attack).Elements(e => e.Text(Game.Settings.attack.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability1).Elements(e => e.Text(Game.Settings.ability1.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability2).Elements(e => e.Text(Game.Settings.ability2.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability3).Elements(e => e.Text(Game.Settings.ability3.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability4).Elements(e => e.Text(Game.Settings.ability4.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.cancelAbility).Elements(e => e.Text(Game.Settings.cancelAbility.Display()));
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.zoomIn).Elements(e => e.Text(Game.Settings.zoomIn.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.zoomOut).Elements(e => e.Text(Game.Settings.zoomOut.Display()));
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
     }

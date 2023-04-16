@@ -112,7 +112,7 @@ namespace Game
             if (Inputs.Ability2.Down) Combat = true;
             if (Inputs.Ability3.Down) Combat = true;
             if (Inputs.Ability4.Down) Combat = true;
-            else if (Inputs.Dash.Down) Combat = false;
+            else if (Inputs.Sprint.Down) Combat = false;
             else if (Combat && Settings.autoExitCombat)
             {
                 combatTimer -= Time.deltaTime;
@@ -189,7 +189,7 @@ namespace Game
         }
         private void MoveHorizontalNormal()
         {
-            float targetSpeed = Inputs.Dash.Held ? sprintSpeed : moveSpeed;
+            float targetSpeed = Inputs.Sprint.Held ? sprintSpeed : moveSpeed;
             Vector3 direction = Vector3.zero;
             if (Input.GetKey(KeyCode.W)) direction += Vector3.forward;
             if (Input.GetKey(KeyCode.S)) direction += Vector3.back;

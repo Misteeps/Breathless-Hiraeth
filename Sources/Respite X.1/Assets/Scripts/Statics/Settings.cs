@@ -301,15 +301,15 @@ namespace Game
         public static Keybind MoveDown = new Keybind("Move Down", KeyCode.S, KeyCode.DownArrow);
         public static Keybind moveLeft = new Keybind("Move Left", KeyCode.A, KeyCode.LeftArrow);
         public static Keybind moveRight = new Keybind("Move Right", KeyCode.D, KeyCode.RightArrow);
-        public static Keybind dash = new Keybind("Dash", KeyCode.LeftShift);
+        public static Keybind sprint = new Keybind("Sprint", KeyCode.LeftShift);
         public static Keybind jump = new Keybind("Jump", KeyCode.Space);
         public static Keybind breath = new Keybind("Breath", KeyCode.F);
         public static Keybind attack = new Keybind("Attack", KeyCode.Mouse0);
-        public static Keybind cancel = new Keybind("Cancel", KeyCode.Mouse1);
         public static Keybind ability1 = new Keybind("Ability 1", KeyCode.Alpha1);
         public static Keybind ability2 = new Keybind("Ability 2", KeyCode.Alpha2);
         public static Keybind ability3 = new Keybind("Ability 3", KeyCode.Alpha3);
         public static Keybind ability4 = new Keybind("Ability 4", KeyCode.Alpha4);
+        public static Keybind cancelAbility = new Keybind("Cancel", KeyCode.Mouse1);
         public static Keybind zoomIn = new Keybind("Zoom In", (KeyCode)541, KeyCode.Equals, true);
         public static Keybind zoomOut = new Keybind("Zoom Out", (KeyCode)542, KeyCode.Minus, true);
 
