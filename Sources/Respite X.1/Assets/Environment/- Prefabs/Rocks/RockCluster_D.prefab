@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000014207090330}
   - component: {fileID: 3391166554629852212}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: RockCluster_D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 2273629962781763479}
   - component: {fileID: 5936137665975348531}
   - component: {fileID: 7299129014696989195}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: RockCluster_D_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

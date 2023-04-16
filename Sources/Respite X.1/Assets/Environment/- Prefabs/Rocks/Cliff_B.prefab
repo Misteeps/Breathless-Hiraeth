@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000012383807312}
   - component: {fileID: 33000012890143024}
   - component: {fileID: 23000011331677892}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Cliff_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4000010165362346}
   - component: {fileID: 33000011840888696}
   - component: {fileID: 23000012304186976}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Cliff_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4000010766231838}
   - component: {fileID: 205000011427498984}
   - component: {fileID: 64000011487076046}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Cliff_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 4000013234931176}
   - component: {fileID: 33000013633231486}
   - component: {fileID: 23000012493086716}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Cliff_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000012747119232}
   - component: {fileID: 33000010993728446}
   - component: {fileID: 23000013903306166}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Birch_C_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4000012225982474}
   - component: {fileID: 33000010461179592}
   - component: {fileID: 23000014164786950}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Birch_C_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4000011779371432}
   - component: {fileID: 33000010314783294}
   - component: {fileID: 23000012292883012}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Birch_C_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 205000011814777384}
   - component: {fileID: 136000011110828158}
   - component: {fileID: 208194187284145462}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Birch_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 4000010865154824}
   - component: {fileID: 33000011480373708}
   - component: {fileID: 23000012225757576}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Birch_C_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

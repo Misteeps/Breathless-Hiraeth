@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000011610942946}
   - component: {fileID: 33000010455944728}
   - component: {fileID: 23000010758271586}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Tree_B_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4000012542339338}
   - component: {fileID: 33000011648010484}
   - component: {fileID: 23000010092500896}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Tree_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 4000013446367628}
   - component: {fileID: 33000014169538358}
   - component: {fileID: 23000012556369098}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Tree_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 4000013266113624}
   - component: {fileID: 33000010952631552}
   - component: {fileID: 23000012560812290}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Tree_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 205000013822248572}
   - component: {fileID: 136000013552687800}
   - component: {fileID: 208779240342819516}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Tree_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}

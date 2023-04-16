@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000010458920444}
   - component: {fileID: 33000012445825660}
   - component: {fileID: 23000010160472492}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Palm_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4000010201102520}
   - component: {fileID: 33000013558420180}
   - component: {fileID: 23000010527272894}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Palm_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 205000010057595838}
   - component: {fileID: 136000012746876746}
   - component: {fileID: 208172394076253704}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Palm_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4000011274957804}
   - component: {fileID: 33000011564200916}
   - component: {fileID: 23000013443572004}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Palm_B_Billboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 4000011474567816}
   - component: {fileID: 33000012241119126}
   - component: {fileID: 23000012701427772}
-  m_Layer: 21
+  m_Layer: 22
   m_Name: FAE_Palm_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
