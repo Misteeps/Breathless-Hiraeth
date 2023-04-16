@@ -16,8 +16,7 @@ namespace Game
             public float x;
             public float y;
             public float z;
-            public string sceneJump;
-            public string[] dialogs;
+            public string dialog;
         }
         #endregion Position
 
@@ -45,6 +44,15 @@ namespace Game
         private void Update()
         {
             transform.eulerAngles += new Vector3(0, spinSpeed * Time.deltaTime, 0);
+        }
+
+        private static bool AdditiveLeave(Fairy fairy, string scene, int position)
+        {
+            return false;
+        }
+        private static bool OverrideLeave(Fairy fairy, string scene, int position)
+        {
+            return false;
         }
     }
 }
