@@ -45,7 +45,7 @@ namespace Game
             }
         }
 
-        private static float currentZoom = 0;
+        private static float currentZoom = -1;
         private static bool hijacked;
 
 
@@ -65,6 +65,10 @@ namespace Game
             }
         }
 
-        public static void ReleaseHijack() => hijacked = false;
+        public static void ReleaseHijack()
+        {
+            hijacked = false;
+            Zoom(Settings.zoom);
+        }
     }
 }

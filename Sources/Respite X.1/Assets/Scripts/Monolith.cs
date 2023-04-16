@@ -147,6 +147,7 @@ namespace Game
             UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(90, LengthUnit.Percent);
             UI.Overlay.Instance.loading.RemoveFromClassList("show");
 
+            Game.Camera.ReleaseHijack();
             Player.Enable(true, playerPosition);
             operation.allowSceneActivation = true;
 
