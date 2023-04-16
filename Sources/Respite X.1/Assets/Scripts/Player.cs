@@ -136,6 +136,18 @@ namespace Game
             if (Input.GetKeyDown(KeyCode.KeypadMultiply)) sprintSpeed = Mathf.Clamp(sprintSpeed + 10, 5.8f, 100);
         }
 
+        public async void WakeUp()
+        {
+            enabled = false;
+            VisibleSword = false;
+            animator.CrossFade("Wake Up", 0);
+
+            await GeneralUtilities.DelayMS(8000);
+
+            enabled = true;
+            VisibleSword = true;
+        }
+
         public void Enable(bool enabled, Vector3 position)
         {
             transform.eulerAngles = Vector3.zero;

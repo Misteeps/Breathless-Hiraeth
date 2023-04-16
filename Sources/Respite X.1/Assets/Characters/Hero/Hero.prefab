@@ -480,7 +480,7 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 3145728
-  visibleSword: 0
+  visibleSword: 1
   combatTimer: 0
   attackChain: 0
   attackTimer: 0

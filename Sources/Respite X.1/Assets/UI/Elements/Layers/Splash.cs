@@ -69,12 +69,14 @@ namespace Game.UI
             cover.AddToClassList("show");
             await GeneralUtilities.DelayMS(milliseconds);
 
+            Monolith.Player.Enable(true);
+            Monolith.Player.WakeUp();
+
             this.AddToClassList("hide");
             await GeneralUtilities.DelayMS(milliseconds);
 
             this.RemoveFromHierarchy();
             Monolith.Instance.enabled = true;
-            Monolith.Player.Enable(true);
         }
     }
 }
