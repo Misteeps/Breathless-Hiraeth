@@ -127,7 +127,7 @@ namespace Game
             else if (Inputs.Ability2.Down) Ability2();
             else if (Inputs.Ability3.Down) Ability3();
             else if (Inputs.Ability4.Down) Ability4();
-            else if (Inputs.Sprint.Down) Combat = false;
+            else if (Inputs.Sprint.Down && attackTimer < 0.05f) Combat = false;
 
             if (transform.position.y < -20)
                 Enable(true, new Vector3(0, 100, 0));
