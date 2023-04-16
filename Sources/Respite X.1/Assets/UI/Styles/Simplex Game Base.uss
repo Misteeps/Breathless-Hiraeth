@@ -126,23 +126,23 @@ Background
 }
 
 .space.vertical.mini {
-    height: 1px;
-}
-
-.space.vertical.small {
-    height: 2px;
-}
-
-.space.vertical.medium {
     height: 4px;
 }
 
-.space.vertical.large {
+.space.vertical.small {
     height: 8px;
 }
 
-.space.vertical.huge {
+.space.vertical.medium {
     height: 12px;
+}
+
+.space.vertical.large {
+    height: 16px;
+}
+
+.space.vertical.huge {
+    height: 20px;
 }
 
 /* text */
