@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 
 using UnityEngine;
-using UnityEngine.UIElements;
 
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -26,10 +25,10 @@ namespace Game.Editor
         private void OnDisable() => Undo.undoRedoPerformed -= Refresh;
         private void Refresh() => root?.Refresh();
 
-        public override VisualElement CreateInspectorGUI()
+        public override UnityEngine.UIElements.VisualElement CreateInspectorGUI()
         {
             monster = (Monster)target;
-            root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
+            root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
 
             return root.Refresh();
         }

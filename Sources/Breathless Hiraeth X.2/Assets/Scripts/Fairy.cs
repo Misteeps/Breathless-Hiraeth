@@ -11,10 +11,17 @@ namespace Game
     {
         #region Position
         [Serializable]
-        public struct Position
+        public class Position
         {
-            public Vector3 position;
+            public float x;
+            public float y;
+            public float z;
             public string[] dialog;
+
+#if UNITY_EDITOR
+            public Fairy fairy;
+            public Position(Fairy fairy) => this.fairy = fairy;
+#endif
         }
         #endregion Position
 
@@ -46,8 +53,9 @@ namespace Game
 
         private void Start()
         {
-            if (positions.IsEmpty()) return;
-            transform.position = positions[CurrentPosition].position;
+            if (positions.OutOfRange(CurrentPosition)) return;
+            Position position = positions[CurrentPosition];
+            transform.position = new Vector3(position.x, position.y, position.z);
             SpinRadius = 1;
         }
         private void Update()
@@ -86,7 +94,7 @@ namespace Game
             {
                 Position position = positions[index];
                 Vector2 start = new Vector2(transform.position.x, transform.position.z);
-                Vector2 end = new Vector2(position.position.x, position.position.z);
+                Vector2 end = new Vector2(position.x, position.z);
                 int duration = (int)(Vector2.Distance(start, end) * 120);
 
                 transform.Transition(TransformField.Position, Unit.X, start.x, end.x).Curve(Function.Sine, Direction.InOut, duration).Start();
@@ -98,7 +106,7 @@ namespace Game
                 await GeneralUtilities.DelayMS(1600);
 
                 duration = Mathf.Max(1000, duration - 2000);
-                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, position.position.y).Curve(Function.Sine, Direction.InOut, duration).Start();
+                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, position.y).Curve(Function.Sine, Direction.InOut, duration).Start();
                 await GeneralUtilities.DelayMS(Mathf.Max(0, duration - 400));
 
                 SpinRadius = 1;

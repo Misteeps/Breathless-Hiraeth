@@ -2821,7 +2821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 94269137398738709, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 102
+      value: 102.3
       objectReference: {fileID: 0}
     - target: {fileID: 94269137398738709, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2856,49 +2856,61 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: editing
-      value: 1
+      propertyPath: currentScene
+      value: Grove of Beginnings
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[0].position.x
+      propertyPath: positions.Array.data[0].x
       value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[0].position.y
-      value: 102
+      propertyPath: positions.Array.data[0].y
+      value: 102.3
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[0].position.z
+      propertyPath: positions.Array.data[0].z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[1].position.x
+      propertyPath: positions.Array.data[1].x
       value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[1].position.y
-      value: 100
+      propertyPath: positions.Array.data[1].y
+      value: 100.56
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[1].position.z
+      propertyPath: positions.Array.data[1].z
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[2].position.x
+      propertyPath: positions.Array.data[2].x
       value: -52
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[2].position.y
-      value: 105
+      propertyPath: positions.Array.data[2].y
+      value: 105.05
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.data[2].position.z
+      propertyPath: positions.Array.data[2].z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[0].fairy
+      value: 
+      objectReference: {fileID: 880109478}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[1].fairy
+      value: 
+      objectReference: {fileID: 880109478}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].fairy
+      value: 
+      objectReference: {fileID: 880109478}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[0].dialog.Array.size
       value: 1
@@ -2913,33 +2925,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[0].dialog.Array.data[0]
-      value: Hurry up, we're almost home!
+      value: Wake up Belle!
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[1].dialog.Array.data[0]
-      value: There's so much to see!
+      value: We're almost home!
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[2].dialog.Array.data[0]
-      value: Some enemies are up ahead
+      value: There's some monsters ahead.
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[2].dialog.Array.data[1]
-      value: I hope you remember how to fight
+      value: I hope you still fight as good as back then!
       objectReference: {fileID: 0}
     - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_Name
       value: Fairy
-      objectReference: {fileID: 0}
-    - target: {fileID: 9062069500483370134, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: ShapeModule.m_Position.x
-      value: 0.04053926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+--- !u!114 &880109478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+  m_PrefabInstance: {fileID: 880109477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cfb2435e6e18d4d940805731d85bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &903641614
 PrefabInstance:
   m_ObjectHideFlags: 0
