@@ -78,11 +78,10 @@ namespace Game.Editor
         public override UnityEngine.UIElements.VisualElement CreateInspectorGUI()
         {
             fairy = (Fairy)target;
-            root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
+            fairy.particles = fairy.GetComponent<ParticleSystem>();
+            fairy.trigger = fairy.GetComponent<SphereCollider>();
 
-            root.Create<VerticalSpace>();
-            root.Create<Labeled<ObjectPicker<ParticleSystem>>>().Bind(fairy.IValue("particles"));
-            root.Create<Labeled<ObjectPicker<SphereCollider>>>().Bind(fairy.IValue("trigger"));
+            root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
             root.Create<VerticalSpace>();
             root.Create<Labeled<IntInput>>().Bind(fairy.IValue("spinSpeed"));
             root.Create<VerticalSpace>();
