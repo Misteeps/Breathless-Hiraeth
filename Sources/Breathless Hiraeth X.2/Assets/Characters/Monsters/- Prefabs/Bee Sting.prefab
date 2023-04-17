@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 6902694358649812514}
   - component: {fileID: 6902694358659422658}
   m_Layer: 0
-  m_Name: Sting
+  m_Name: Bee Sting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

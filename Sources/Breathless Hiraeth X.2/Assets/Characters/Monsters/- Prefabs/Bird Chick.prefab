@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 6817621319531857479}
   - component: {fileID: 6817621319522544039}
   m_Layer: 0
-  m_Name: Chick
+  m_Name: Bird Chick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

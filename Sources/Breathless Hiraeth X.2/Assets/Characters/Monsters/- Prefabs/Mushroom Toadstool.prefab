@@ -1460,7 +1460,7 @@ GameObject:
   - component: {fileID: 8666222085425075172}
   - component: {fileID: 8666222085434964996}
   m_Layer: 0
-  m_Name: Toadstool
+  m_Name: Mushroom Toadstool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

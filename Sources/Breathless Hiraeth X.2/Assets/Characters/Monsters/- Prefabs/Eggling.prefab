@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 3118294153675890160}
   - component: {fileID: 3118294153684955664}
   m_Layer: 0
-  m_Name: Shade
+  m_Name: Eggling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

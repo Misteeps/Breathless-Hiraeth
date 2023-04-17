@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 3925056490110497726}
   - component: {fileID: 3925056490120305758}
   m_Layer: 0
-  m_Name: Bumble
+  m_Name: Bee Bumble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

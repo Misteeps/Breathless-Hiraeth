@@ -915,7 +915,7 @@ GameObject:
   - component: {fileID: 3491765107648614594}
   - component: {fileID: 3491765107655524130}
   m_Layer: 0
-  m_Name: Flower Pot Monster
+  m_Name: Flower Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

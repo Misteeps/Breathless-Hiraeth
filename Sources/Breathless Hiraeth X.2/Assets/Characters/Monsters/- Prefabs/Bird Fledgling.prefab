@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 3444458785134108684}
   - component: {fileID: 3444458785143427052}
   m_Layer: 0
-  m_Name: Fledgling
+  m_Name: Bird Fledgling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
