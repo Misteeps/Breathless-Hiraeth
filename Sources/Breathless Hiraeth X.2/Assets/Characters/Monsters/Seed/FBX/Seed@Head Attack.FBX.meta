@@ -1,100 +1,278 @@
 fileFormatVersion: 2
 guid: cc91bbf68a12d614aaf0955630c7cbee
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Rig
-    100002: RigHead
-    100004: RigHeadGizmo
-    100006: RigLArm1
-    100008: RigLArm1Gizmo
-    100010: RigLArm2
-    100012: RigLArm2Gizmo
-    100014: RigLArm3
-    100016: RigLArm3Gizmo
-    100018: RigLLeg1
-    100020: RigLLeg2
-    100022: RigLLegAnkle
-    100024: RigLLegPlatform
-    100026: RigPelvis
-    100028: RigPelvisGizmo
-    100030: RigRArm1
-    100032: RigRArm1Gizmo
-    100034: RigRArm2
-    100036: RigRArm2Gizmo
-    100038: RigRArm3
-    100040: RigRArm3Gizmo
-    100042: RigRLeg1
-    100044: RigRLeg2
-    100046: RigRLegAnkle
-    100048: RigRLegPlatform
-    100050: RigSpine
-    100052: RigTail1
-    100054: RigTail1Gizmo
-    100056: RigTail2
-    100058: RigTail2Gizmo
-    100060: RigTail3
-    100062: RigTail3Gizmo
-    100064: RigTail4
-    100066: RigTail4Gizmo
-    100068: RigTail5
-    100070: RigTail5Gizmo
-    100072: RigTail6
-    100074: RigTail6Gizmo
-    100076: RigTail7
-    100078: RigTail7Gizmo
-    100080: Seed
-    100082: //RootNode
-    400000: Rig
-    400002: RigHead
-    400004: RigHeadGizmo
-    400006: RigLArm1
-    400008: RigLArm1Gizmo
-    400010: RigLArm2
-    400012: RigLArm2Gizmo
-    400014: RigLArm3
-    400016: RigLArm3Gizmo
-    400018: RigLLeg1
-    400020: RigLLeg2
-    400022: RigLLegAnkle
-    400024: RigLLegPlatform
-    400026: RigPelvis
-    400028: RigPelvisGizmo
-    400030: RigRArm1
-    400032: RigRArm1Gizmo
-    400034: RigRArm2
-    400036: RigRArm2Gizmo
-    400038: RigRArm3
-    400040: RigRArm3Gizmo
-    400042: RigRLeg1
-    400044: RigRLeg2
-    400046: RigRLegAnkle
-    400048: RigRLegPlatform
-    400050: RigSpine
-    400052: RigTail1
-    400054: RigTail1Gizmo
-    400056: RigTail2
-    400058: RigTail2Gizmo
-    400060: RigTail3
-    400062: RigTail3Gizmo
-    400064: RigTail4
-    400066: RigTail4Gizmo
-    400068: RigTail5
-    400070: RigTail5Gizmo
-    400072: RigTail6
-    400074: RigTail6Gizmo
-    400076: RigTail7
-    400078: RigTail7Gizmo
-    400080: Seed
-    400082: //RootNode
-    2100000: 07 - Default
-    4300000: Seed
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Seed
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Rig
+  - first:
+      1: 100002
+    second: RigHead
+  - first:
+      1: 100004
+    second: RigHeadGizmo
+  - first:
+      1: 100006
+    second: RigLArm1
+  - first:
+      1: 100008
+    second: RigLArm1Gizmo
+  - first:
+      1: 100010
+    second: RigLArm2
+  - first:
+      1: 100012
+    second: RigLArm2Gizmo
+  - first:
+      1: 100014
+    second: RigLArm3
+  - first:
+      1: 100016
+    second: RigLArm3Gizmo
+  - first:
+      1: 100018
+    second: RigLLeg1
+  - first:
+      1: 100020
+    second: RigLLeg2
+  - first:
+      1: 100022
+    second: RigLLegAnkle
+  - first:
+      1: 100024
+    second: RigLLegPlatform
+  - first:
+      1: 100026
+    second: RigPelvis
+  - first:
+      1: 100028
+    second: RigPelvisGizmo
+  - first:
+      1: 100030
+    second: RigRArm1
+  - first:
+      1: 100032
+    second: RigRArm1Gizmo
+  - first:
+      1: 100034
+    second: RigRArm2
+  - first:
+      1: 100036
+    second: RigRArm2Gizmo
+  - first:
+      1: 100038
+    second: RigRArm3
+  - first:
+      1: 100040
+    second: RigRArm3Gizmo
+  - first:
+      1: 100042
+    second: RigRLeg1
+  - first:
+      1: 100044
+    second: RigRLeg2
+  - first:
+      1: 100046
+    second: RigRLegAnkle
+  - first:
+      1: 100048
+    second: RigRLegPlatform
+  - first:
+      1: 100050
+    second: RigSpine
+  - first:
+      1: 100052
+    second: RigTail1
+  - first:
+      1: 100054
+    second: RigTail1Gizmo
+  - first:
+      1: 100056
+    second: RigTail2
+  - first:
+      1: 100058
+    second: RigTail2Gizmo
+  - first:
+      1: 100060
+    second: RigTail3
+  - first:
+      1: 100062
+    second: RigTail3Gizmo
+  - first:
+      1: 100064
+    second: RigTail4
+  - first:
+      1: 100066
+    second: RigTail4Gizmo
+  - first:
+      1: 100068
+    second: RigTail5
+  - first:
+      1: 100070
+    second: RigTail5Gizmo
+  - first:
+      1: 100072
+    second: RigTail6
+  - first:
+      1: 100074
+    second: RigTail6Gizmo
+  - first:
+      1: 100076
+    second: RigTail7
+  - first:
+      1: 100078
+    second: RigTail7Gizmo
+  - first:
+      1: 100080
+    second: Seed
+  - first:
+      1: 100082
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Rig
+  - first:
+      4: 400002
+    second: RigHead
+  - first:
+      4: 400004
+    second: RigHeadGizmo
+  - first:
+      4: 400006
+    second: RigLArm1
+  - first:
+      4: 400008
+    second: RigLArm1Gizmo
+  - first:
+      4: 400010
+    second: RigLArm2
+  - first:
+      4: 400012
+    second: RigLArm2Gizmo
+  - first:
+      4: 400014
+    second: RigLArm3
+  - first:
+      4: 400016
+    second: RigLArm3Gizmo
+  - first:
+      4: 400018
+    second: RigLLeg1
+  - first:
+      4: 400020
+    second: RigLLeg2
+  - first:
+      4: 400022
+    second: RigLLegAnkle
+  - first:
+      4: 400024
+    second: RigLLegPlatform
+  - first:
+      4: 400026
+    second: RigPelvis
+  - first:
+      4: 400028
+    second: RigPelvisGizmo
+  - first:
+      4: 400030
+    second: RigRArm1
+  - first:
+      4: 400032
+    second: RigRArm1Gizmo
+  - first:
+      4: 400034
+    second: RigRArm2
+  - first:
+      4: 400036
+    second: RigRArm2Gizmo
+  - first:
+      4: 400038
+    second: RigRArm3
+  - first:
+      4: 400040
+    second: RigRArm3Gizmo
+  - first:
+      4: 400042
+    second: RigRLeg1
+  - first:
+      4: 400044
+    second: RigRLeg2
+  - first:
+      4: 400046
+    second: RigRLegAnkle
+  - first:
+      4: 400048
+    second: RigRLegPlatform
+  - first:
+      4: 400050
+    second: RigSpine
+  - first:
+      4: 400052
+    second: RigTail1
+  - first:
+      4: 400054
+    second: RigTail1Gizmo
+  - first:
+      4: 400056
+    second: RigTail2
+  - first:
+      4: 400058
+    second: RigTail2Gizmo
+  - first:
+      4: 400060
+    second: RigTail3
+  - first:
+      4: 400062
+    second: RigTail3Gizmo
+  - first:
+      4: 400064
+    second: RigTail4
+  - first:
+      4: 400066
+    second: RigTail4Gizmo
+  - first:
+      4: 400068
+    second: RigTail5
+  - first:
+      4: 400070
+    second: RigTail5Gizmo
+  - first:
+      4: 400072
+    second: RigTail6
+  - first:
+      4: 400074
+    second: RigTail6Gizmo
+  - first:
+      4: 400076
+    second: RigTail7
+  - first:
+      4: 400078
+    second: RigTail7Gizmo
+  - first:
+      4: 400080
+    second: Seed
+  - first:
+      4: 400082
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: 07 - Default
+  - first:
+      43: 4300000
+    second: Seed
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Seed
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -103,6 +281,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -112,7 +291,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -120,32 +299,42 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
+    bakeAxisConversion: 0
+    preserveHierarchy: 1
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -154,10 +343,20 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips:
+  - 72dc849f01da5b64bb5efb895b3c852f
+  - 9007b62bd0f992f4885306a4e1bcf64b
+  - 5279ffa0241322d4f9e5ce114ef07687
+  - cbda10e606ef94d4896d33b5a04a5c87
+  - 90fc1566d0ffd844e9a8b24844ab1410
+  - 5ac00d3df3341eb4cb96d7fc548cfdd2
+  - 7c4e223953093ea4ab64b107a6acbee4
+  - 0a542e57b829d104fbee8df82020f23b
+  - 8dea55cfb23544041b6989c456bb6c54
+  - 2de65f73e9bf98048ad08db3493ccee9
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -167,13 +366,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
