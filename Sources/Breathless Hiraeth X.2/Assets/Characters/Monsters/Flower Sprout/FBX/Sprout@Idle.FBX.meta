@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6dda1c450c397c04fa35788bc75a2f36
+guid: f167bb868d47a904fb11fd1b0b8b0be2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -275,7 +275,7 @@ ModelImporter:
     second: Sprout
   - first:
       74: 7400000
-    second: Idle
+    second: Idle 02
   - first:
       95: 9500000
     second: //RootNode
