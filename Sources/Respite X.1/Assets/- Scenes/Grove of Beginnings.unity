@@ -2856,8 +2856,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: positions.Array.size
+      propertyPath: editing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[0].position.x
@@ -2872,16 +2876,64 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[1].position.x
+      value: -42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[1].position.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[1].position.z
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].position.x
+      value: -52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].position.y
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].position.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[0].dialog.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[1].dialog.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].dialog.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[0].dialog.Array.data[0]
-      value: I believe in you
+      value: Hurry up, we're almost home!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[1].dialog.Array.data[0]
+      value: There's so much to see!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].dialog.Array.data[0]
+      value: Some enemies are up ahead
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: positions.Array.data[2].dialog.Array.data[1]
+      value: I hope you remember how to fight
       objectReference: {fileID: 0}
     - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_Name
       value: Fairy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062069500483370134, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: ShapeModule.m_Position.x
+      value: 0.04053926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4100,7 +4152,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324286161}
-  m_LocalRotation: {x: 0.38392034, y: 0, z: 0, w: 0.92336625}
+  m_LocalRotation: {x: 0.4435562, y: 0, z: 0, w: 0.8962466}
   m_LocalPosition: {x: 0, y: 104, z: -3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

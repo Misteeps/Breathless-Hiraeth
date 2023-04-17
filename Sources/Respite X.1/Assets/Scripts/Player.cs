@@ -329,14 +329,14 @@ namespace Game
             Combat = false;
 
             bool flyAway = false;
-            if (fairy.DisplayDialog(fairy.currentDialog))
+            if (fairy.DisplayDialog(fairy.CurrentDialog))
             {
                 Camera.ZoomOffset = 4;
                 while (Vector3.Distance(transform.position, fairy.transform.position) < 6)
                 {
                     await GeneralUtilities.DelayFrame(1);
                     if (Inputs.Click.Down || Inputs.Breath.Down)
-                        if (!fairy.DisplayDialog(fairy.currentDialog + 1))
+                        if (!fairy.DisplayDialog(fairy.CurrentDialog + 1))
                         {
                             flyAway = true;
                             break;
