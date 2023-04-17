@@ -1,10 +1,8 @@
 using System;
-using System.Linq;
 
 using UnityEngine;
 
 using UnityEditor;
-using UnityEditor.SceneManagement;
 
 using Simplex;
 using Simplex.Editor;

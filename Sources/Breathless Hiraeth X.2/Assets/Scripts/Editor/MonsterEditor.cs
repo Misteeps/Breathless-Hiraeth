@@ -1,10 +1,8 @@
 using System;
-using System.Linq;
 
 using UnityEngine;
 
 using UnityEditor;
-using UnityEditor.SceneManagement;
 
 using Simplex;
 using Simplex.Editor;
@@ -31,15 +29,6 @@ namespace Game.Editor
             root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
 
             return root.Refresh();
-        }
-
-        private void Edit(Action action)
-        {
-            Undo.RegisterCompleteObjectUndo(monster, "Edit Monster");
-            action.Invoke();
-
-            EditorUtility.SetDirty(monster);
-            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         }
     }
 }
