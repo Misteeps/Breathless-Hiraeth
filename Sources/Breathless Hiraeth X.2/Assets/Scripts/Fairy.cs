@@ -73,8 +73,7 @@ namespace Game
             }
             else
             {
-                string dialog = position.dialog[index];
-                Debug.Log(dialog);
+                UI.Hud.Instance.FairyDialog(position.dialog[index]);
                 CurrentDialog = index;
                 return true;
             }
@@ -82,6 +81,8 @@ namespace Game
         public async void GoToPosition(int index)
         {
             trigger.enabled = false;
+            CurrentPosition = index;
+            CurrentDialog = 0;
 
             if (positions.OutOfRange(index))
             {
@@ -113,9 +114,6 @@ namespace Game
                 SpinRadius = 1;
                 trigger.enabled = true;
             }
-
-            CurrentPosition = index;
-            CurrentDialog = 0;
         }
 
         private static bool AdditiveLeave(Fairy fairy, string scene, int position)

@@ -2973,11 +2973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[0].dialog.Array.data[0]
-      value: Wake up Belle!
+      value: Wake up Belle, we're almost home!
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[1].dialog.Array.data[0]
-      value: We're almost home!
+      value: C'mon! Last one up the hill stinks!
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[2].dialog.Array.data[0]
@@ -2985,7 +2985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: positions.Array.data[2].dialog.Array.data[1]
-      value: I hope you still fight as good as back then!
+      value: I hope you still fight as well as back then!
       objectReference: {fileID: 0}
     - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_Name

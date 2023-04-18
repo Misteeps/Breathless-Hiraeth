@@ -26,6 +26,7 @@ namespace Game.UI
         public readonly Label breath;
 
         private int currentStage;
+        private Label dialog;
 
 
         public Hud()
@@ -92,9 +93,29 @@ namespace Game.UI
 
             tips.RemoveFromClassList("show");
         }
-        public void FairyDialog(string dialog)
+        public void FairyDialog(string text)
         {
+            if (dialog != null)
+            {
+                Label trash = dialog;
+                trash.RemoveFromClassList("show");
+                trash.schedule.Execute(() => trash.RemoveFromHierarchy()).ExecuteLater(320);
+                dialog = null;
+            }
 
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            dialog = this.Create<Label>("dialog").Text(text);
+            dialog.schedule.Execute(() => dialog.AddToClassList("show")).ExecuteLater(10);
+        }
+        public void PositionFairyDialog(Vector3 fairy)
+        {
+            if (dialog == null) return;
+
+            Vector2 position = UnityEngine.UIElements.RuntimePanelUtils.CameraTransformWorldToPanel(panel, fairy, Monolith.Camera);
+            dialog.style.top = position.y - 40 - (dialog.resolvedStyle.height / 2);
+            dialog.style.left = position.x - (dialog.resolvedStyle.width / 2);
         }
     }
 }

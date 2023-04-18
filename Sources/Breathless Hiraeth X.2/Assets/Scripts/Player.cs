@@ -373,32 +373,24 @@ namespace Game
             lockActions = true;
             Combat = false;
 
-            bool flyAway = false;
             if (fairy.DisplayDialog(fairy.CurrentDialog))
             {
                 Camera.ZoomOffset = 4;
                 while (Vector3.Distance(transform.position, fairy.transform.position) < 6)
                 {
                     await GeneralUtilities.DelayFrame(1);
+                    UI.Hud.Instance.PositionFairyDialog(fairy.transform.position);
                     if (Inputs.Click.Down || Inputs.Breath.Down)
                         if (!fairy.DisplayDialog(fairy.CurrentDialog + 1))
-                        {
-                            flyAway = true;
                             break;
-                        }
                 }
             }
 
+            UI.Hud.Instance.FairyDialog(null);
             Camera.ZoomOffset = 0;
             speedModifier = 1;
             lockActions = false;
             Combat = false;
-
-            if (flyAway)
-            {
-                Camera.ZoomOffset = -4;
-                await GeneralUtilities.DelayMS(2400);
-            }
         }
     }
 }
