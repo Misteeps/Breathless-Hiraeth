@@ -330,7 +330,7 @@ namespace Game
                     ImpulseMovement(transform.forward, 6);
                     ImpulseSpeed(0, 1);
 
-                    attackTimer = 0.4f;
+                    attackTimer = 0.3f;
                     attackChain = 3;
                     break;
 
@@ -339,7 +339,7 @@ namespace Game
                     ImpulseMovement(transform.forward, 3, 0.4f);
                     ImpulseSpeed(0, 1, 0.4f);
 
-                    attackTimer = 0.6f;
+                    attackTimer = 0.4f;
                     attackChain = 0;
                     break;
             }
