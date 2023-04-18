@@ -33,9 +33,10 @@ namespace Game
         {
             animIDMoveSpeed = Animator.StringToHash("MoveSpeed");
         }
-        private void Update()
+
+        public void Attack(Vector3 position)
         {
-            agent.destination = Monolith.Player.transform.position;
+            agent.destination = position;
             animator.SetFloat(animIDMoveSpeed, Mathf.InverseLerp(0, agent.speed, new Vector2(agent.velocity.x, agent.velocity.y).magnitude));
         }
     }

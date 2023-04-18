@@ -64,15 +64,13 @@ namespace Game
         public Wave CurrentWave { get; private set; }
 
 
-        private void Start()
-        {
-            CurrentWaveIndex = -1;
-            if (patrol) Spawn(0);
-
-            enabled = false;
-        }
+        private void Start() => Clear();
         private void Update()
         {
+            foreach (Monster monster in monsters)
+                try { monster.Attack(Monolith.Player.transform.position); }
+                catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
+
             if (CurrentWaveIndex < waves.Length)
             {
                 timer -= Time.deltaTime;
@@ -87,6 +85,24 @@ namespace Game
             }
         }
 
+        public void Clear()
+        {
+            try
+            {
+                while (transform.childCount > 0)
+                    Destroy(transform.GetChild(0).gameObject);
+            }
+            catch (Exception exception) { exception.Error($"Failed clearing encounter of all monsters"); }
+
+            monsters = new List<Monster>();
+            timer = 0;
+            CurrentWave = null;
+            CurrentWaveIndex = -1;
+            if (patrol) Spawn(0);
+
+            trigger.enabled = true;
+            enabled = false;
+        }
         public void Spawn(int wave)
         {
             if (wave <= CurrentWaveIndex) return;
