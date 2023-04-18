@@ -100,14 +100,15 @@ namespace Game
                 transform.Transition(TransformField.Position, Unit.X, start.x, end.x).Curve(Function.Sine, Direction.InOut, duration).Start();
                 transform.Transition(TransformField.Position, Unit.Z, start.y, end.y).Curve(Function.Sine, Direction.InOut, duration).Start();
 
-                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y - 1.6f).Curve(Function.Sine, Direction.InOut, 800).Start();
-                await GeneralUtilities.DelayMS(800);
-                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y + 6.4f).Curve(Function.Sine, Direction.InOut, 1600).Start();
-                await GeneralUtilities.DelayMS(1600);
+                int shortDuration = Mathf.Min(1200, (int)(duration * 0.2f));
+                int longDuration = duration - shortDuration - shortDuration;
 
-                duration = Mathf.Max(1000, duration - 2000);
-                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, position.y).Curve(Function.Sine, Direction.InOut, duration).Start();
-                await GeneralUtilities.DelayMS(Mathf.Max(0, duration - 400));
+                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y - 1.6f).Curve(Function.Sine, Direction.InOut, shortDuration).Start();
+                await GeneralUtilities.DelayMS(shortDuration);
+                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, position.y + 1.6f).Curve(Function.Sine, Direction.InOut, longDuration).Start();
+                await GeneralUtilities.DelayMS(longDuration);
+                transform.Transition(TransformField.Position, Unit.Y, transform.position.y, position.y).Curve(Function.Sine, Direction.InOut, shortDuration).Start();
+                await GeneralUtilities.DelayMS(shortDuration);
 
                 SpinRadius = 1;
                 trigger.enabled = true;

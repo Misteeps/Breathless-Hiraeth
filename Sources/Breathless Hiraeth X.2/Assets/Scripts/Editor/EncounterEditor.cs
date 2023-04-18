@@ -26,9 +26,12 @@ namespace Game.Editor
         public override UnityEngine.UIElements.VisualElement CreateInspectorGUI()
         {
             encounter = (Encounter)target;
+            encounter.trigger = encounter.GetComponent<SphereCollider>();
 
             root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
             root.Create<VerticalSpace>();
+            root.Create<Labeled<ToggleCheck>>().Bind(encounter.IValue("patrol"));
+            root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("Range")).Elements(e => e.Modify(10, 100, 0));
 
             return root.Refresh();
         }
