@@ -125,13 +125,13 @@ namespace Game
                 }
             }
 
-            if (lockActions) { }
+            if (lockActions || (Combat && attackTimer > 0)) { }
             else if (Inputs.Attack.Down) Attack();
             else if (Inputs.Ability1.Down) Ability1();
             else if (Inputs.Ability2.Down) Ability2();
             else if (Inputs.Ability3.Down) Ability3();
             else if (Inputs.Ability4.Down) Ability4();
-            else if (Inputs.Sprint.Down && attackTimer < 0.05f) Combat = false;
+            else if (Inputs.Sprint.Down) Combat = false;
 
             if (transform.position.y < 0)
                 Enable(true, new Vector3(0, 100, 0));
@@ -270,6 +270,25 @@ namespace Game
             animator.SetFloat(animIDMoveX, animationSpeedX);
             animator.SetFloat(animIDMoveY, animationSpeedY);
         }
+
+        private void ImpulseMovement(Vector3 moveDirection, float force, float duration = 0.25f, Function function = Function.Sine, Direction direction = Direction.InOut)
+        {
+            new Transition(() => force, value =>
+            {
+                force = value;
+
+                Vector3 targetDirection = Quaternion.Euler(0.0f, Camera.Rotation, 0.0f) * moveDirection;
+                controller.Move(targetDirection.normalized * (force * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+
+                Vector3 velocity = transform.InverseTransformDirection(targetDirection * force * 3);
+                animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, Time.deltaTime * acceleration);
+                animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, Time.deltaTime * acceleration);
+                animator.SetFloat(animIDMoveX, animationSpeedX);
+                animator.SetFloat(animIDMoveY, animationSpeedY);
+            }, force, 2, "Player Move Impulse").Curve(function, direction, duration).Start();
+        }
+        private void ImpulseSpeed(float start, float end, float duration = 0.25f, Function function = Function.Exponential, Direction direction = Direction.Out) => new Transition(() => speedModifier, value => speedModifier = value, start, end, "Player Modify Speed").Curve(function, direction, duration).Start();
+
         private float LerpSpeed(float targetSpeed)
         {
             float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
@@ -284,20 +303,46 @@ namespace Game
         private void Attack()
         {
             Combat = true;
+            if (attackTimer < -0.4f)
+                attackChain = 0;
 
-            if (attackTimer > 0) return;
-            if (attackTimer < -0.6f) attackChain = 0;
-
-            switch (attackChain++)
+            switch (attackChain)
             {
                 default: attackChain = 1; goto case 0;
+
                 case 0:
                     animator.CrossFade("Attack Slash Left", 0.3f);
-                    attackTimer = 0.2f;
+                    ImpulseMovement(transform.forward, 4);
+                    ImpulseSpeed(0, 1);
+
+                    attackTimer = 0.25f;
+                    attackChain = RNG.Generic.Int(1, 3);
                     break;
+
                 case 1:
                     animator.CrossFade("Attack Slash Right", 0.3f);
+                    ImpulseMovement(transform.forward, 5);
+                    ImpulseSpeed(0, 1);
+
+                    attackTimer = 0.25f;
+                    attackChain = 3;
+                    break;
+
+                case 2:
+                    animator.CrossFade("Attack Spin", 0.3f);
+                    ImpulseMovement(transform.forward, 6);
+                    ImpulseSpeed(0, 1);
+
                     attackTimer = 0.4f;
+                    attackChain = 3;
+                    break;
+
+                case 3:
+                    animator.CrossFade("Attack Slam", 0.3f);
+                    ImpulseMovement(transform.forward, 3, 0.4f);
+                    ImpulseSpeed(0, 1, 0.4f);
+
+                    attackTimer = 0.8f;
                     attackChain = 0;
                     break;
             }
@@ -327,7 +372,7 @@ namespace Game
         private async void FairyTrigger(Fairy fairy)
         {
             fairy.SpinRadius = 0;
-            speedModifier = 0.4f;
+            speedModifier = 0.6f;
             lockActions = true;
             Combat = false;
 
