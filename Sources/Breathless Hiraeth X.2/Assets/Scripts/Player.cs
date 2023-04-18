@@ -363,8 +363,11 @@ namespace Game
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.name == "Fairy")
+            if (other.gameObject.layer == 6)
                 FairyTrigger(other.GetComponent<Fairy>());
+
+            else if (other.gameObject.layer == 28)
+                EncounterTrigger(other.GetComponent<Encounter>());
         }
         private async void FairyTrigger(Fairy fairy)
         {
@@ -394,6 +397,27 @@ namespace Game
             speedModifier = 1;
             lockActions = false;
             Combat = false;
+        }
+        private async void EncounterTrigger(Encounter encounter)
+        {
+            if (encounter.enabled) return;
+
+            float timer = encounter.aggroTime;
+            float range = encounter.Range + 2;
+            // Turn Monsters
+
+            while (Vector3.Distance(transform.position, encounter.transform.position) < range)
+            {
+                await GeneralUtilities.DelayFrame(1);
+                timer -= Time.deltaTime;
+                if (timer < 0)
+                {
+                    encounter.Spawn(0);
+                    encounter.enabled = true;
+                    encounter.trigger.enabled = false;
+                    break;
+                }
+            }
         }
     }
 }

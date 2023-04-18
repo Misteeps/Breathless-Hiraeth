@@ -86,6 +86,7 @@ namespace Game.Editor
             root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
             root.Create<VerticalSpace>();
             root.Create<Labeled<ToggleCheck>>().Bind(encounter.IValue("patrol"));
+            root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("aggroTime")).Elements(e => e.Modify(0, 10, 1));
             root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("Range")).Elements(e => e.Modify(10, 100, 0));
             root.Create<VerticalSpace>();
             root.Create<CollectionView<Encounter.Wave, WaveElement>>().Bind(encounter.IValue("waves"), () => new Encounter.Wave(encounter));
