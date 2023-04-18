@@ -114,6 +114,7 @@ namespace Game
             UI.Splash.Show();
 
             UI.Root.Instance.Add(UI.Overlay.Instance);
+            UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
             Pressure = 0;
         }
 

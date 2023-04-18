@@ -581,6 +581,22 @@ Background
     height: 100px;
 }
 
+.layer#Hud > .tips {
+    opacity: 0;
+    position: absolute;
+    bottom: 200px;
+    left: 20px;
+    font-size: 24px;
+    -unity-font-style: bold;
+    text-shadow: 0 1.2px 3px black;
+    transform-origin: bottom left;
+    transition: opacity, 600ms, ease;
+}
+
+.layer#Hud > .tips.show {
+    opacity: 1;
+}
+
 .layer#Hud > .stage {
     opacity: 0;
     position: absolute;
