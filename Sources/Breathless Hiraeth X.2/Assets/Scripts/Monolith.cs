@@ -58,6 +58,7 @@ namespace Game
                 UI.Hud.Instance.SetPressure(Instance.pressure);
             }
         }
+        public static int PressureStage => (Pressure < 30) ? 0 : (Pressure < 60) ? 1 : (Pressure < 90) ? 2 : 3;
 
         private static float lastMouseX;
 

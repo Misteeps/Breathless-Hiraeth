@@ -21,6 +21,11 @@ namespace Game.UI
         public readonly Div ability3;
         public readonly Div ability4;
 
+        public readonly Label stage;
+        public readonly Label breath;
+
+        private int currentStage;
+
 
         public Hud()
         {
@@ -38,13 +43,20 @@ namespace Game.UI
             ability3 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
             ability4 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
 
-            SetHealth(10);
+            stage = this.Create<Label>("stage");
+            breath = this.Create<Label>("breath").Text("Press [F] to take a deep breath");
+            breath.schedule.Execute(() => breath.style.translate = new UnityEngine.UIElements.Translate(RNG.Generic.Int(-2, 2), RNG.Generic.Int(-2, 2))).Every(10);
+
+            SetHealth(6);
         }
 
         public void Scale(float scale)
         {
-            health.style.scale = new UnityEngine.UIElements.Scale(new Vector2(scale, scale));
-            abilities.style.scale = new UnityEngine.UIElements.Scale(new Vector2(scale, scale));
+            var scaleStyle = new UnityEngine.UIElements.Scale(new Vector2(scale, scale));
+            health.style.scale = scaleStyle;
+            abilities.style.scale = scaleStyle;
+            stage.style.scale = scaleStyle;
+            breath.style.scale = scaleStyle;
         }
         public void SetHealth(int amount)
         {
@@ -57,7 +69,16 @@ namespace Game.UI
         public void SetPressure(float amount)
         {
             pressure.style.width = new UnityEngine.UIElements.Length(amount, UnityEngine.UIElements.LengthUnit.Percent);
-            // Set Breath Text
+            breath.style.opacity = Mathf.InverseLerp(40, 70, amount);
+
+            int pressureStage = Monolith.PressureStage;
+            if (pressureStage != currentStage)
+            {
+                currentStage = pressureStage;
+                if (pressureStage == 0) stage.RemoveFromClassList("show");
+                else stage.Text($"Damage Dealt x{pressureStage + 1}\nDamage Taken x{pressureStage * 2}").AddToClassList("show");
+            }
+
         }
     }
 }
