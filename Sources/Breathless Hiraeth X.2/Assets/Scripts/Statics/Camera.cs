@@ -14,7 +14,7 @@ namespace Game
     {
         public static CinemachineVirtualCamera VirtualCamera { get; } = Monolith.Camera.GetComponent<CinemachineVirtualCamera>();
         public static CinemachineBasicMultiChannelPerlin Noise { get; } = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        public static CinemachineTransposer Transposer { get; } = VirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        public static CinemachineOrbitalTransposer Transposer { get; } = VirtualCamera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
 
         public static Bloom Bloom { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is Bloom) as Bloom;
         public static Vignette Vignette { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is Vignette) as Vignette;
@@ -23,7 +23,17 @@ namespace Game
 
         public static float FOV { get => VirtualCamera.m_Lens.FieldOfView; set => VirtualCamera.m_Lens.FieldOfView = value; }
 
-        public static float shake;
+        public static float Rotation
+        {
+            get => Transposer.m_XAxis.Value;
+            set
+            {
+                Transposer.m_XAxis.Value = value;
+                Monolith.CameraObject.transform.eulerAngles = new Vector3(Monolith.CameraObject.transform.eulerAngles.x, value, 0);
+            }
+        }
+
+        private static float shake;
         public static float Shake
         {
             get => shake;
@@ -61,7 +71,7 @@ namespace Game
                 value = (30 - value);
 
                 Transposer.m_FollowOffset = new Vector3(0, value * 0.2f, value * -0.12f);
-                Monolith.CameraObject.transform.eulerAngles = new Vector3(Mathf.Log10(3 * value - 30) * 19 + 17.5f, 0, 0);
+                Monolith.CameraObject.transform.eulerAngles = new Vector3(Mathf.Log10(3 * value - 30) * 19 + 17.5f, Rotation, 0);
             }
         }
 

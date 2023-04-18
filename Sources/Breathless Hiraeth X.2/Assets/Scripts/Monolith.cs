@@ -57,6 +57,8 @@ namespace Game
             }
         }
 
+        private static float lastMouseX;
+
 
         private void Awake()
         {
@@ -113,6 +115,14 @@ namespace Game
         {
             if ((Inputs.ScrollUp || Inputs.ZoomIn.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom + 1);
             if ((Inputs.ScrollDown || Inputs.ZoomOut.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom - 1);
+
+            if (Inputs.RotateCamera.Down && UI.Root.Layer == null) lastMouseX = Inputs.MouseX;
+            if (Inputs.RotateCamera.Held && UI.Root.Layer == null)
+            {
+                Game.Camera.Rotation += (Inputs.MouseX - lastMouseX) / 2;
+                lastMouseX = Inputs.MouseX;
+            }
+
             if (Inputs.Escape.Down)
             {
                 if (UI.Root.Layer == null) UI.Menu.Show();
@@ -148,6 +158,7 @@ namespace Game
             UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(90, LengthUnit.Percent);
             UI.Overlay.Instance.loading.RemoveFromClassList("show");
 
+            Game.Camera.Rotation = 0;
             Game.Camera.ReleaseHijack();
             Player.Enable(true, playerPosition);
             operation.allowSceneActivation = true;

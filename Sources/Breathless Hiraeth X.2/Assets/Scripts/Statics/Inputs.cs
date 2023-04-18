@@ -30,6 +30,7 @@ namespace Game
 
         public static Settings.Keybind ZoomIn => Settings.zoomIn;
         public static Settings.Keybind ZoomOut => Settings.zoomOut;
+        public static Settings.Keybind RotateCamera => Settings.rotateCamera;
 
 
         public static Vector3 worldCursor;

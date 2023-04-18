@@ -231,13 +231,15 @@ namespace Game
             if (direction == Vector3.zero) targetSpeed = 0.0f;
             speed = LerpSpeed(targetSpeed);
 
-            controller.Move(direction.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
             if (direction != Vector3.zero)
             {
                 direction = direction.normalized;
-                targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                targetRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.Rotation;
                 transform.rotation = LerpRotation(targetRotation);
             }
+
+            Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
+            controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
 
             animationSpeedY = Mathf.Lerp(animationSpeedY, targetSpeed, Time.deltaTime * acceleration);
             animator.SetFloat(animIDMoveY, animationSpeedY);
@@ -246,7 +248,8 @@ namespace Game
         private void MoveHorizontalCombat()
         {
             Vector3 lookDirection = new Vector3(Inputs.MouseX - (Screen.width / 2), 0, Inputs.MouseY - (Screen.height / 2));
-            transform.rotation = LerpRotation(Quaternion.LookRotation(lookDirection).eulerAngles.y);
+            targetRotation = Quaternion.LookRotation(lookDirection).eulerAngles.y + Camera.Rotation;
+            transform.rotation = LerpRotation(targetRotation);
 
             float targetSpeed = combatSpeed * speedModifier;
             Vector3 moveDirection = Vector3.zero;
@@ -258,9 +261,10 @@ namespace Game
             if (moveDirection == Vector3.zero) targetSpeed = 0.0f;
             speed = LerpSpeed(targetSpeed);
 
-            controller.Move(moveDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+            Vector3 targetDirection = Quaternion.Euler(0.0f, Camera.Rotation, 0.0f) * moveDirection;
+            controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
 
-            Vector3 velocity = transform.InverseTransformDirection(moveDirection * targetSpeed);
+            Vector3 velocity = transform.InverseTransformDirection(targetDirection * targetSpeed);
             animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, Time.deltaTime * acceleration);
             animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, Time.deltaTime * acceleration);
             animator.SetFloat(animIDMoveX, animationSpeedX);

@@ -268,10 +268,10 @@ namespace Game
 #endif
 
         [Header("General")]
-        public static Int zoom = new Int("Zoom", 5, 0, 15, value => Camera.Zoom(value));
         public static Bool abilityAimZoom = new Bool("Ability Aim Zoom", true);
         public static Bool autoExitCombat = new Bool("Auto Exit Combat", true);
         public static Bool cameraShake = new Bool("Camera Shake", true);
+        public static Int zoom = new Int("Zoom", 5, 0, 15, value => Camera.Zoom(value));
 
         [Header("Graphics")]
         public static Choice<FullScreenMode> windowMode = new Choice<FullScreenMode>("Window Mode", FullScreenMode.FullScreenWindow, WindowModes, _ => ApplyResolution());
@@ -312,6 +312,7 @@ namespace Game
         public static Keybind cancelAbility = new Keybind("Cancel", KeyCode.Mouse1);
         public static Keybind zoomIn = new Keybind("Zoom In", (KeyCode)541, KeyCode.Equals, true);
         public static Keybind zoomOut = new Keybind("Zoom Out", (KeyCode)542, KeyCode.Minus, true);
+        public static Keybind rotateCamera = new Keybind("Rotate Camera", KeyCode.Mouse2);
 
         public static (FieldInfo, Setting)[] SettingFields => typeof(Settings).GetFields().Where(field => field.GetCustomAttribute<NonSerializedAttribute>() == null && field.GetValue(null) is Setting).Select(field => (field, field.GetValue(null) as Setting)).ToArray();
 

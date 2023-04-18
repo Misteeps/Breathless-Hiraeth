@@ -44,11 +44,11 @@ namespace Game.UI
             contents.Create<VerticalSpace>().Size(Size.Huge);
             contents.Create<Labeled>("header").Modify("General", highlight: false);
             contents.Create<VerticalSpace>();
-            contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.zoom).Elements(e => e.Modify(0, 15));
-            contents.Create<VerticalSpace>();
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.abilityAimZoom);
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.autoExitCombat);
+            contents.Create<VerticalSpace>();
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.cameraShake);
+            contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.zoom).Elements(e => e.Modify(0, 15));
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
         private void CreateGraphics(VerticalScrollView contents)
@@ -109,6 +109,7 @@ namespace Game.UI
             contents.Create<VerticalSpace>();
             contents.Create<Labeled<Label>>().Bind(Game.Settings.zoomIn).Elements(e => e.Text(Game.Settings.zoomIn.Display()));
             contents.Create<Labeled<Label>>().Bind(Game.Settings.zoomOut).Elements(e => e.Text(Game.Settings.zoomOut.Display()));
+            contents.Create<Labeled<Label>>().Bind(Game.Settings.rotateCamera).Elements(e => e.Text(Game.Settings.rotateCamera.Display()));
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
     }
