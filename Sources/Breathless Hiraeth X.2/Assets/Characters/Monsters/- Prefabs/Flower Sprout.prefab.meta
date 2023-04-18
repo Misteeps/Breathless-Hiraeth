@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: f9258977fbb39f94e890501758fba51c
+labels:
+- Monster
 PrefabImporter:
   externalObjects: {}
   userData: 

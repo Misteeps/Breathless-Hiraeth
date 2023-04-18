@@ -37,7 +37,7 @@ namespace Game.Editor
 
             public override CollectionElement Bind(object item)
             {
-                if (item is not Fairy.Position position) throw new ArgumentException("Invalid Type").Overwrite(ConsoleUtilities.uiTag, $"Failed binding fairy position element to {item:ref}");
+                if (item is not Fairy.Position position) throw new ArgumentException("Invalid Type").Overwrite(ConsoleUtilities.uiTag, $"Failed binding {item:ref} to {this:ref}");
 
                 x.Bind(position.fairy.IValue(position, "x"));
                 y.Bind(position.fairy.IValue(position, "y"));
