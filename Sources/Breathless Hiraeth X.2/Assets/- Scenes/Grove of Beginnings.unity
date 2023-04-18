@@ -2835,7 +2835,7 @@ MonoBehaviour:
     m_MaxSpeed: 300
     m_AccelTime: 0
     m_DecelTime: 0
-    m_InputAxisName: Cancel
+    m_InputAxisName: Empty
     m_InputAxisValue: 0
     m_InvertInput: 0
     m_MinValue: -180
