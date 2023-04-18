@@ -48,8 +48,11 @@ namespace Game.UI
         }
         public void SetHealth(int amount)
         {
-            for (int i = 0; i < amount; i++)
-                health.Create<Div>("icon", "heart");
+            while (health.childCount - 1 < amount)
+                health.Create<Div>("slot").Create<Div>("heart", "icon");
+
+            for (int i = 1; i < health.childCount; i++)
+                health[i].ClassToggle("show", "hide", i <= amount);
         }
         public void SetPressure(float amount)
         {
