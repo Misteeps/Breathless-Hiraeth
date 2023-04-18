@@ -270,8 +270,9 @@ namespace Game
         [Header("General")]
         public static Bool abilityAimZoom = new Bool("Ability Aim Zoom", true);
         public static Bool autoExitCombat = new Bool("Auto Exit Combat", true);
-        public static Bool cameraShake = new Bool("Camera Shake", true);
+        public static Bool cameraShake = new Bool("Camera Shake", true, value => Monolith.Pressure = Monolith.Pressure);
         public static Int zoom = new Int("Zoom", 5, 0, 15, value => Camera.Zoom(value));
+        public static Float uiScale = new Float("UI Scale", 1, 0, 2, value => UI.Hud.Instance.Scale(value));
 
         [Header("Graphics")]
         public static Choice<FullScreenMode> windowMode = new Choice<FullScreenMode>("Window Mode", FullScreenMode.FullScreenWindow, WindowModes, _ => ApplyResolution());

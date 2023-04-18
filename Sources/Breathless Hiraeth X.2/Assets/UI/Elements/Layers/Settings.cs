@@ -49,6 +49,8 @@ namespace Game.UI
             contents.Create<VerticalSpace>();
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.cameraShake);
             contents.Create<Labeled<IntInputSlider>>().Bind(Game.Settings.zoom).Elements(e => e.Modify(0, 15));
+            contents.Create<VerticalSpace>();
+            contents.Create<Labeled<FloatInputSlider>>().Bind(Game.Settings.uiScale).Elements(e => e.Modify(0, 2));
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
         private void CreateGraphics(VerticalScrollView contents)

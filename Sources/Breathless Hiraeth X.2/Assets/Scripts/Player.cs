@@ -135,9 +135,6 @@ namespace Game
 
             if (transform.position.y < 0)
                 Enable(true, new Vector3(0, 100, 0));
-
-            if (Input.GetKeyDown(KeyCode.KeypadMinus)) speedModifier = Mathf.Clamp(speedModifier - 1, 1, 20);
-            if (Input.GetKeyDown(KeyCode.KeypadMultiply)) speedModifier = Mathf.Clamp(speedModifier + 1, 1, 20);
         }
 
         public async void WakeUp()
@@ -342,7 +339,7 @@ namespace Game
                     ImpulseMovement(transform.forward, 3, 0.4f);
                     ImpulseSpeed(0, 1, 0.4f);
 
-                    attackTimer = 0.8f;
+                    attackTimer = 0.6f;
                     attackChain = 0;
                     break;
             }

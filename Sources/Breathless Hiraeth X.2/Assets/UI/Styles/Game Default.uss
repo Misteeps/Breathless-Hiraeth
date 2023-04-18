@@ -488,22 +488,15 @@ Background
 
 /* Hud */
 
-.layer#Hud {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    align-items: center;
-}
-
 .layer#Hud > .health {
     position: absolute;
-    bottom: 20px;
+    bottom: 12px;
     left: 20px;
-    padding: 40px 8px 0 8px;
+    padding: 52px 8px 0 8px;
     width: 420px;
     flex-direction: row;
     flex-wrap: wrap-reverse;
+    transform-origin: bottom left;
 }
 
 .layer#Hud > .health > .heart {
@@ -513,11 +506,12 @@ Background
 }
 
 .layer#Hud > .health > .pressure {
+    overflow: visible;
     position: absolute;
-    bottom: 0;
+    bottom: 8px;
     left: 0;
     right: 0;
-    padding: 6px 10px 11px 10px;
+    padding: 8px 14px 15px 14px;
     height: 32px;
     background-image: url('project://database/Assets/UI/Images GUI/Slider Gauge.png?fileID=2800000&guid=691f7a1f6b55caa4f9e9e143d0cc67f7&type=3#Slider Gauge');
 }
@@ -529,11 +523,32 @@ Background
     background-image: url('project://database/Assets/UI/Images GUI/Slider Bar Blue.png?fileID=2800000&guid=577ca1a570a170e45beeedb7c4d3e71f&type=3#Slider Bar Blue');
 }
 
+.layer#Hud > .health > .pressure > .tick {
+    position: absolute;
+    top: -6px;
+    bottom: -2px;
+    width: 12px;
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Knob.png?fileID=2800000&guid=7b56f8b8b8cfb6344bb44dffaaec0179&type=3#Slider Knob');
+}
+
+.layer#Hud > .health > .pressure > .tick.1 {
+    left: 33%;
+}
+
+.layer#Hud > .health > .pressure > .tick.2 {
+    left: 63%;
+}
+
+.layer#Hud > .health > .pressure > .tick.3 {
+    left: 93%;
+}
+
 .layer#Hud > .abilities {
     position: absolute;
-    bottom: 4px;
+    bottom: 12px;
     right: 20px;
     flex-direction: row;
+    transform-origin: bottom right;
 }
 
 .layer#Hud > .abilities > .ability {

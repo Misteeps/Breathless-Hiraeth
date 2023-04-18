@@ -15,6 +15,7 @@ namespace Game.UI
         public readonly Div health;
         public readonly Div pressure;
 
+        public readonly Div abilities;
         public readonly Div ability1;
         public readonly Div ability2;
         public readonly Div ability3;
@@ -24,22 +25,36 @@ namespace Game.UI
         public Hud()
         {
             health = this.Create<Div>("health");
+
             Div gauge = health.Create<Div>("pressure");
             pressure = gauge.Create<Div>("bar");
+            gauge.Create<Div>("tick", "1");
+            gauge.Create<Div>("tick", "2");
+            gauge.Create<Div>("tick", "3");
 
-            Div abilities = this.Create<Div>("abilities");
+            abilities = this.Create<Div>("abilities");
             ability1 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
             ability2 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
             ability3 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
             ability4 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
 
-            SetHealth(18);
+            SetHealth(10);
         }
 
+        public void Scale(float scale)
+        {
+            health.style.scale = new UnityEngine.UIElements.Scale(new Vector2(scale, scale));
+            abilities.style.scale = new UnityEngine.UIElements.Scale(new Vector2(scale, scale));
+        }
         public void SetHealth(int amount)
         {
             for (int i = 0; i < amount; i++)
                 health.Create<Div>("icon", "heart");
+        }
+        public void SetPressure(float amount)
+        {
+            pressure.style.width = new UnityEngine.UIElements.Length(amount, UnityEngine.UIElements.LengthUnit.Percent);
+            // Set Breath Text
         }
     }
 }

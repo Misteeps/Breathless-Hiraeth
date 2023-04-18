@@ -54,6 +54,8 @@ namespace Game
                 Game.Camera.Vignette.intensity.value = Mathf.Lerp(0.2f, 0.7f, factor);
                 Game.Camera.ChromaticAberration.intensity.value = factor;
                 Game.Camera.ShadowsMidtonesHighlights.shadows.value = new Vector4(1, Mathf.Lerp(1, 0.4f, factor), Mathf.Lerp(1, 0.4f, factor), 0);
+
+                UI.Hud.Instance.SetPressure(Instance.pressure);
             }
         }
 
@@ -131,6 +133,21 @@ namespace Game
                 if (UI.Root.Layer == null) UI.Menu.Show();
                 else UI.Root.Layer.Hide();
             }
+
+            // Debug
+            if (Input.GetKeyDown(KeyCode.Keypad0)) Pressure = 0;
+            if (Input.GetKeyDown(KeyCode.Keypad1)) Pressure = 10;
+            if (Input.GetKeyDown(KeyCode.Keypad2)) Pressure = 20;
+            if (Input.GetKeyDown(KeyCode.Keypad3)) Pressure = 30;
+            if (Input.GetKeyDown(KeyCode.Keypad4)) Pressure = 40;
+            if (Input.GetKeyDown(KeyCode.Keypad5)) Pressure = 50;
+            if (Input.GetKeyDown(KeyCode.Keypad6)) Pressure = 60;
+            if (Input.GetKeyDown(KeyCode.Keypad7)) Pressure = 70;
+            if (Input.GetKeyDown(KeyCode.Keypad8)) Pressure = 80;
+            if (Input.GetKeyDown(KeyCode.Keypad9)) Pressure = 90;
+            if (Input.GetKeyDown(KeyCode.KeypadPlus)) Pressure = 100;
+            if (Input.GetKeyDown(KeyCode.KeypadMinus)) Player.speedModifier = Mathf.Clamp(Player.speedModifier - 1, 1, 20);
+            if (Input.GetKeyDown(KeyCode.KeypadMultiply)) Player.speedModifier = Mathf.Clamp(Player.speedModifier + 1, 1, 20);
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));
