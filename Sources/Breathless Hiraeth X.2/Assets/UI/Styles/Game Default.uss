@@ -486,6 +486,61 @@ Background
     background-color: white;
 }
 
+/* Hud */
+
+.layer#Hud {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    align-items: center;
+}
+
+.layer#Hud > .health {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 40px 8px 0 8px;
+    width: 420px;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+}
+
+.layer#Hud > .health > .heart {
+    width: 40px;
+    height: 40px;
+    background-image: url('project://database/Assets/UI/Images GUI/Heart.png?fileID=2800000&guid=34984566d82a70248b18d98032e32876&type=3#Heart');
+}
+
+.layer#Hud > .health > .pressure {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 10px 11px 10px;
+    height: 32px;
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Gauge.png?fileID=2800000&guid=691f7a1f6b55caa4f9e9e143d0cc67f7&type=3#Slider Gauge');
+}
+
+.layer#Hud > .health > .pressure > .bar {
+    width: 0%;
+    height: 100%;
+    border-radius: 3px;
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Bar Blue.png?fileID=2800000&guid=577ca1a570a170e45beeedb7c4d3e71f&type=3#Slider Bar Blue');
+}
+
+.layer#Hud > .abilities {
+    position: absolute;
+    bottom: 4px;
+    right: 20px;
+    flex-direction: row;
+}
+
+.layer#Hud > .abilities > .ability {
+    width: 100px;
+    height: 100px;
+}
+
 /* Menu */
 
 .layer#Menu > .viewport {

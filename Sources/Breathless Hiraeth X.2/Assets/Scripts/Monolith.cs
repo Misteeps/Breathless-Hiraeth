@@ -103,12 +103,15 @@ namespace Game
         {
             Progress.Load();
             Settings.Load();
-            Pressure = 0;
 
+            UI.Hud.Show();
             UI.Menu.Hide();
             UI.Settings.Hide();
             UI.Overlay.Show();
             UI.Splash.Show();
+
+            UI.Root.Instance.Add(UI.Overlay.Instance);
+            Pressure = 0;
         }
 
         private void Update()
