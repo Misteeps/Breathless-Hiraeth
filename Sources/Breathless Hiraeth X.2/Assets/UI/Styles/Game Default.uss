@@ -581,22 +581,6 @@ Background
     height: 100px;
 }
 
-.layer#Hud > .tips {
-    opacity: 0;
-    position: absolute;
-    bottom: 200px;
-    left: 20px;
-    font-size: 24px;
-    -unity-font-style: bold;
-    text-shadow: 0 1.2px 3px black;
-    transform-origin: bottom left;
-    transition: opacity, 600ms, ease;
-}
-
-.layer#Hud > .tips.show {
-    opacity: 1;
-}
-
 .layer#Hud > .stage {
     opacity: 0;
     position: absolute;
@@ -632,11 +616,11 @@ Background
 .layer#Hud > .dialog {
     opacity: 0;
     position: absolute;
-    font-size: 16px;
+    font-size: 18px;
     text-shadow: 0 0.4px 2px cyan;
     translate: 0 20px;
     transition-property: opacity, translate;
-    transition-duration: 280ms, 360ms;
+    transition-duration: 280ms, 100ms;
     transition-timing-function: ease-out-circ, ease-in-circ;
 }
 
@@ -646,6 +630,33 @@ Background
     transition-property: opacity, translate;
     transition-duration: 360ms;
     transition-timing-function: ease-in-sine;
+}
+
+.layer#Hud > .tip {
+    opacity: 0;
+    position: absolute;
+    bottom: 200px;
+    left: 24px;
+    padding: 8px 12px;
+    font-size: 18px;
+    -unity-text-align: middle-left;
+    -unity-font-style: bold;
+    text-shadow: 0 1.2px 3px black;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+    translate: -40px 0;
+    transform-origin: bottom left;
+    transition-property: opacity, translate;
+    transition-duration: 480ms, 1000ms;
+    transition-timing-function: ease-out-circ, ease-in-circ;
+}
+
+.layer#Hud > .tip.show {
+    opacity: 1;
+    translate: 0 0;
+    transition-property: opacity, translate;
+    transition-duration: 600ms;
+    transition-timing-function: ease-out-sine;
 }
 
 /* Menu */

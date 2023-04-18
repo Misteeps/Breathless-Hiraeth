@@ -21,12 +21,12 @@ namespace Game.UI
         public readonly Div ability3;
         public readonly Div ability4;
 
-        public readonly Label tips;
         public readonly Label stage;
         public readonly Label breath;
 
         private int currentStage;
         private Label dialog;
+        private Label tip;
 
 
         public Hud()
@@ -45,7 +45,6 @@ namespace Game.UI
             ability3 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
             ability4 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
 
-            tips = this.Create<Label>("tips");
             stage = this.Create<Label>("stage");
             breath = this.Create<Label>("breath").Text("Press [F] to take a deep breath");
             breath.schedule.Execute(() => breath.style.translate = new UnityEngine.UIElements.Translate(RNG.Generic.Int(-2, 2), RNG.Generic.Int(-2, 2))).Every(10);
@@ -84,14 +83,22 @@ namespace Game.UI
 
         }
 
-        public async void Tip(string tip)
+        public void Tip(string text, int duration = 4000)
         {
-            tips.AddToClassList("show");
+            if (tip != null)
+            {
+                Label trash = tip;
+                trash.RemoveFromClassList("show");
+                trash.schedule.Execute(() => trash.RemoveFromHierarchy()).ExecuteLater(600);
+                tip = null;
+            }
 
-            tips.Text(tip);
-            await GeneralUtilities.DelayMS(5000);
+            if (string.IsNullOrEmpty(text))
+                return;
 
-            tips.RemoveFromClassList("show");
+            tip = this.Create<Label>("tip").Text(text);
+            tip.schedule.Execute(() => tip.AddToClassList("show")).ExecuteLater(10);
+            tip.schedule.Execute(() => Tip(null)).ExecuteLater(duration);
         }
         public void FairyDialog(string text)
         {

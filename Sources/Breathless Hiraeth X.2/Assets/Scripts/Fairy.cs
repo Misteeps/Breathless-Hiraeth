@@ -80,6 +80,9 @@ namespace Game
         }
         public async void GoToPosition(int index)
         {
+            if (OverrideLeave()) return;
+            AdditiveLeave();
+
             trigger.enabled = false;
             CurrentPosition = index;
             CurrentDialog = 0;
@@ -116,11 +119,38 @@ namespace Game
             }
         }
 
-        private static bool AdditiveLeave(Fairy fairy, string scene, int position)
+        public bool AdditiveEnter()
+        {
+            switch (currentScene)
+            {
+                default: return false;
+                case "Grove of Beginnings" when CurrentPosition == 0:
+                    UI.Hud.Instance.Tip("Forward dialog with [Left Click]");
+                    return true;
+            }
+        }
+        public bool AdditiveLeave()
+        {
+            switch (currentScene)
+            {
+                default: return false;
+                case "Grove of Beginnings" when CurrentPosition == 0:
+                    UI.Hud.Instance.Tip("Catch up to Auraline with [Left Shift]");
+                    return true;
+                case "Grove of Beginnings" when CurrentPosition == 1:
+                    UI.Hud.Instance.Tip("If you are ever lost or forget where Auraline went,\nOpen the map with [Escape]", 6000);
+                    return true;
+                case "Grove of Beginnings" when CurrentPosition == 2:
+                    UI.Hud.Instance.Tip("Swing your sword with [Left Click]\nZoom in and out with [Scroll Wheel]\nRotate the camera with [Scroll Click]", 8000);
+                    return true;
+            }
+        }
+
+        public bool OverrideEnter()
         {
             return false;
         }
-        private static bool OverrideLeave(Fairy fairy, string scene, int position)
+        public bool OverrideLeave()
         {
             return false;
         }

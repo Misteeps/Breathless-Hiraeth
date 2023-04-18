@@ -368,6 +368,9 @@ namespace Game
         }
         private async void FairyTrigger(Fairy fairy)
         {
+            if (fairy.OverrideEnter()) return;
+            fairy.AdditiveEnter();
+
             fairy.SpinRadius = 0;
             speedModifier = 0.6f;
             lockActions = true;
