@@ -11,6 +11,8 @@ namespace Game
 {
     public class Encounter : MonoBehaviour
     {
+        public enum Status { Waiting, Patrol, Notice, Attack, Cleared }
+
         #region Type
         [Serializable]
         public class Type
@@ -52,56 +54,115 @@ namespace Game
 
         public SphereCollider trigger;
 
-        public bool patrol;
+        public Status startState;
         public float aggroTime;
+        public float chaseRangeScale;
         public Wave[] waves = new Wave[0];
         public List<Monster> monsters = new List<Monster>(0);
 
         private float timer;
+        private Status state;
 
         public float Range { get => trigger.radius; set => trigger.radius = value; }
+        public float ChaseRange => Range * chaseRangeScale;
         public int CurrentWaveIndex { get; private set; }
         public Wave CurrentWave { get; private set; }
-
-
-        private void Start() => Clear();
-        private void Update()
+        public Status State
         {
-            foreach (Monster monster in monsters)
-                try { monster.Attack(Monolith.Player.transform.position); }
-                catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
+            get => state;
+            set
+            {
+                state = value;
+                switch (State)
+                {
+                    case Status.Waiting:
+                        trigger.enabled = true;
+                        enabled = false;
+                        break;
 
-            if (CurrentWaveIndex < waves.Length)
-            {
-                timer -= Time.deltaTime;
-                if (timer < 0 || monsters.Count <= CurrentWave.threshold)
-                    Spawn(CurrentWaveIndex + 1);
-            }
-            else if (monsters.Count == 0)
-            {
-                enabled = false;
-                gameObject.SetActive(false);
-                // Reward?
+                    case Status.Patrol:
+                        trigger.enabled = true;
+                        enabled = true;
+                        timer = CurrentWave?.duration ?? 0;
+                        Spawn(0);
+                        break;
+
+                    case Status.Notice:
+                        trigger.enabled = false;
+                        enabled = true;
+                        timer = aggroTime;
+                        break;
+
+                    case Status.Attack:
+                        trigger.enabled = false;
+                        enabled = true;
+                        timer = CurrentWave?.duration ?? 0;
+                        Spawn(0);
+                        break;
+
+                    case Status.Cleared:
+                        gameObject.SetActive(false);
+                        trigger.enabled = false;
+                        enabled = false;
+                        // Reward
+                        break;
+                }
             }
         }
 
-        public void Clear()
+
+        private void Start() => Restart();
+        private void Update()
+        {
+            switch (State)
+            {
+                case Status.Waiting:
+                case Status.Cleared:
+                default: break;
+
+                case Status.Patrol:
+                    break;
+
+                case Status.Notice:
+                    if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > Range + 2) State = (CurrentWave == null) ? Status.Waiting : Status.Patrol;
+                    else
+                    {
+                        timer -= Time.deltaTime;
+                        if (timer < 0) State = Status.Attack;
+                    }
+                    break;
+
+                case Status.Attack:
+                    foreach (Monster monster in monsters)
+                        try { monster.Attack(Monolith.Player.transform.position); }
+                        catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
+
+                    if (CurrentWaveIndex < waves.Length)
+                    {
+                        timer -= Time.deltaTime;
+                        if (timer < 0 || monsters.Count <= CurrentWave.threshold)
+                            Spawn(CurrentWaveIndex + 1);
+                    }
+                    else if (monsters.Count == 0)
+                        State = Status.Cleared;
+                    break;
+            }
+        }
+
+        public void Restart()
         {
             try
             {
                 while (transform.childCount > 0)
                     Destroy(transform.GetChild(0).gameObject);
             }
-            catch (Exception exception) { exception.Error($"Failed clearing encounter of all monsters"); }
+            catch (Exception exception) { exception.Error($"Failed restarting encounter"); }
 
-            monsters = new List<Monster>();
             timer = 0;
-            CurrentWave = null;
+            monsters = new List<Monster>();
             CurrentWaveIndex = -1;
-            if (patrol) Spawn(0);
-
-            trigger.enabled = true;
-            enabled = false;
+            CurrentWave = null;
+            State = startState;
         }
         public void Spawn(int wave)
         {
@@ -133,6 +194,12 @@ namespace Game
                     }
                     catch (Exception exception) { exception.Error($"Failed spawning monsters in wave {CurrentWaveIndex:info}"); }
             }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, ChaseRange);
         }
     }
 }

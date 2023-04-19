@@ -67,7 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 7831517458496380180}
-  patrol: 0
-  aggroTime: 5
+  startState: 0
+  aggroTime: 2
+  chaseRangeScale: 2
   waves: []
   monsters: []
