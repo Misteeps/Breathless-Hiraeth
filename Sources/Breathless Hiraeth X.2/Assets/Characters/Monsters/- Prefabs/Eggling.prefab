@@ -1527,6 +1527,7 @@ MonoBehaviour:
   animator: {fileID: 3118294153684955664}
   agent: {fileID: -4197004398901959562}
   hitbox: {fileID: 1713009125449712874}
+  maxSpeed: 3.75
   size: 1
 --- !u!1 &3118294153675456980
 GameObject:

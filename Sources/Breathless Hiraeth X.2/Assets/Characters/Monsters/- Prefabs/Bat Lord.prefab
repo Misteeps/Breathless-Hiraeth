@@ -1118,7 +1118,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.4
   m_Speed: 3.25
-  m_Acceleration: 8
+  m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 450
   m_StoppingDistance: 0
@@ -1167,6 +1167,7 @@ MonoBehaviour:
   animator: {fileID: 2156180079205716737}
   agent: {fileID: 5561395414670496384}
   hitbox: {fileID: -3134264450705716376}
+  maxSpeed: 3.25
   size: 3
 --- !u!1 &2156180079196364995
 GameObject:
