@@ -73,7 +73,6 @@ namespace Game
 
         [Header("References")]
         public Transform sword;
-        public BoxCollider hurtbox;
         public Animator animator;
         public CharacterController controller;
 
@@ -87,7 +86,7 @@ namespace Game
         [SerializeField] private float verticalVelocity;
         [SerializeField] private float jumpCooldownTimer;
         [SerializeField] private float fallTimer;
-        private List<Monster> monstersHit;
+        private List<Encounter> encounters;
 
         private int animIDMoveX;
         private int animIDMoveY;
@@ -102,8 +101,7 @@ namespace Game
             jumpCooldownTimer = jumpCooldown;
             fallTimer = fallTime;
 
-            monstersHit = new List<Monster>();
-            AttackHitbox(0);
+            encounters = new List<Encounter>();
 
             animIDMoveX = Animator.StringToHash("Move X");
             animIDMoveY = Animator.StringToHash("Move Y");
@@ -365,19 +363,31 @@ namespace Game
             Combat = true;
         }
 
-        private void AttackHitbox(int enable)
+        private void AttackHit()
         {
-            hurtbox.enabled = enable == 1;
-            monstersHit.Clear();
+            foreach (Encounter encounter in encounters)
+                foreach (Monster monster in encounter.monsters)
+                {
+                    float distance = Vector3.Distance(transform.position, monster.transform.position);
+                    float angle = Vector3.Angle(monster.transform.position - transform.position, transform.rotation * Vector3.forward);
+                    if (distance < 2 && angle < 90)
+                    {
+                        Debug.Log($"Hit {monster.gameObject.name}");
+                    }
+                }
         }
+
+        public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);
+        public void LeaveEncounter(Encounter encounter) => encounters.Remove(encounter);
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == 6)
-                FairyTrigger(other.GetComponent<Fairy>());
-
-            else if (other.gameObject.layer == 28)
-                other.GetComponent<Encounter>().State = Encounter.Status.Notice;
+            switch (other.gameObject.layer)
+            {
+                case 6: FairyTrigger(other.GetComponent<Fairy>()); break;
+                case 16: Debug.Log("Got Hit"); break;
+                case 28: other.GetComponent<Encounter>().State = Encounter.Status.Notice; break;
+            }
         }
         private async void FairyTrigger(Fairy fairy)
         {

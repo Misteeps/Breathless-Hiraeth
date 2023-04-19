@@ -60,15 +60,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.15348838
-        functionName: AttackHitbox
-        data: 
-        objectReferenceParameter: {fileID: 7700983353943409781, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
-        floatParameter: 0
-        intParameter: 1
-        messageOptions: 0
-      - time: 0.46976742
-        functionName: AttackHitbox
+      - time: 0.19775176
+        functionName: AttackHit
         data: 
         objectReferenceParameter: {fileID: 7700983353943409781, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
         floatParameter: 0

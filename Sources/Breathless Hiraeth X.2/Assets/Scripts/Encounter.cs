@@ -122,6 +122,7 @@ namespace Game
                         enabled = true;
                         timer = CurrentWave?.duration ?? 0;
                         Spawn(0);
+                        Monolith.Player.EnterEncounter(this);
                         break;
 
                     case Status.Cleared:
@@ -176,7 +177,11 @@ namespace Game
                         }
                         catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
 
-                    if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > ChaseRange) State = Status.Patrol;
+                    if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > ChaseRange)
+                    {
+                        State = Status.Patrol;
+                        Monolith.Player.LeaveEncounter(this);
+                    }
                     else if (CurrentWaveIndex < waves.Length)
                     {
                         timer -= Time.deltaTime;
@@ -184,7 +189,10 @@ namespace Game
                             Spawn(CurrentWaveIndex + 1);
                     }
                     else if (monsters.Count == 0)
+                    {
                         State = Status.Cleared;
+                        Monolith.Player.LeaveEncounter(this);
+                    }
                     break;
             }
         }
