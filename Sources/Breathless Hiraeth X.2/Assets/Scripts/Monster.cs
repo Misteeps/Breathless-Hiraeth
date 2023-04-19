@@ -18,6 +18,7 @@ namespace Game
             public string name;
             public int damage;
             public int angle;
+            public float percent;
 
 #if UNITY_EDITOR
             public Monster monster;
@@ -26,6 +27,7 @@ namespace Game
                 this.monster = monster;
                 damage = 1;
                 angle = 40;
+                percent = 0.33f;
             }
 #endif
         }
@@ -73,7 +75,15 @@ namespace Game
             if (attackAnim || lockAnim) return;
 
             attackAnim = true;
-            await Animate("Attack Jab Right");
+
+            if (attacks == null) ConsoleUtilities.Warn($"Monster {gameObject:info} has not attacks");
+            else
+            {
+                AttackData attack = RNG.Generic.From(attacks);
+                await Animate($"Attack {attack.name}");
+                Debug.Log(attack.name);
+            }
+
             attackAnim = false;
         }
 

@@ -19,6 +19,7 @@ namespace Game.Editor
             public new StringInput name;
             public IntInput damage;
             public IntInput angle;
+            public FloatInput percent;
 
 
             public AttackElement()
@@ -26,8 +27,9 @@ namespace Game.Editor
                 contents.Padding(top: 2, bottom: 2);
 
                 name = Row(0).Create<StringInput>("flexible");
-                damage = Row(0).Create<IntInput>("wide2").Modify(0, 10);
-                angle = Row(0).Create<IntInput>("wide2").Modify(0, 360);
+                damage = Row(0).Create<IntInput>("wide2").Modify(0, 10).Tooltip("Damage");
+                angle = Row(0).Create<IntInput>("wide2").Modify(0, 360).Tooltip("Angle");
+                percent = Row(0).Create<FloatInput>("wide2").Modify(0, 1).Tooltip("Animation Percent");
             }
 
             public override CollectionElement Bind(object item)
@@ -37,6 +39,7 @@ namespace Game.Editor
                 name.Bind(attack.monster.IValue(attack, "name"));
                 damage.Bind(attack.monster.IValue(attack, "damage"));
                 angle.Bind(attack.monster.IValue(attack, "angle"));
+                percent.Bind(attack.monster.IValue(attack, "percent"));
 
                 return this.Refresh();
             }
