@@ -20,6 +20,7 @@ namespace Game
         public Size size;
 
         public float SpeedModifier { get; set; }
+        public float Reach { get => agent.stoppingDistance + 0.5f; set => agent.stoppingDistance = value - 0.5f; }
 
         private int animIDMoveSpeed;
         public int AnimDuration => (int)(animator.GetCurrentAnimatorStateInfo(0).length * 1000);
@@ -50,5 +51,17 @@ namespace Game
 
             SpeedModifier = 1;
         }
+
+
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, Reach);
+
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, agent.stoppingDistance);
+        }
+#endif
     }
 }

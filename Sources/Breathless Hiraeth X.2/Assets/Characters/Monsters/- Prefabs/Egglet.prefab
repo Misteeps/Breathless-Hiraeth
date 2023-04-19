@@ -357,7 +357,7 @@ NavMeshAgent:
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.6
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -403,6 +403,7 @@ MonoBehaviour:
   animator: {fileID: 7610133508921096079}
   agent: {fileID: 4099641991040319649}
   hitbox: {fileID: 2488807144912277450}
+  encounter: {fileID: 0}
   maxSpeed: 4
   size: 0
 --- !u!1 &7610133508913661013

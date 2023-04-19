@@ -240,10 +240,13 @@ namespace Game
             return transform.position;
         }
 
+
+#if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, ChaseRange);
         }
+#endif
     }
 }

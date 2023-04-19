@@ -43,6 +43,7 @@ namespace Game.Editor
         {
             monster.agent.radius = radius;
             monster.agent.height = height;
+            monster.agent.stoppingDistance = radius + ((int)monster.size * 0.1f + 0.2f);
 
             monster.hitbox.radius = radius;
             monster.hitbox.height = height;
@@ -55,6 +56,7 @@ namespace Game.Editor
             monster.agent.speed = 4 - ((int)size * 0.25f);
             monster.agent.angularSpeed = 600 - ((int)size * 50);
             monster.agent.acceleration = 10 - ((int)size * 2);
+            monster.agent.stoppingDistance = monster.agent.radius + ((int)size * 0.1f + 0.2f);
 
             monster.maxSpeed = monster.agent.speed;
         }
