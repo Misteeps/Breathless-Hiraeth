@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -72,6 +73,7 @@ namespace Game
 
         [Header("References")]
         public Transform sword;
+        public BoxCollider hurtbox;
         public Animator animator;
         public CharacterController controller;
 
@@ -85,6 +87,7 @@ namespace Game
         [SerializeField] private float verticalVelocity;
         [SerializeField] private float jumpCooldownTimer;
         [SerializeField] private float fallTimer;
+        private List<Monster> monstersHit;
 
         private int animIDMoveX;
         private int animIDMoveY;
@@ -98,6 +101,9 @@ namespace Game
         {
             jumpCooldownTimer = jumpCooldown;
             fallTimer = fallTime;
+
+            monstersHit = new List<Monster>();
+            AttackHitbox(0);
 
             animIDMoveX = Animator.StringToHash("Move X");
             animIDMoveY = Animator.StringToHash("Move Y");
@@ -357,6 +363,12 @@ namespace Game
         private void Ability4()
         {
             Combat = true;
+        }
+
+        private void AttackHitbox(int enable)
+        {
+            hurtbox.enabled = enable == 1;
+            monstersHit.Clear();
         }
 
         private void OnTriggerEnter(Collider other)
