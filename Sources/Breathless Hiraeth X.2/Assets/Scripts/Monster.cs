@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,27 @@ namespace Game
 {
     public class Monster : MonoBehaviour
     {
+        #region Attack Data
+        [Serializable]
+        public class AttackData
+        {
+            public string name;
+            public int damage;
+            public int angle;
+
+#if UNITY_EDITOR
+            public Monster monster;
+            public AttackData(Monster monster)
+            {
+                this.monster = monster;
+                damage = 1;
+                angle = 40;
+            }
+#endif
+        }
+        #endregion Attack Data
+
+
         public Animator animator;
         public NavMeshAgent agent;
         public CapsuleCollider hitbox;
@@ -17,9 +39,13 @@ namespace Game
         public Encounter encounter;
 
         public float maxSpeed;
+        public float speedModifier;
         public Size size;
+        public AttackData[] attacks;
 
-        public float SpeedModifier { get; set; }
+        private bool attackAnim;
+        private bool lockAnim;
+
         public float Reach { get => agent.stoppingDistance + 0.5f; set => agent.stoppingDistance = value - 0.5f; }
 
         private int animIDMoveSpeed;
@@ -28,7 +54,7 @@ namespace Game
 
         private void Start()
         {
-            SpeedModifier = 1;
+            speedModifier = 1;
 
             animIDMoveSpeed = Animator.StringToHash("MoveSpeed");
         }
@@ -40,16 +66,25 @@ namespace Game
         public void Move(Vector3 position, float speedScale = 1)
         {
             agent.destination = position;
-            agent.speed = maxSpeed * SpeedModifier * speedScale;
+            agent.speed = maxSpeed * speedModifier * speedScale;
         }
         public async void Attack()
         {
-            SpeedModifier = 0;
+            if (attackAnim || lockAnim) return;
 
-            animator.CrossFade("Attack", 0.25f);
+            attackAnim = true;
+            await Animate("Attack Jab Right");
+            attackAnim = false;
+        }
+
+        private async Task Animate(string clip)
+        {
+            speedModifier = 0.25f;
+
+            animator.CrossFade(clip, 0.25f);
             await GeneralUtilities.DelayMS(AnimDuration);
 
-            SpeedModifier = 1;
+            speedModifier = 1;
         }
 
 
