@@ -81,7 +81,10 @@ namespace Game
                         timer = 2;
                         Spawn(0);
                         foreach (Monster monster in monsters)
-                            monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
+                            if (Vector3.Distance(transform.position, monster.transform.position) > Range)
+                                monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
+                            else
+                                monster.Move(monster.transform.position, 1);
                         break;
 
                     case Status.Ambush:
@@ -94,14 +97,24 @@ namespace Game
                         enabled = true;
                         timer = 2;
                         Spawn(0);
-                        foreach (Monster monster in monsters)
-                            monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
+                        if (!monsters.IsEmpty())
+                            for (int i = 0; i < RNG.Generic.Int(1, monsters.Count); i++)
+                            {
+                                Monster monster = monsters[i];
+                                if (Vector3.Distance(transform.position, monster.transform.position) > Range)
+                                    monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
+                                else
+                                    monster.Move(monster.transform.position, 1);
+                            }
                         break;
 
                     case Status.Notice:
                         trigger.enabled = false;
                         enabled = true;
                         timer = aggroTime;
+                        foreach (Monster monster in monsters)
+                            if (RNG.Generic.Bool())
+                                monster.Move(Vector3.Lerp(monster.transform.position, Monolith.Player.transform.position, 0.2f), 0.5f);
                         break;
 
                     case Status.Attack:
@@ -136,8 +149,7 @@ namespace Game
                     timer -= Time.deltaTime;
                     if (timer < 0)
                     {
-                        if (monsters.IsEmpty()) timer = 100;
-                        else
+                        if (!monsters.IsEmpty())
                         {
                             timer = RNG.Generic.Float(0, 4);
                             RNG.Generic.From(monsters).Move(RandomPoint(), RNG.Generic.Float(0.1f, 0.4f));
@@ -156,7 +168,12 @@ namespace Game
 
                 case Status.Attack:
                     foreach (Monster monster in monsters)
-                        try { monster.Move(Monolith.Player.transform.position); }
+                        try
+                        {
+                            monster.Move(Monolith.Player.transform.position);
+                            if (Vector3.Distance(monster.transform.position, Monolith.Player.transform.position) < 2)
+                                monster.Attack();
+                        }
                         catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
 
                     if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > ChaseRange) State = Status.Patrol;
