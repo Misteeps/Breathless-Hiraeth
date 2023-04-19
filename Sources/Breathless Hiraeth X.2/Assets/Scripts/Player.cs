@@ -273,11 +273,9 @@ namespace Game
             new Transition(() => force, value =>
             {
                 force = value;
+                controller.Move(moveDirection.normalized * (force * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
 
-                Vector3 targetDirection = Quaternion.Euler(0.0f, Camera.Rotation, 0.0f) * moveDirection;
-                controller.Move(targetDirection.normalized * (force * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
-
-                Vector3 velocity = transform.InverseTransformDirection(targetDirection * force * 3);
+                Vector3 velocity = transform.InverseTransformDirection(moveDirection * force * 3);
                 animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, Time.deltaTime * acceleration);
                 animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, Time.deltaTime * acceleration);
                 animator.SetFloat(animIDMoveX, animationSpeedX);
