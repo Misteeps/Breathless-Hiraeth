@@ -11,7 +11,7 @@ namespace Game
 {
     public class Encounter : MonoBehaviour
     {
-        public enum Status { Waiting, Patrol, Notice, Attack, Cleared }
+        public enum Status { Peaceful, Ambush, Patrol, Notice, Attack, Cleared }
 
         #region Type
         [Serializable]
@@ -75,7 +75,16 @@ namespace Game
                 state = value;
                 switch (State)
                 {
-                    case Status.Waiting:
+                    case Status.Peaceful:
+                        trigger.enabled = false;
+                        enabled = true;
+                        timer = 2;
+                        Spawn(0);
+                        foreach (Monster monster in monsters)
+                            monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
+                        break;
+
+                    case Status.Ambush:
                         trigger.enabled = true;
                         enabled = false;
                         break;
@@ -83,8 +92,10 @@ namespace Game
                     case Status.Patrol:
                         trigger.enabled = true;
                         enabled = true;
-                        timer = CurrentWave?.duration ?? 0;
+                        timer = 2;
                         Spawn(0);
+                        foreach (Monster monster in monsters)
+                            monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
                         break;
 
                     case Status.Notice:
@@ -116,10 +127,11 @@ namespace Game
         {
             switch (State)
             {
-                case Status.Waiting:
+                case Status.Ambush:
                 case Status.Cleared:
                 default: break;
 
+                case Status.Peaceful:
                 case Status.Patrol:
                     timer -= Time.deltaTime;
                     if (timer < 0)
@@ -128,20 +140,13 @@ namespace Game
                         else
                         {
                             timer = RNG.Generic.Float(0, 4);
-
-                            Vector3 point = UnityEngine.Random.insideUnitSphere * Range + transform.position;
-                            if (NavMesh.SamplePosition(point, out NavMeshHit hit, Range * 4, NavMesh.AllAreas))
-                            {
-                                Monster monster = RNG.Generic.From(monsters);
-                                monster.Move(hit.position, RNG.Generic.Float(0.1f, 0.4f));
-                            }
-
+                            RNG.Generic.From(monsters).Move(RandomPoint(), RNG.Generic.Float(0.1f, 0.4f));
                         }
                     }
                     break;
 
                 case Status.Notice:
-                    if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > Range + 2) State = (CurrentWave == null) ? Status.Waiting : Status.Patrol;
+                    if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > Range + 2) State = (CurrentWave == null) ? Status.Ambush : Status.Patrol;
                     else
                     {
                         timer -= Time.deltaTime;
@@ -198,20 +203,24 @@ namespace Game
                     {
                         for (int i = 0; i < type.count; i++)
                         {
-                            Vector3 point = UnityEngine.Random.insideUnitSphere * Range + transform.position;
-                            if (!NavMesh.SamplePosition(point, out NavMeshHit hit, Range * 4, NavMesh.AllAreas))
-                            {
-                                ConsoleUtilities.Warn($"Encounter could not spawn enemy at {point:info} in wave {CurrentWaveIndex:info}");
-                                continue;
-                            }
-
                             Monster monster = Instantiate(type.prefab, transform).GetComponent<Monster>();
-                            monster.transform.position = hit.position;
+                            monster.transform.position = RandomPoint();
+                            monster.encounter = this;
                             monsters.Add(monster);
                         }
                     }
                     catch (Exception exception) { exception.Error($"Failed spawning monsters in wave {CurrentWaveIndex:info}"); }
             }
+        }
+
+        private Vector3 RandomPoint()
+        {
+            Vector3 point = UnityEngine.Random.insideUnitSphere * Range + transform.position;
+            if (NavMesh.SamplePosition(point, out NavMeshHit hit, Range * 4, NavMesh.AllAreas))
+                return hit.position;
+
+            ConsoleUtilities.Warn($"Encounter could not get random point with {point:info}");
+            return transform.position;
         }
 
         private void OnDrawGizmosSelected()

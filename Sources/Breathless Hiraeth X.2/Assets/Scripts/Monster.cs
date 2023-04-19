@@ -14,6 +14,8 @@ namespace Game
         public NavMeshAgent agent;
         public CapsuleCollider hitbox;
 
+        public Encounter encounter;
+
         public float maxSpeed;
         public Size size;
 

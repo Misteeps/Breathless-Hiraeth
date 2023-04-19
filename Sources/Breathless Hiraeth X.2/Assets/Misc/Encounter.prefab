@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: {fileID: 7831517458496380180}
-  startState: 0
+  startState: 2
   aggroTime: 2
   chaseRangeScale: 2
   waves: []
