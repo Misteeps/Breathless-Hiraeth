@@ -121,6 +121,23 @@ namespace Game
                 default: break;
 
                 case Status.Patrol:
+                    timer -= Time.deltaTime;
+                    if (timer < 0)
+                    {
+                        if (monsters.IsEmpty()) timer = 100;
+                        else
+                        {
+                            timer = RNG.Generic.Float(0, 4);
+
+                            Vector3 point = UnityEngine.Random.insideUnitSphere * Range + transform.position;
+                            if (NavMesh.SamplePosition(point, out NavMeshHit hit, Range * 4, NavMesh.AllAreas))
+                            {
+                                Monster monster = RNG.Generic.From(monsters);
+                                monster.Move(hit.position, RNG.Generic.Float(0.1f, 0.4f));
+                            }
+
+                        }
+                    }
                     break;
 
                 case Status.Notice:
@@ -134,10 +151,11 @@ namespace Game
 
                 case Status.Attack:
                     foreach (Monster monster in monsters)
-                        try { monster.Attack(Monolith.Player.transform.position); }
+                        try { monster.Move(Monolith.Player.transform.position); }
                         catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
 
-                    if (CurrentWaveIndex < waves.Length)
+                    if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > ChaseRange) State = Status.Patrol;
+                    else if (CurrentWaveIndex < waves.Length)
                     {
                         timer -= Time.deltaTime;
                         if (timer < 0 || monsters.Count <= CurrentWave.threshold)

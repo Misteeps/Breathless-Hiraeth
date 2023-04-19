@@ -14,17 +14,8 @@ namespace Game
         public NavMeshAgent agent;
         public CapsuleCollider hitbox;
 
-        [SerializeField] private Size size;
-        public Size Size
-        {
-            get => size;
-            set
-            {
-                size = value;
-                agent.speed = 4 - ((int)size * 0.25f);
-                agent.angularSpeed = 600 - ((int)size * 50);
-            }
-        }
+        public float maxSpeed;
+        public Size size;
 
         private int animIDMoveSpeed;
 
@@ -33,11 +24,15 @@ namespace Game
         {
             animIDMoveSpeed = Animator.StringToHash("MoveSpeed");
         }
+        private void Update()
+        {
+            animator.SetFloat(animIDMoveSpeed, Mathf.InverseLerp(0, agent.speed, new Vector2(agent.velocity.x, agent.velocity.y).magnitude));
+        }
 
-        public void Attack(Vector3 position)
+        public void Move(Vector3 position, float speedModifier = 1)
         {
             agent.destination = position;
-            animator.SetFloat(animIDMoveSpeed, Mathf.InverseLerp(0, agent.speed, new Vector2(agent.velocity.x, agent.velocity.y).magnitude));
+            agent.speed = maxSpeed * speedModifier;
         }
     }
 }

@@ -32,14 +32,14 @@ namespace Game.Editor
 
             root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
             root.Create<VerticalSpace>();
-            root.Create<Labeled<FloatInputSlider>>().Bind(new DelegateValue<float>(() => monster.agent.radius, value => monster.Edit(() => SetSize(value, monster.agent.height), "radius"), "Radius")).Elements(e => e.Modify(0, 3));
-            root.Create<Labeled<FloatInputSlider>>().Bind(new DelegateValue<float>(() => monster.agent.height, value => monster.Edit(() => SetSize(monster.agent.radius, value), "height"), "Height")).Elements(e => e.Modify(0, 3));
-            root.Create<Labeled<Dropdown<Size>>>().Modify("Size").Elements(e => e.Bind<Size>(monster.IValue("Size")));
+            root.Create<Labeled<FloatInputSlider>>().Bind(new DelegateValue<float>(() => monster.agent.radius, value => monster.Edit(() => SetHitbox(value, monster.agent.height), "radius"), "Radius")).Elements(e => e.Modify(0, 3));
+            root.Create<Labeled<FloatInputSlider>>().Bind(new DelegateValue<float>(() => monster.agent.height, value => monster.Edit(() => SetHitbox(monster.agent.radius, value), "height"), "Height")).Elements(e => e.Modify(0, 3));
+            root.Create<Labeled<Dropdown<Size>>>().Modify("Size").Elements(e => e.Bind<Size>(new DelegateValue<Size>(() => monster.size, value => monster.Edit(() => SetSize(value), "size"), "Size")));
 
             return root.Refresh();
         }
 
-        private void SetSize(float radius, float height)
+        private void SetHitbox(float radius, float height)
         {
             monster.agent.radius = radius;
             monster.agent.height = height;
@@ -47,6 +47,16 @@ namespace Game.Editor
             monster.hitbox.radius = radius;
             monster.hitbox.height = height;
             monster.hitbox.center = new Vector3(0, height / 2, 0);
+        }
+        private void SetSize(Size size)
+        {
+            monster.size = size;
+
+            monster.agent.speed = 4 - ((int)size * 0.25f);
+            monster.agent.angularSpeed = 600 - ((int)size * 50);
+            monster.agent.acceleration = 10 - ((int)size * 2);
+
+            monster.maxSpeed = monster.agent.speed;
         }
     }
 }
