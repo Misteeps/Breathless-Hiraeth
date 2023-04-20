@@ -683,18 +683,33 @@ Background
 .layer#Menu > .viewport > .map {
 }
 
-.layer#Menu > .viewport > .inventory {
+.layer#Menu > .viewport > .abilities {
     width: 480px;
 }
 
 .layer#Menu > .viewport > .stats {
     width: 320px;
+    justify-content: center;
+}
+
+.layer#Menu > .viewport > .stats > .stat {
+    padding: 20px;
+    padding-right: 80px;
+    font-size: 32px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-right;
 }
 
 .layer#Menu > .options {
     padding-top: 48px;
     align-items: center;
     justify-content: center;
+}
+
+.layer#Menu > .saved {
+    position: absolute;
+    bottom: 80px;
+    right: 60px
 }
 
 /* Settings */

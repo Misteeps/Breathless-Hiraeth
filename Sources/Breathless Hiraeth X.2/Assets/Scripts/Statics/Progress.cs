@@ -29,6 +29,9 @@ namespace Game
 
         public static void Load()
         {
+            lastSaved = DateTime.Now;
+            encounters = new List<string>();
+
             if (FileUtilities.Load("Save.ini", out FileUtilities.INI ini))
                 try
                 {

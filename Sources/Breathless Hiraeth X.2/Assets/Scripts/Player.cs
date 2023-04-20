@@ -172,7 +172,7 @@ namespace Game
         }
         public void Enable(bool enabled)
         {
-            Health = 10;
+            Health = Progress.hearts;
             grounded = true;
             invincible = false;
             lockActions = false;

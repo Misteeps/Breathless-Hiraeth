@@ -81,12 +81,16 @@ namespace Game
         }
         public async void GoToPosition(int index)
         {
+            Progress.position = index;
+            Progress.Save();
+
+            CurrentPosition = index;
+            CurrentDialog = 0;
+
             if (OverrideLeave()) return;
             AdditiveLeave();
 
             trigger.enabled = false;
-            CurrentPosition = index;
-            CurrentDialog = 0;
 
             if (positions.OutOfRange(index))
             {

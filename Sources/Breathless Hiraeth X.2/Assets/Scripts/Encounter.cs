@@ -253,13 +253,15 @@ namespace Game
             Progress.encounters.Add(reward);
             switch (reward)
             {
-                case "Heart": Debug.Log("Heart Earned"); break;
-                case "Memory": Debug.Log("Memory Found"); break;
-                case "Damage": Debug.Log("Damage Up"); break;
-                case "Abilitiy": Debug.Log("Abilitiy Up"); break;
-                case "Speed": Debug.Log("Speed Up"); break;
-                case "Cooldown": Debug.Log("Cooldown Decrease"); break;
+                case "Heart": Progress.hearts++; Debug.Log("Heart Earned"); break;
+                case "Memory": Progress.memories++; Debug.Log("Memory Found"); break;
+                case "Damage": Progress.damage++; Debug.Log("Damage Up"); break;
+                case "Abilitiy": Progress.ability++; Debug.Log("Abilitiy Up"); break;
+                case "Speed": Progress.speed++; Debug.Log("Speed Up"); break;
+                case "Cooldown": Progress.cooldown++; Debug.Log("Cooldown Decrease"); break;
             }
+
+            Progress.Save();
         }
 
         private Vector3 RandomPoint()
