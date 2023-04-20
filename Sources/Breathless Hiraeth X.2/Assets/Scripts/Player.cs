@@ -111,10 +111,6 @@ namespace Game
 
         private void Start()
         {
-            encounters = new List<Encounter>();
-
-            Health = 10;
-
             animIDMoveX = Animator.StringToHash("Move X");
             animIDMoveY = Animator.StringToHash("Move Y");
             animIDCombat = Animator.StringToHash("Combat");
@@ -159,7 +155,7 @@ namespace Game
 #else
             enabled = false;
             VisibleSword = false;
-            animator.CrossFade("Wake Up", 0);
+            animator.Play("Wake Up");
 
             await GeneralUtilities.DelayMS(8000);
 
@@ -176,7 +172,10 @@ namespace Game
         }
         public void Enable(bool enabled)
         {
+            Health = 10;
             grounded = true;
+            invincible = false;
+            lockActions = false;
             speed = 0;
             animationSpeedX = 0;
             animationSpeedY = 0;
@@ -185,6 +184,13 @@ namespace Game
             verticalVelocity = 0;
             jumpCooldownTimer = 0;
             fallTime = 0;
+            encounters = new List<Encounter>();
+
+            animator.Play("Movement 1D");
+            animator.SetLayerWeight(0, 1);
+            animator.SetLayerWeight(1, 1);
+            animator.SetLayerWeight(2, 1);
+            animator.SetLayerWeight(3, 0);
 
             this.enabled = enabled;
             animator.enabled = enabled;
@@ -413,7 +419,22 @@ namespace Game
         }
         public async void Die()
         {
-            await GeneralUtilities.DelayMS(1);
+            foreach (Encounter encounter in encounters)
+                encounter.State = Encounter.Status.Patrol;
+
+            this.enabled = false;
+            controller.enabled = false;
+            animator.SetLayerWeight(0, 0);
+            animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(2, 0);
+            animator.SetLayerWeight(3, 1);
+            animator.CrossFade((RNG.Generic.Bool()) ? "Death Kneel" : "Death Fall", 0.2f);
+
+            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 0, 1).Curve(Function.Sine, Direction.InOut, 6f).Start();
+            await GeneralUtilities.DelayMS(6400);
+
+            Enable(true, new Vector3(0, 100, 0));
+            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Sine, Direction.InOut, 6f).Start();
         }
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);

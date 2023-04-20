@@ -81,10 +81,7 @@ namespace Game
                         timer = 2;
                         Spawn(0);
                         foreach (Monster monster in monsters)
-                            if (Vector3.Distance(transform.position, monster.transform.position) > Range)
-                                monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
-                            else
-                                monster.Move(monster.transform.position, 1);
+                            monster.Move(RandomPoint(), RNG.Generic.Float(0.8f, 1f));
                         break;
 
                     case Status.Ambush:
@@ -98,10 +95,7 @@ namespace Game
                         timer = 2;
                         Spawn(0);
                         foreach (Monster monster in monsters)
-                            if (Vector3.Distance(transform.position, monster.transform.position) > Range)
-                                monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
-                            else
-                                monster.Move(monster.transform.position, 1);
+                            monster.Move(RandomPoint(), RNG.Generic.Float(0.8f, 1f));
                         break;
 
                     case Status.Notice:
