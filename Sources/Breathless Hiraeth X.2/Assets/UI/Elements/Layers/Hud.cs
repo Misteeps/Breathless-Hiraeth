@@ -48,8 +48,6 @@ namespace Game.UI
             stage = this.Create<Label>("stage");
             breath = this.Create<Label>("breath").Text("Press [F] to take a deep breath");
             breath.schedule.Execute(() => breath.style.translate = new UnityEngine.UIElements.Translate(RNG.Generic.Int(-2, 2), RNG.Generic.Int(-2, 2))).Every(10);
-
-            SetHealth(6);
         }
 
         public void Scale(float scale)

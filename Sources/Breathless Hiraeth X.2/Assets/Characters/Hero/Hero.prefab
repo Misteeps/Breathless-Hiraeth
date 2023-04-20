@@ -492,6 +492,7 @@ MonoBehaviour:
   sword: {fileID: 1214498343260920384}
   animator: {fileID: 8266243098872052024}
   controller: {fileID: 3142858220769582314}
+  health: 0
   lockActions: 0
   speed: 0
   animationSpeedX: 0

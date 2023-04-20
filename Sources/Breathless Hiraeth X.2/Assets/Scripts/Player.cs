@@ -77,6 +77,7 @@ namespace Game
         public CharacterController controller;
 
         [Header("Debug")]
+        [SerializeField] private int health;
         [SerializeField] private bool lockActions;
         [SerializeField] private float speed;
         [SerializeField] private float animationSpeedX;
@@ -88,6 +89,16 @@ namespace Game
         [SerializeField] private float fallTimer;
         private List<Encounter> encounters;
 
+        public int Health
+        {
+            get => health;
+            set
+            {
+                health = value;
+                UI.Hud.Instance.SetHealth(health);
+            }
+        }
+
         private int animIDMoveX;
         private int animIDMoveY;
         private int animIDCombat;
@@ -98,10 +109,9 @@ namespace Game
 
         private void Start()
         {
-            jumpCooldownTimer = jumpCooldown;
-            fallTimer = fallTime;
-
             encounters = new List<Encounter>();
+
+            Health = 10;
 
             animIDMoveX = Animator.StringToHash("Move X");
             animIDMoveY = Animator.StringToHash("Move Y");
@@ -377,7 +387,9 @@ namespace Game
         public void TakeDamage(int damage)
         {
             animator.Play((RNG.Generic.Bool()) ? "Hurt Head" : "Hurt Stomach");
-            UI.Hud.Instance.SetHealth(RNG.Generic.Int(0, 21));
+            Health -= damage;
+            if (Health <= 0)
+                Debug.Log("Ded");
         }
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);

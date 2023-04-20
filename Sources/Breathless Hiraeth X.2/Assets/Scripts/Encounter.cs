@@ -126,9 +126,8 @@ namespace Game
                         break;
 
                     case Status.Cleared:
-                        gameObject.SetActive(false);
                         trigger.enabled = false;
-                        enabled = false;
+                        enabled = true;
                         // Reward
                         break;
                 }
@@ -142,7 +141,6 @@ namespace Game
             switch (State)
             {
                 case Status.Ambush:
-                case Status.Cleared:
                 default: break;
 
                 case Status.Peaceful:
@@ -169,14 +167,23 @@ namespace Game
 
                 case Status.Attack:
                     Monolith.Pressure += monsters.Count / Monolith.PressureScale * Time.deltaTime;
+                    List<Monster> dead = new List<Monster>();
+
                     foreach (Monster monster in monsters)
                         try
                         {
-                            monster.Move(Monolith.Player.transform.position);
-                            if (Vector3.Distance(monster.transform.position, Monolith.Player.transform.position) < 2)
-                                monster.Attack();
+                            if (monster.health <= 0) dead.Add(monster);
+                            else
+                            {
+                                monster.Move(Monolith.Player.transform.position);
+                                if (Vector3.Distance(monster.transform.position, Monolith.Player.transform.position) < 2)
+                                    monster.Attack();
+                            }
                         }
                         catch (Exception exception) { exception.Error($"Failed updating monster in encounter"); }
+
+                    foreach (Monster monster in dead)
+                        monsters.Remove(monster);
 
                     if (Vector3.Distance(Monolith.Player.transform.position, transform.position) > ChaseRange)
                     {
@@ -193,6 +200,14 @@ namespace Game
                     {
                         State = Status.Cleared;
                         Monolith.Player.LeaveEncounter(this);
+                    }
+                    break;
+
+                case Status.Cleared:
+                    if (transform.childCount <= 0)
+                    {
+                        enabled = false;
+                        gameObject.SetActive(false);
                     }
                     break;
             }

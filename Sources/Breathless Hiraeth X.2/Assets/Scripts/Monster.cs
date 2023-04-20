@@ -40,6 +40,7 @@ namespace Game
 
         public Encounter encounter;
 
+        public int health;
         public float maxSpeed;
         public float speedModifier;
         public Size size;
@@ -56,7 +57,9 @@ namespace Game
         private void Start()
         {
             speedModifier = 1;
+            health = 30;
 
+            agent.avoidancePriority = RNG.Generic.Int(0, 100);
             animIDMoveSpeed = Animator.StringToHash("MoveSpeed");
         }
         private void Update()
@@ -66,6 +69,8 @@ namespace Game
 
         public void Move(Vector3 position, float speedScale = 1)
         {
+            if (lockAnim) return;
+
             agent.destination = position;
             agent.speed = maxSpeed * speedModifier * speedScale;
         }
@@ -101,15 +106,34 @@ namespace Game
         }
         public async void TakeDamage(int damage)
         {
+            if (lockAnim) return;
+
             attackAnim = false;
             lockAnim = true;
             speedModifier = 0;
 
-            animator.CrossFade("Flinch", 0.08f);
-            await GeneralUtilities.DelayMS(AnimDuration(1));
+            health -= damage;
+            if (health <= 0) { Die(); return; }
+            else
+            {
+                animator.CrossFade("Flinch", 0.08f);
+                await GeneralUtilities.DelayMS(AnimDuration(1));
+            }
 
             lockAnim = false;
             speedModifier = 1;
+        }
+        public async void Die()
+        {
+            lockAnim = true;
+            speedModifier = 0;
+
+            agent.enabled = false;
+            hitbox.enabled = false;
+            animator.CrossFade("Die", 0.08f);
+
+            await GeneralUtilities.DelayMS(4000);
+            Destroy(gameObject);
         }
 
         private int AnimDuration(float percentage) => (int)(animator.GetCurrentAnimatorStateInfo(0).length * percentage * 1000);

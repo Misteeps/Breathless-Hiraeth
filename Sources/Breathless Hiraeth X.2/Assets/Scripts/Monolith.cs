@@ -40,6 +40,8 @@ namespace Game
         public static GameObject PlayerObject { get; private set; }
         public static Player Player { get; private set; }
 
+        public float Difficulty { get; set; }
+
         private float pressure;
         private float pressureScale;
         public static float Pressure
