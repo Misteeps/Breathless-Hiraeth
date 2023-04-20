@@ -97,7 +97,7 @@ namespace Game
             speedModifier = 1;
         }
 
-        private void AttackHit(float maxAngle, int damage)
+        public void AttackHit(float maxAngle, int damage)
         {
             float distance = Vector3.Distance(transform.position, Monolith.Player.transform.position);
             float angle = Vector3.Angle(Monolith.Player.transform.position - transform.position, transform.rotation * Vector3.forward);

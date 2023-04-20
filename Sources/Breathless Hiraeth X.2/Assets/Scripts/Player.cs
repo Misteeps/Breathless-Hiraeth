@@ -373,16 +373,27 @@ namespace Game
             Combat = true;
         }
 
-        private void AttackHit()
+        public async void AttackHit()
         {
+            int hits = 0;
             foreach (Encounter encounter in encounters)
                 foreach (Monster monster in encounter.monsters)
                 {
                     float distance = Vector3.Distance(transform.position, monster.transform.position);
                     float angle = Vector3.Angle(monster.transform.position - transform.position, transform.rotation * Vector3.forward);
                     if (distance < 2 && angle < 90)
+                    {
                         monster.TakeDamage(10);
+                        hits++;
+                    }
                 }
+
+            if (hits > 0)
+            {
+                Time.timeScale = 0.1f;
+                await GeneralUtilities.DelayMS(40);
+                Time.timeScale = 1;
+            }
         }
         public void TakeDamage(int damage)
         {
