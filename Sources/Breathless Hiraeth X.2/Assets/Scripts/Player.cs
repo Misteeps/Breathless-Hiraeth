@@ -371,15 +371,13 @@ namespace Game
                     float distance = Vector3.Distance(transform.position, monster.transform.position);
                     float angle = Vector3.Angle(monster.transform.position - transform.position, transform.rotation * Vector3.forward);
                     if (distance < 2 && angle < 90)
-                    {
-                        Debug.Log($"Hit {monster.gameObject.name}");
-                    }
+                        monster.TakeDamage(10);
                 }
         }
         public void TakeDamage(int damage)
         {
             animator.Play((RNG.Generic.Bool()) ? "Hurt Head" : "Hurt Stomach");
-            Monolith.Pressure += damage;
+            UI.Hud.Instance.SetHealth(RNG.Generic.Int(0, 21));
         }
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);

@@ -99,6 +99,18 @@ namespace Game
             if (distance < 2 && angle < maxAngle)
                 Monolith.Player.TakeDamage(damage);
         }
+        public async void TakeDamage(int damage)
+        {
+            attackAnim = false;
+            lockAnim = true;
+            speedModifier = 0;
+
+            animator.CrossFade("Flinch", 0.08f);
+            await GeneralUtilities.DelayMS(AnimDuration(1));
+
+            lockAnim = false;
+            speedModifier = 1;
+        }
 
         private int AnimDuration(float percentage) => (int)(animator.GetCurrentAnimatorStateInfo(0).length * percentage * 1000);
 
