@@ -97,7 +97,7 @@ namespace Game
             get => health;
             set
             {
-                health = value;
+                health = Mathf.Clamp(value, 0, Progress.hearts);
                 UI.Hud.Instance.SetHealth(health);
             }
         }

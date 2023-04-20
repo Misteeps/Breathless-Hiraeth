@@ -25,6 +25,7 @@ namespace Game.UI
         public readonly Label breath;
 
         private int currentStage;
+        private Label banner;
         private Label dialog;
         private Label tip;
 
@@ -81,6 +82,23 @@ namespace Game.UI
 
         }
 
+        public void Banner(string text, int duration = 4000)
+        {
+            if (banner != null)
+            {
+                Label trash = banner;
+                trash.RemoveFromClassList("show");
+                trash.schedule.Execute(() => trash.RemoveFromHierarchy()).ExecuteLater(480);
+                banner = null;
+            }
+
+            if (string.IsNullOrEmpty(text))
+                return;
+
+            banner = this.Create<Label>("banner").Text(text);
+            banner.schedule.Execute(() => banner.AddToClassList("show")).ExecuteLater(10);
+            banner.schedule.Execute(() => Banner(null)).ExecuteLater(duration);
+        }
         public void Tip(string text, int duration = 4000)
         {
             if (tip != null)

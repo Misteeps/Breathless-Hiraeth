@@ -250,15 +250,15 @@ namespace Game
             if (string.IsNullOrEmpty(reward)) return;
             if (Progress.encounters.Contains(reward)) return;
 
-            Progress.encounters.Add(reward);
+            Progress.encounters.Add(guid);
             switch (reward)
             {
-                case "Heart": Progress.hearts++; Debug.Log("Heart Earned"); break;
-                case "Memory": Progress.memories++; Debug.Log("Memory Found"); break;
-                case "Damage": Progress.damage++; Debug.Log("Damage Up"); break;
-                case "Abilitiy": Progress.ability++; Debug.Log("Abilitiy Up"); break;
-                case "Speed": Progress.speed++; Debug.Log("Speed Up"); break;
-                case "Cooldown": Progress.cooldown++; Debug.Log("Cooldown Decrease"); break;
+                case "Heart": Progress.hearts++; Monolith.Player.Health++; UI.Hud.Instance.Banner("Hearts Increased"); break;
+                case "Memory": Progress.memories++; UI.Hud.Instance.Banner("Memory Found"); break;
+                case "Damage": Progress.damage++; UI.Hud.Instance.Banner("Damage Up"); break;
+                case "Abilitiy": Progress.ability++; UI.Hud.Instance.Banner("Abilitiy Up"); break;
+                case "Speed": Progress.speed++; UI.Hud.Instance.Banner("Speed Up"); break;
+                case "Cooldown": Progress.cooldown++; UI.Hud.Instance.Banner("Cooldown Decrease"); break;
             }
 
             Progress.Save();
