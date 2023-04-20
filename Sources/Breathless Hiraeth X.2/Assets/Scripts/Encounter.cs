@@ -97,15 +97,11 @@ namespace Game
                         enabled = true;
                         timer = 2;
                         Spawn(0);
-                        if (!monsters.IsEmpty())
-                            for (int i = 0; i < RNG.Generic.Int(1, monsters.Count); i++)
-                            {
-                                Monster monster = monsters[i];
-                                if (Vector3.Distance(transform.position, monster.transform.position) > Range)
-                                    monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
-                                else
-                                    monster.Move(monster.transform.position, 1);
-                            }
+                        foreach (Monster monster in monsters)
+                            if (Vector3.Distance(transform.position, monster.transform.position) > Range)
+                                monster.Move(RandomPoint(), RNG.Generic.Float(0.6f, 1f));
+                            else
+                                monster.Move(monster.transform.position, 1);
                         break;
 
                     case Status.Notice:
