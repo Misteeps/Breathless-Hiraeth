@@ -9,6 +9,64 @@ namespace Game.UI
 {
     public class Menu : Layer<Menu>
     {
+        #region Ability
+        public class Ability : Div
+        {
+            protected override string[] DefaultClasses => new string[] { "ability" };
+
+
+            public int position;
+            public string color;
+            public string title;
+            public string description;
+
+            public readonly Div button;
+            public readonly Div icon;
+            public readonly Label titleLabel;
+            public readonly Label descLabel;
+
+
+            public Ability()
+            {
+                button = this.Create<Div>("gui", "button", "square", "gray");
+                icon = button.Create<Div>("icon");
+                titleLabel = this.Create<Label>("title");
+                descLabel = this.Create<Label>("description");
+
+                RegisterCallback<RefreshEvent>(OnRefresh);
+            }
+
+            public Ability Bind(int position, string color, string title, string description)
+            {
+                this.position = position;
+                this.color = color;
+                this.title = title;
+                this.description = description;
+
+                return this.Refresh();
+            }
+
+            private void OnRefresh(RefreshEvent refreshEvent)
+            {
+                if (Progress.abilities >= position)
+                {
+                    button.ClassToggle(color, "gray", true);
+                    icon.Display(true);
+                    titleLabel.Text(title);
+                    descLabel.Text(description);
+                }
+                else
+                {
+                    button.ClassToggle(color, "gray", false);
+                    icon.Display(false);
+                    titleLabel.Text("Locked");
+                    descLabel.Text("Keep following Auraline to unlock");
+                }
+            }
+        }
+        #endregion Ability
+
+
         public Menu()
         {
             Div viewport = this.Create<Div>("viewport", "flexible");
@@ -16,6 +74,10 @@ namespace Game.UI
             Div map = viewport.Create<Div>("gui", "background1", "map", "flexible");
 
             Div abilities = viewport.Create<Div>("gui", "background2", "abilities");
+            abilities.Create<Ability>().Bind(1, "green", "Quick Path", "Create a path of refreshing ground and one two three four five six seven eight nine ten eleven twelve");
+            abilities.Create<Ability>().Bind(2, "red", "Fireball", "Wow");
+            abilities.Create<Ability>().Bind(3, "purple", "Void Warp", "Crazy");
+            abilities.Create<Ability>().Bind(4, "yellow", "Dome", "DimeDome");
 
             Div stats = viewport.Create<Div>("gui", "background2", "stats");
             stats.Create<LabelInput>("stat", "icon").Name("hearts").Bind(() => $"+{Progress.hearts}", null);
