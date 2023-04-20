@@ -659,6 +659,20 @@ Background
     transition-timing-function: ease-out-sine;
 }
 
+.layer#Hud > .healthbar {
+    position: absolute;
+    width: 120px;
+    height: 8px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.layer#Hud > .healthbar > .bar {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+
 /* Menu */
 
 .layer#Menu > .viewport {

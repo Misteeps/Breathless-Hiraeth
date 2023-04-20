@@ -98,6 +98,7 @@ namespace Game
                 UI.Hud.Instance.SetHealth(health);
             }
         }
+        public bool CanAttack => !lockActions && !(Combat && attackTimer > 0);
 
         private int animIDMoveX;
         private int animIDMoveY;
@@ -139,13 +140,12 @@ namespace Game
                 }
             }
 
-            if (lockActions || (Combat && attackTimer > 0)) { }
-            else if (Inputs.Attack.Down) Attack();
-            else if (Inputs.Ability1.Down) Ability1();
-            else if (Inputs.Ability2.Down) Ability2();
-            else if (Inputs.Ability3.Down) Ability3();
-            else if (Inputs.Ability4.Down) Ability4();
-            else if (Inputs.Sprint.Down) Combat = false;
+            if (Inputs.Attack.Down && CanAttack) Attack();
+            else if (Inputs.Ability1.Down && CanAttack) Ability1();
+            else if (Inputs.Ability2.Down && CanAttack) Ability2();
+            else if (Inputs.Ability3.Down && CanAttack) Ability3();
+            else if (Inputs.Ability4.Down && CanAttack) Ability4();
+            else if (Inputs.Sprint.Down && !lockActions) Combat = false;
 
             if (transform.position.y < 0)
                 Enable(true, new Vector3(0, 100, 0));
@@ -391,7 +391,7 @@ namespace Game
             if (hits > 0)
             {
                 Time.timeScale = 0.1f;
-                await GeneralUtilities.DelayMS(40);
+                await GeneralUtilities.DelayMS(50);
                 Time.timeScale = 1;
             }
         }
