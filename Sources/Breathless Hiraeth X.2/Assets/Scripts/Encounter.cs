@@ -130,6 +130,8 @@ namespace Game
         private void Start() => Restart();
         private void Update()
         {
+            if (Time.timeScale < 0.1f) return;
+
             switch (State)
             {
                 case Status.Ambush:
