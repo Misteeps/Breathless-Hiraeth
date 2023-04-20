@@ -61,6 +61,7 @@ namespace Game
                     combatTimer = 5;
                     animator.SetBool(animIDCombat, true);
                     VisibleSword = true;
+                    Camera.ZoomOffset = (Settings.combatZoom) ? -4 : 0;
                 }
                 else
                 {
@@ -68,6 +69,7 @@ namespace Game
                     attackChain = 0;
                     aimAbility = false;
                     animator.SetBool(animIDCombat, false);
+                    Camera.ZoomOffset = 0;
                 }
             }
         }
@@ -373,8 +375,8 @@ namespace Game
             Combat = true;
             VisibleSword = false;
 
-            if (Settings.abilityAimZoom)
-                Camera.ZoomOffset = -4;
+            if (Settings.abilityZoom)
+                Camera.ZoomOffset = -8;
 
             while (true)
             {
@@ -384,8 +386,7 @@ namespace Game
             }
 
             aimAbility = false;
-            VisibleSword = true;
-            Camera.ZoomOffset = 0;
+            Combat = true;
         }
         private void Ability1()
         {
@@ -422,7 +423,9 @@ namespace Game
             if (hits > 0)
             {
                 Time.timeScale = 0.1f;
-                await GeneralUtilities.DelayMS(50);
+                await GeneralUtilities.DelayMS(60);
+                Time.timeScale = 0.4f;
+                await GeneralUtilities.DelayMS(40);
                 Time.timeScale = 1;
             }
         }

@@ -44,7 +44,8 @@ namespace Game.UI
             contents.Create<VerticalSpace>().Size(Size.Huge);
             contents.Create<Labeled>("header").Modify("General", highlight: false);
             contents.Create<VerticalSpace>();
-            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.abilityAimZoom);
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.combatZoom);
+            contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.abilityZoom);
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.autoExitCombat);
             contents.Create<VerticalSpace>();
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.cameraShake);

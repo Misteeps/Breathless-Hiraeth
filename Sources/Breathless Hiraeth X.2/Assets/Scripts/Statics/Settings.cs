@@ -268,7 +268,8 @@ namespace Game
 #endif
 
         [Header("General")]
-        public static Bool abilityAimZoom = new Bool("Ability Aim Zoom", true);
+        public static Bool combatZoom = new Bool("Combat Zoom", true, _ => Camera.ZoomOffset = 0);
+        public static Bool abilityZoom = new Bool("Ability Zoom", true, _ => Camera.ZoomOffset = 0);
         public static Bool autoExitCombat = new Bool("Auto Exit Combat", true);
         public static Bool cameraShake = new Bool("Camera Shake", true, value => Monolith.Pressure = Monolith.Pressure);
         public static Int zoom = new Int("Zoom", 5, 0, 15, value => Camera.Zoom(value));
