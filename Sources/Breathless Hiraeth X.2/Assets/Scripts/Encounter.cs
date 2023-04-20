@@ -120,7 +120,7 @@ namespace Game
                     case Status.Cleared:
                         trigger.enabled = false;
                         enabled = true;
-                        // Reward
+                        Reward();
                         break;
                 }
             }
@@ -243,6 +243,22 @@ namespace Game
                         }
                     }
                     catch (Exception exception) { exception.Error($"Failed spawning monsters in wave {CurrentWaveIndex:info}"); }
+            }
+        }
+        public void Reward()
+        {
+            if (string.IsNullOrEmpty(reward)) return;
+            if (Progress.encounters.Contains(reward)) return;
+
+            Progress.encounters.Add(reward);
+            switch (reward)
+            {
+                case "Heart": Debug.Log("Heart Earned"); break;
+                case "Memory": Debug.Log("Memory Found"); break;
+                case "Damage": Debug.Log("Damage Up"); break;
+                case "Abilitiy": Debug.Log("Abilitiy Up"); break;
+                case "Speed": Debug.Log("Speed Up"); break;
+                case "Cooldown": Debug.Log("Cooldown Decrease"); break;
             }
         }
 

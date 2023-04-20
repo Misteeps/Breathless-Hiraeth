@@ -6520,6 +6520,10 @@ PrefabInstance:
       value: 23a1f03c-3217-49e0-8cbf-fc44c5b6b94b
       objectReference: {fileID: 0}
     - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
+      propertyPath: reward
+      value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
       propertyPath: aggroTime
       value: 0
       objectReference: {fileID: 0}
