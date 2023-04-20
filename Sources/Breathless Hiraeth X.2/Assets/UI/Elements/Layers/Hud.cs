@@ -36,6 +36,7 @@ namespace Game.UI
 
             Div gauge = health.Create<Div>("pressure");
             pressure = gauge.Create<Div>("bar");
+            pressure.Create<Div>("slider");
             gauge.Create<Div>("tick", "1");
             gauge.Create<Div>("tick", "2");
             gauge.Create<Div>("tick", "3");

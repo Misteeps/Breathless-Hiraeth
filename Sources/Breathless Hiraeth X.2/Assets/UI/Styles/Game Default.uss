@@ -544,8 +544,16 @@ Background
 .layer#Hud > .health > .pressure > .bar {
     width: 0%;
     height: 100%;
+}
+
+.layer#Hud > .health > .pressure > .bar > .slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 392px;
     border-radius: 3px;
-    background-image: url('project://database/Assets/UI/Images GUI/Slider Bar Blue.png?fileID=2800000&guid=577ca1a570a170e45beeedb7c4d3e71f&type=3#Slider Bar Blue');
+    background-image: url('project://database/Assets/UI/Images GUI/Slider Bar Pressure.png?fileID=2800000&guid=6cec40b57c120bd48abe6a878cee2094&type=3#Slider Bar Pressure');
 }
 
 .layer#Hud > .health > .pressure > .tick {
