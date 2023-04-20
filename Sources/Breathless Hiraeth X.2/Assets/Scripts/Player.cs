@@ -376,6 +376,11 @@ namespace Game
                     }
                 }
         }
+        public void TakeDamage(int damage)
+        {
+            animator.Play((RNG.Generic.Bool()) ? "Hurt Head" : "Hurt Stomach");
+            Monolith.Pressure += damage;
+        }
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);
         public void LeaveEncounter(Encounter encounter) => encounters.Remove(encounter);
@@ -385,7 +390,6 @@ namespace Game
             switch (other.gameObject.layer)
             {
                 case 6: FairyTrigger(other.GetComponent<Fairy>()); break;
-                case 16: Debug.Log("Got Hit"); break;
                 case 28: other.GetComponent<Encounter>().State = Encounter.Status.Notice; break;
             }
         }

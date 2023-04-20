@@ -51,7 +51,6 @@ namespace Game
         public float Reach { get => agent.stoppingDistance + 0.5f; set => agent.stoppingDistance = value - 0.5f; }
 
         private int animIDMoveSpeed;
-        public int AnimDuration => (int)(animator.GetCurrentAnimatorStateInfo(0).length * 1000);
 
 
         private void Start()
@@ -75,27 +74,33 @@ namespace Game
             if (attackAnim || lockAnim) return;
 
             attackAnim = true;
+            speedModifier = 0.25f;
 
             if (attacks == null) ConsoleUtilities.Warn($"Monster {gameObject:info} has not attacks");
             else
             {
                 AttackData attack = RNG.Generic.From(attacks);
-                await Animate($"Attack {attack.name}");
-                Debug.Log(attack.name);
+                animator.CrossFade($"Attack {attack.name}", 0.2f);
+                await GeneralUtilities.DelayMS(AnimDuration(attack.percent));
+                if (!attackAnim) return;
+                AttackHit(attack.angle, attack.damage);
+                await GeneralUtilities.DelayMS(AnimDuration(1 - attack.percent));
+                if (!attackAnim) return;
             }
 
             attackAnim = false;
-        }
-
-        private async Task Animate(string clip)
-        {
-            speedModifier = 0.25f;
-
-            animator.CrossFade(clip, 0.25f);
-            await GeneralUtilities.DelayMS(AnimDuration);
-
             speedModifier = 1;
         }
+
+        private void AttackHit(float maxAngle, int damage)
+        {
+            float distance = Vector3.Distance(transform.position, Monolith.Player.transform.position);
+            float angle = Vector3.Angle(Monolith.Player.transform.position - transform.position, transform.rotation * Vector3.forward);
+            if (distance < 2 && angle < maxAngle)
+                Monolith.Player.TakeDamage(damage);
+        }
+
+        private int AnimDuration(float percentage) => (int)(animator.GetCurrentAnimatorStateInfo(0).length * percentage * 1000);
 
 
 #if UNITY_EDITOR
