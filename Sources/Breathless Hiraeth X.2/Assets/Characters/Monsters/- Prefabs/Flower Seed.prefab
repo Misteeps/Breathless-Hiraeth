@@ -389,7 +389,14 @@ MonoBehaviour:
   hitbox: {fileID: -8341627710788545494}
   encounter: {fileID: 0}
   maxSpeed: 4
+  speedModifier: 1
   size: 0
+  attacks:
+  - name: Head
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -9004183679245926413}
 --- !u!1 &1210038090024910261
 GameObject:
   m_ObjectHideFlags: 0

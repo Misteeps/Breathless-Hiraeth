@@ -177,7 +177,29 @@ MonoBehaviour:
   hitbox: {fileID: -5699687123816115840}
   encounter: {fileID: 0}
   maxSpeed: 3.25
+  speedModifier: 1
   size: 3
+  attacks:
+  - name: Slice Left
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6605219839192706409}
+  - name: Jab Right
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6605219839192706409}
+  - name: Jab Power
+    damage: 1
+    angle: 40
+    percent: 0.6
+    monster: {fileID: 6605219839192706409}
+  - name: Sting
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6605219839192706409}
 --- !u!1 &6902694358650038788
 GameObject:
   m_ObjectHideFlags: 0

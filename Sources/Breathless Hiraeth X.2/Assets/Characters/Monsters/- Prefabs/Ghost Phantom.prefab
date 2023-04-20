@@ -309,7 +309,24 @@ MonoBehaviour:
   hitbox: {fileID: -5188600675629734242}
   encounter: {fileID: 0}
   maxSpeed: 3.25
+  speedModifier: 1
   size: 3
+  attacks:
+  - name: Slash Left
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -167807551732500927}
+  - name: Slash Right
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -167807551732500927}
+  - name: Projectile
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -167807551732500927}
 --- !u!1 &2611149553095981225
 GameObject:
   m_ObjectHideFlags: 0

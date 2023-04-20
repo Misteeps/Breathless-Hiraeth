@@ -677,7 +677,19 @@ MonoBehaviour:
   hitbox: {fileID: 7410987603667692404}
   encounter: {fileID: 0}
   maxSpeed: 3.75
+  speedModifier: 1
   size: 1
+  attacks:
+  - name: Head
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 3153399526669253011}
+  - name: Sting
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 3153399526669253011}
 --- !u!1 &3925056490110922716
 GameObject:
   m_ObjectHideFlags: 0

@@ -1274,7 +1274,24 @@ MonoBehaviour:
   hitbox: {fileID: 1750303193694212223}
   encounter: {fileID: 0}
   maxSpeed: 3
+  speedModifier: 1
   size: 4
+  attacks:
+  - name: Stab
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 8638063601876180783}
+  - name: Smash
+    damage: 1
+    angle: 40
+    percent: 0.5
+    monster: {fileID: 8638063601876180783}
+  - name: Spell
+    damage: 1
+    angle: 40
+    percent: 0.2
+    monster: {fileID: 8638063601876180783}
 --- !u!1 &1804318802084684
 GameObject:
   m_ObjectHideFlags: 0

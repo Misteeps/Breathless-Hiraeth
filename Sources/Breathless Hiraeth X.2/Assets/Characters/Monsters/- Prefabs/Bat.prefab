@@ -824,7 +824,19 @@ MonoBehaviour:
   hitbox: {fileID: 3009568776809369299}
   encounter: {fileID: 0}
   maxSpeed: 3.75
+  speedModifier: 1
   size: 1
+  attacks:
+  - name: Bite
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 1918423012078164522}
+  - name: Projectile
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 1918423012078164522}
 --- !u!1 &1162074717683033589
 GameObject:
   m_ObjectHideFlags: 0

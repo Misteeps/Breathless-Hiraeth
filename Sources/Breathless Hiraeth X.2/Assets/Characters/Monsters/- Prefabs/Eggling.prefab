@@ -1529,7 +1529,19 @@ MonoBehaviour:
   hitbox: {fileID: 1713009125449712874}
   encounter: {fileID: 0}
   maxSpeed: 3.75
+  speedModifier: 1
   size: 1
+  attacks:
+  - name: Claw Left
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -346576371367089370}
+  - name: Claw Right
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -346576371367089370}
 --- !u!1 &3118294153675456980
 GameObject:
   m_ObjectHideFlags: 0

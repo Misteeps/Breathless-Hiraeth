@@ -185,7 +185,19 @@ MonoBehaviour:
   hitbox: {fileID: -1611013997842409282}
   encounter: {fileID: 0}
   maxSpeed: 3.5
+  speedModifier: 1
   size: 2
+  attacks:
+  - name: Stab
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -8576921456323735503}
+  - name: Projectile
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: -8576921456323735503}
 --- !u!1 &4558253575625511847
 GameObject:
   m_ObjectHideFlags: 0

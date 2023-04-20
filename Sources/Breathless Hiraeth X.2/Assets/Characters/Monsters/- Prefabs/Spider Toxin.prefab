@@ -927,7 +927,29 @@ MonoBehaviour:
   hitbox: {fileID: 7725924501395633923}
   encounter: {fileID: 0}
   maxSpeed: 3.5
+  speedModifier: 1
   size: 2
+  attacks:
+  - name: Bite
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6083347231813620732}
+  - name: Claw Left
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6083347231813620732}
+  - name: Claw Right
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6083347231813620732}
+  - name: Projectile
+    damage: 1
+    angle: 40
+    percent: 0.33
+    monster: {fileID: 6083347231813620732}
 --- !u!1 &8754938060832370622
 GameObject:
   m_ObjectHideFlags: 0
