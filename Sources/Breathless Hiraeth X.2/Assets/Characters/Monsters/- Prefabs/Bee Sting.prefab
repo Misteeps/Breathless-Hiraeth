@@ -144,7 +144,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6902694358650038786}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 212a6b5c5731fac4388ccd83cf049f30, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -176,6 +176,8 @@ MonoBehaviour:
   agent: {fileID: 4275111801794143275}
   hitbox: {fileID: -5699687123816115840}
   encounter: {fileID: 0}
+  maxHealth: 0
+  health: 0
   maxSpeed: 3.25
   speedModifier: 1
   size: 3
