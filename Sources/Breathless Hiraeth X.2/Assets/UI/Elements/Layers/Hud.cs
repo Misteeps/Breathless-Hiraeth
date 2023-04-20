@@ -21,10 +21,10 @@ namespace Game.UI
         public readonly Div ability3;
         public readonly Div ability4;
 
-        public readonly Label stage;
         public readonly Label breath;
 
         private int currentStage;
+        private Label stage;
         private Label banner;
         private Label dialog;
         private Label tip;
@@ -57,7 +57,6 @@ namespace Game.UI
             var scaleStyle = new UnityEngine.UIElements.Scale(new Vector2(scale, scale));
             health.style.scale = scaleStyle;
             abilities.style.scale = scaleStyle;
-            stage.style.scale = scaleStyle;
             breath.style.scale = scaleStyle;
         }
         public void SetHealth(int amount)
@@ -72,17 +71,29 @@ namespace Game.UI
         {
             pressure.style.width = new UnityEngine.UIElements.Length(amount, UnityEngine.UIElements.LengthUnit.Percent);
             breath.style.opacity = Mathf.InverseLerp(40, 70, amount);
-
-            int pressureStage = Monolith.PressureStage;
-            if (pressureStage != currentStage)
+            if (Monolith.PressureStage != currentStage)
             {
-                currentStage = pressureStage;
-                if (pressureStage == 0) stage.RemoveFromClassList("show");
-                else stage.Text($"Damage Dealt x{pressureStage + 1}\nDamage Taken x{pressureStage * 2}").AddToClassList("show");
+                currentStage = Monolith.PressureStage;
+                PressureStage(currentStage);
             }
-
         }
 
+        public void PressureStage(int pressure)
+        {
+            if (stage != null)
+            {
+                Label trash = stage;
+                trash.RemoveFromClassList("show");
+                trash.schedule.Execute(() => trash.RemoveFromHierarchy()).ExecuteLater(480);
+                stage = null;
+            }
+
+            if (pressure == 0)
+                return;
+
+            stage = this.Create<Label>("stage").Text($"Damage Dealt x{pressure + 1}\nDamage Taken x{pressure * 2}");
+            stage.schedule.Execute(() => stage.AddToClassList("show")).ExecuteLater(10);
+        }
         public void Banner(string text, int duration = 4000)
         {
             if (banner != null)

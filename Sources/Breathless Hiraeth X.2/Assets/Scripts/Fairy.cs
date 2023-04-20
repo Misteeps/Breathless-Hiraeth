@@ -126,7 +126,7 @@ namespace Game
 
         public bool AdditiveEnter()
         {
-            switch (currentScene)
+            switch (CurrentScene)
             {
                 default: return false;
                 case "Grove of Beginnings" when CurrentPosition == 0:
@@ -136,16 +136,16 @@ namespace Game
         }
         public bool AdditiveLeave()
         {
-            switch (currentScene)
+            switch (CurrentScene)
             {
                 default: return false;
-                case "Grove of Beginnings" when CurrentPosition == 0:
+                case "Grove of Beginnings" when CurrentPosition == 1:
                     UI.Hud.Instance.Tip("Catch up to Auraline with [Left Shift]");
                     return true;
-                case "Grove of Beginnings" when CurrentPosition == 1:
+                case "Grove of Beginnings" when CurrentPosition == 2:
                     UI.Hud.Instance.Tip("If you are ever lost or forget where Auraline went,\nOpen the map with [Escape]", 6000);
                     return true;
-                case "Grove of Beginnings" when CurrentPosition == 2:
+                case "Grove of Beginnings" when CurrentPosition == 3:
                     UI.Hud.Instance.Tip("Swing your sword with [Left Click]\nZoom in and out with [Scroll Wheel]\nRotate the camera with [Scroll Click]", 8000);
                     return true;
             }
