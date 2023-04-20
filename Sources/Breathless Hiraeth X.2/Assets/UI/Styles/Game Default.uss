@@ -585,7 +585,7 @@ Background
     opacity: 0;
     position: absolute;
     bottom: 20px;
-    left: 480px;
+    left: 440px;
     text-shadow: 0 1.2px 3px black;
     translate: -20px 0;
     transform-origin: bottom left;

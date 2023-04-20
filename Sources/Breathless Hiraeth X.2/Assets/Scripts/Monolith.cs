@@ -41,6 +41,7 @@ namespace Game
         public static Player Player { get; private set; }
 
         private float pressure;
+        private float pressureScale;
         public static float Pressure
         {
             get => Instance.pressure;
@@ -58,6 +59,7 @@ namespace Game
                 UI.Hud.Instance.SetPressure(Instance.pressure);
             }
         }
+        public static float PressureScale { get => Instance.pressureScale; set => Instance.pressureScale = value; }
         public static int PressureStage => (Pressure < 30) ? 0 : (Pressure < 60) ? 1 : (Pressure < 90) ? 2 : 3;
 
         private static float lastMouseX;
@@ -116,6 +118,7 @@ namespace Game
             UI.Root.Instance.Add(UI.Overlay.Instance);
             UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
             Pressure = 0;
+            PressureScale = 2;
         }
 
         private void Update()

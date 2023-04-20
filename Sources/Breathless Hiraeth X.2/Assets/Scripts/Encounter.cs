@@ -168,6 +168,7 @@ namespace Game
                     break;
 
                 case Status.Attack:
+                    Monolith.Pressure += monsters.Count / Monolith.PressureScale * Time.deltaTime;
                     foreach (Monster monster in monsters)
                         try
                         {
