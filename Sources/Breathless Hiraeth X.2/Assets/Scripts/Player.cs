@@ -405,6 +405,20 @@ namespace Game
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);
         public void LeaveEncounter(Encounter encounter) => encounters.Remove(encounter);
+        private bool CheckAggro()
+        {
+            foreach (Encounter encounter in encounters)
+            {
+                foreach (Monster monster in encounter.monsters)
+                    if (Vector3.Distance(transform.position, monster.transform.position) < 50)
+                        return true;
+
+                encounter.State = Encounter.Status.Patrol;
+                LeaveEncounter(encounter);
+            }
+
+            return false;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -416,6 +430,29 @@ namespace Game
         }
         private async void FairyTrigger(Fairy fairy)
         {
+            fairy.trigger.enabled = false;
+
+            if (CheckAggro())
+            {
+                UI.Hud.Instance.FairyDialog((RNG.Generic.Int(0, 4)) switch
+                {
+                    0 => "Shouldn't you deal with those monsters first?",
+                    1 => "You seem a bit busy at the moment.",
+                    2 => "Those monsters arn't backing off any time soon.",
+                    _ => "Deal with those monsters first then we can resume our journey!",
+                });
+
+                while (Vector3.Distance(transform.position, fairy.transform.position) < 6)
+                {
+                    await GeneralUtilities.DelayFrame(1);
+                    UI.Hud.Instance.PositionFairyDialog(fairy.transform.position);
+                }
+
+                UI.Hud.Instance.FairyDialog(null);
+                fairy.trigger.enabled = true;
+                return;
+            }
+
             if (fairy.OverrideEnter()) return;
             fairy.AdditiveEnter();
 
@@ -427,17 +464,24 @@ namespace Game
             if (fairy.DisplayDialog(fairy.CurrentDialog))
             {
                 Camera.ZoomOffset = 4;
-                while (Vector3.Distance(transform.position, fairy.transform.position) < 6)
+                while (true)
                 {
                     await GeneralUtilities.DelayFrame(1);
                     UI.Hud.Instance.PositionFairyDialog(fairy.transform.position);
+
                     if (Inputs.Click.Down || Inputs.Breath.Down)
                         if (!fairy.DisplayDialog(fairy.CurrentDialog + 1))
                             break;
+
+                    if (Vector3.Distance(transform.position, fairy.transform.position) > 6)
+                    {
+                        UI.Hud.Instance.FairyDialog(null);
+                        fairy.trigger.enabled = true;
+                        break;
+                    }
                 }
             }
 
-            UI.Hud.Instance.FairyDialog(null);
             Camera.ZoomOffset = 0;
             speedModifier = 1;
             lockActions = false;

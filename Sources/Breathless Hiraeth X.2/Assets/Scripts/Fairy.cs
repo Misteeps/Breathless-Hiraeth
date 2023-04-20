@@ -69,6 +69,7 @@ namespace Game
             if (position.dialog.OutOfRange(index))
             {
                 if (autoNextPosition) GoToPosition(CurrentPosition + 1);
+                UI.Hud.Instance.FairyDialog(null);
                 return false;
             }
             else
