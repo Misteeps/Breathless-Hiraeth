@@ -78,6 +78,7 @@ namespace Game
 
         [Header("Debug")]
         [SerializeField] private int health;
+        [SerializeField] private bool invincible;
         [SerializeField] private bool lockActions;
         [SerializeField] private float speed;
         [SerializeField] private float animationSpeedX;
@@ -395,12 +396,24 @@ namespace Game
                 Time.timeScale = 1;
             }
         }
-        public void TakeDamage(int damage)
+        public async void TakeDamage(int damage)
         {
+            if (invincible) return;
+
             animator.Play((RNG.Generic.Bool()) ? "Hurt Head" : "Hurt Stomach");
             Health -= damage;
-            if (Health <= 0)
-                Debug.Log("Ded");
+
+            if (Health <= 0) { Die(); return; }
+            else
+            {
+                invincible = true;
+                await GeneralUtilities.DelayMS(320);
+                invincible = false;
+            }
+        }
+        public async void Die()
+        {
+            await GeneralUtilities.DelayMS(1);
         }
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);
