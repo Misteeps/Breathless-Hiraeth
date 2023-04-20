@@ -66,6 +66,7 @@ namespace Game
                 {
                     combatTimer = 0;
                     attackChain = 0;
+                    aimAbility = false;
                     animator.SetBool(animIDCombat, false);
                 }
             }
@@ -80,6 +81,7 @@ namespace Game
         [SerializeField] private int health;
         [SerializeField] private bool invincible;
         [SerializeField] private bool lockActions;
+        [SerializeField] private bool aimAbility;
         [SerializeField] private float speed;
         [SerializeField] private float animationSpeedX;
         [SerializeField] private float animationSpeedY;
@@ -99,7 +101,8 @@ namespace Game
                 UI.Hud.Instance.SetHealth(health);
             }
         }
-        public bool CanAttack => !lockActions && !(Combat && attackTimer > 0);
+        public bool CanAttack => !lockActions && !aimAbility && !(Combat && attackTimer > 0);
+        public bool CanAbility => !lockActions && !aimAbility;
 
         private int animIDMoveX;
         private int animIDMoveY;
@@ -138,10 +141,10 @@ namespace Game
             }
 
             if (Inputs.Attack.Down && CanAttack) Attack();
-            else if (Inputs.Ability1.Down && CanAttack) Ability1();
-            else if (Inputs.Ability2.Down && CanAttack) Ability2();
-            else if (Inputs.Ability3.Down && CanAttack) Ability3();
-            else if (Inputs.Ability4.Down && CanAttack) Ability4();
+            else if (Inputs.Ability1.Down && CanAbility) Ability(Ability1);
+            else if (Inputs.Ability2.Down && CanAbility) Ability(Ability2);
+            else if (Inputs.Ability3.Down && CanAbility) Ability(Ability3);
+            else if (Inputs.Ability4.Down && CanAbility) Ability(Ability4);
             else if (Inputs.Sprint.Down && !lockActions) Combat = false;
 
             if (transform.position.y < 0)
@@ -176,6 +179,7 @@ namespace Game
             grounded = true;
             invincible = false;
             lockActions = false;
+            aimAbility = false;
             speed = 0;
             animationSpeedX = 0;
             animationSpeedY = 0;
@@ -363,21 +367,41 @@ namespace Game
                     break;
             }
         }
+        private async void Ability(Action action)
+        {
+            aimAbility = true;
+            Combat = true;
+            VisibleSword = false;
+
+            if (Settings.abilityAimZoom)
+                Camera.ZoomOffset = -4;
+
+            while (true)
+            {
+                await GeneralUtilities.DelayFrame(1);
+                if (Inputs.Attack.Held) { action.Invoke(); break; }
+                if (Inputs.CancelAbility.Held || !aimAbility) { break; }
+            }
+
+            aimAbility = false;
+            VisibleSword = true;
+            Camera.ZoomOffset = 0;
+        }
         private void Ability1()
         {
-            Combat = true;
+
         }
         private void Ability2()
         {
-            Combat = true;
+
         }
         private void Ability3()
         {
-            Combat = true;
+
         }
         private void Ability4()
         {
-            Combat = true;
+
         }
 
         public async void AttackHit()
@@ -465,6 +489,7 @@ namespace Game
         private async void FairyTrigger(Fairy fairy)
         {
             fairy.trigger.enabled = false;
+            aimAbility = false;
 
             if (CheckAggro())
             {
