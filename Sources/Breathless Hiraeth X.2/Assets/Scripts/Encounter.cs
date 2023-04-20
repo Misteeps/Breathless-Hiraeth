@@ -54,6 +54,8 @@ namespace Game
 
         public SphereCollider trigger;
 
+        public string guid = Guid.NewGuid().ToString();
+        public string reward;
         public Status startState;
         public float aggroTime;
         public float chaseRangeScale;

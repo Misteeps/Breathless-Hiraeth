@@ -15,6 +15,9 @@ namespace Game
         public static int hearts;
         public static int memories;
         public static int abilities;
+        public static int damage;
+        public static int speed;
+        public static int cooldown;
 
 
         public static void Load()

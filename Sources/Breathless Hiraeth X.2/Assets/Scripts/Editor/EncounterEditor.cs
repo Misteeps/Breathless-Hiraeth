@@ -83,10 +83,17 @@ namespace Game.Editor
             encounter = (Encounter)target;
             encounter.trigger = encounter.GetComponent<SphereCollider>();
 
+            if (string.IsNullOrEmpty(encounter.guid))
+                encounter.guid = Guid.NewGuid().ToString();
+
             root = UIUtilities.Create<Div>("body").Style(AssetDatabase.LoadAssetAtPath<UnityEngine.UIElements.StyleSheet>("Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Dark.uss"));
+            root.Create<VerticalSpace>();
+            root.Create<Labeled<StringInput>>().Bind(encounter.IValue("guid"));
+            root.Create<Labeled<StringInput>>().Bind(encounter.IValue("reward"));
             root.Create<VerticalSpace>();
             root.Create<Labeled<Dropdown<Encounter.Status>>>().Modify("Start State").Elements(e => e.Bind<Encounter.Status>(encounter.IValue("startState")));
             root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("aggroTime")).Elements(e => e.Modify(0, 10, 1));
+            root.Create<VerticalSpace>();
             root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("Range")).Elements(e => e.Modify(10, 100, 0));
             root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("chaseRangeScale")).Elements(e => e.Modify(1, 10));
             root.Create<VerticalSpace>();
