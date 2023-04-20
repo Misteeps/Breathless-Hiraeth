@@ -248,7 +248,7 @@ namespace Game
         public void Reward()
         {
             if (string.IsNullOrEmpty(reward)) return;
-            if (Progress.encounters.Contains(reward)) return;
+            if (Progress.encounters.Contains(guid)) return;
 
             Progress.encounters.Add(guid);
             switch (reward)
