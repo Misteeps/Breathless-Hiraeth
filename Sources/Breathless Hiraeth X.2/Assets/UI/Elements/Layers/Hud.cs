@@ -61,7 +61,7 @@ namespace Game.UI
         }
         public void SetHealth(int amount)
         {
-            while (health.childCount - 1 < amount)
+            while (health.childCount - 1 < Progress.hearts)
                 health.Create<Div>("slot").Create<Div>("heart", "icon");
 
             for (int i = 1; i < health.childCount; i++)
