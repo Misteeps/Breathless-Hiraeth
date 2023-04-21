@@ -90,12 +90,12 @@ namespace Game.UI
 
             Div stats = viewport.Create<Div>("gui", "background2", "stats");
             stats.Create<LabelInput>("stat", "icon").Name("hearts").Bind(() => $"+{Progress.hearts}", null);
+            stats.Create<LabelInput>("stat", "icon").Name("memories").Bind(() => $"+{Progress.memories}", null);
+            stats.Create<VerticalSpace>().Size(Size.Huge);
             stats.Create<LabelInput>("stat", "icon").Name("damage").Bind(() => $"+{Progress.damage}", null);
             stats.Create<LabelInput>("stat", "icon").Name("ability").Bind(() => $"+{Progress.ability}", null);
             stats.Create<LabelInput>("stat", "icon").Name("speed").Bind(() => $"+{Progress.speed}", null);
             stats.Create<LabelInput>("stat", "icon").Name("cooldown").Bind(() => $"+{Progress.cooldown}", null);
-            stats.Create<VerticalSpace>().Size(Size.Huge);
-            stats.Create<LabelInput>("stat", "icon").Name("memories").Bind(() => $"+{Progress.memories}", null);
 
             Div options = this.Create<Div>("gui", "background3", "options");
             options.Create<Button>("gui", "rectangle", "green").Modify("Resume").Bind(_ => UI.Menu.Hide());

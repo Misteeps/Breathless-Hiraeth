@@ -802,6 +802,10 @@ Background
     -unity-background-image-tint-color: rgb(127, 77, 255);
 }
 
+.layer#Menu > .viewport > .stats > .stat#memories {
+    background-image: url('project://database/Assets/UI/Images GUI/Stat Memories.png?fileID=2800000&guid=6315404b2b53be644ab0aef42db4ee06&type=3#Stat Memories');
+}
+
 .layer#Menu > .options {
     padding-top: 48px;
     align-items: center;
