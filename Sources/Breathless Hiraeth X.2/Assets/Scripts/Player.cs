@@ -386,7 +386,7 @@ namespace Game
             }
 
             aimAbility = false;
-            Combat = true;
+            Combat = !Inputs.Sprint.Held;
         }
         private void Ability1()
         {
