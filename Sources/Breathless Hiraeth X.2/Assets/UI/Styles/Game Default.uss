@@ -767,11 +767,39 @@ Background
 }
 
 .layer#Menu > .viewport > .stats > .stat {
-    padding: 20px;
-    padding-right: 100px;
+    padding: 20px 92px 20px 0;
     font-size: 32px;
     -unity-font-style: bold;
     -unity-text-align: middle-right;
+    background-position: 92% 50%;
+}
+
+.layer#Menu > .viewport > .stats > .stat#hearts {
+    background-image: url('project://database/Assets/UI/Images GUI/Heart.png?fileID=2800000&guid=34984566d82a70248b18d98032e32876&type=3#Heart');
+}
+
+.layer#Menu > .viewport > .stats > .stat#damage {
+    color: rgb(255, 102, 102);
+    background-image: url('project://database/Assets/UI/Images GUI/Stat Damage.png?fileID=2800000&guid=65050dec9727a9b49a633bda984d8dfc&type=3#Stat Damage');
+    -unity-background-image-tint-color: rgb(255, 77, 77);
+}
+
+.layer#Menu > .viewport > .stats > .stat#ability {
+    color: rgb(102, 255, 255);
+    background-image: url('project://database/Assets/UI/Images GUI/Stat Magic.png?fileID=2800000&guid=e652aa42a0290e1458c449d8b66cf981&type=3#Stat Magic');
+    -unity-background-image-tint-color: rgb(77, 255, 255);
+}
+
+.layer#Menu > .viewport > .stats > .stat#speed {
+    color: rgb(102, 255, 102);
+    background-image: url('project://database/Assets/UI/Images GUI/Stat Speed.png?fileID=2800000&guid=b08c8d23789435445ae3b63149bb1785&type=3#Stat Speed');
+    -unity-background-image-tint-color: rgb(77, 255, 77);
+}
+
+.layer#Menu > .viewport > .stats > .stat#cooldown {
+    color: rgb(179, 102, 255);
+    background-image: url('project://database/Assets/UI/Images GUI/Stat Cooldown.png?fileID=2800000&guid=eff38c52594412843bcd1f3ed3d55246&type=3#Stat Cooldown');
+    -unity-background-image-tint-color: rgb(127, 77, 255);
 }
 
 .layer#Menu > .options {

@@ -25,6 +25,15 @@ namespace Game.UI
             public readonly Label titleLabel;
             public readonly Label descLabel;
 
+            public Color textColor => (color) switch
+            {
+                "green" => new Color(0.4f, 1.0f, 0.4f),
+                "red" => new Color(1.0f, 0.4f, 0.4f),
+                "purple" => new Color(0.5f, 0.4f, 1.0f),
+                "yellow" => new Color(1.0f, 0.8f, 0.4f),
+                _ => Color.white,
+            };
+
 
             public Ability()
             {
@@ -52,14 +61,14 @@ namespace Game.UI
                 {
                     button.ClassToggle(color, "gray", true);
                     icon.Display(true);
-                    titleLabel.Text(title);
+                    titleLabel.Text(title).style.color = textColor;
                     descLabel.Text(description);
                 }
                 else
                 {
                     button.ClassToggle(color, "gray", false);
                     icon.Display(false);
-                    titleLabel.Text("Locked");
+                    titleLabel.Text("Locked").style.color = Color.white;
                     descLabel.Text("Keep following Auraline to unlock");
                 }
             }
@@ -75,7 +84,7 @@ namespace Game.UI
 
             Div abilities = viewport.Create<Div>("gui", "background2", "abilities");
             abilities.Create<Ability>().Bind(1, "green", "Forest Glide", "Conjure a path boosting movement speed and repelling monsters");
-            abilities.Create<Ability>().Bind(2, "red", "Inferno Eruption", "Unleash an explosion dealing large damage");
+            abilities.Create<Ability>().Bind(2, "red", "Inferno Eruption", "Unleash an explosion dealing massive damage to enemies in the radius");
             abilities.Create<Ability>().Bind(3, "purple", "Void Warp", "Teleport to a new location");
             abilities.Create<Ability>().Bind(4, "yellow", "Radiant Sunburst", "Summons the energy of the sun to harm monsters around you");
 
