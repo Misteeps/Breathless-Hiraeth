@@ -356,6 +356,21 @@ Background
     background-color: rgba(0, 0, 0, 0);
 }
 
+.field.keybind {
+    height: 40px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.field.keybind > .button {
+    margin-top: 8px;
+    padding-bottom: 4px;
+    width: 50%;
+    height: 100%;
+    font-size: 14px;
+    -unity-font-style: normal;
+}
+
 /* */
 
 .root {
@@ -799,6 +814,10 @@ Background
 .layer#Settings > .center > .panel .labeled.header > .label {
     font-size: 24px;
     -unity-font-style: bold;
+}
+
+.layer#Settings > .center > .panel .labeled.keybind {
+    height: 44px;
 }
 
 .layer#Settings > .center > .options {

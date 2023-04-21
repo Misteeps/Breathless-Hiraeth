@@ -17,6 +17,73 @@ namespace Game.UI
 
     public class Settings : Layer<Settings>
     {
+        #region Keybind
+        public class Keybind : Field, IBindable
+        {
+            protected override string[] DefaultClasses => new string[] { "field", "keybind" };
+
+            public IValue IValue { get => keybind; set => keybind = (Game.Settings.Keybind)value; }
+            private Game.Settings.Keybind keybind;
+
+            public readonly Button primary;
+            public readonly Button secondary;
+
+
+            public Keybind()
+            {
+                primary = this.Create<Button>("gui", "rectangle", "yellow").Bind(_ => Rebind(true));
+                secondary = this.Create<Button>("gui", "rectangle", "yellow").Bind(_ => Rebind(false));
+            }
+
+            protected override void OnRefresh(RefreshEvent refreshEvent)
+            {
+                primary.Text(keybind.Primary.KeycodeString());
+                secondary.Text(keybind.Secondary.KeycodeString());
+            }
+
+            private async void Rebind(bool primaryBind)
+            {
+                if (keybind == null) throw new NullReferenceException("Keybind");
+                if (primaryBind && keybind.lockPrimary)
+                {
+                    primary.ClassToggle("red", "yellow", true);
+                    await GeneralUtilities.DelayMS(120);
+                    primary.ClassToggle("red", "yellow", false);
+                    return;
+                }
+
+                KeyCode key = (primaryBind) ? keybind.Primary : keybind.Secondary;
+                Button button = (primaryBind) ? primary : secondary;
+                button.ClassToggle("green", "yellow", true);
+                Monolith.Instance.enabled = false;
+
+                bool loop = true;
+                while (loop)
+                {
+                    await GeneralUtilities.DelayFrame(1);
+                    if (Input.GetKeyDown(KeyCode.Escape)) return;
+                    if (Input.GetKeyDown(key)) break;
+                    foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
+                        if (Input.GetKeyDown(keycode))
+                        {
+                            key = keycode;
+                            loop = false;
+                            break;
+                        }
+                }
+
+                if (primaryBind) keybind.Set((key, keybind.Secondary));
+                else keybind.Set((keybind.Primary, key));
+
+                button.ClassToggle("green", "yellow", false);
+                Monolith.Instance.enabled = true;
+
+                this.Refresh();
+            }
+        }
+        #endregion Keybind
+
+
         public Settings()
         {
             Div center = this.Create<Div>("center");
@@ -92,27 +159,27 @@ namespace Game.UI
             contents.Create<VerticalSpace>().Size(Size.Huge);
             contents.Create<VerticalSpace>();
             contents.Create<Labeled>("header").Modify("Keybinds", highlight: false);
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.click).Elements(e => e.Text(Game.Settings.click.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.escape).Elements(e => e.Text(Game.Settings.escape.Display()));
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.click);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.escape);
             contents.Create<VerticalSpace>();
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.moveUp).Elements(e => e.Text(Game.Settings.moveUp.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.MoveDown).Elements(e => e.Text(Game.Settings.MoveDown.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.moveLeft).Elements(e => e.Text(Game.Settings.moveLeft.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.moveRight).Elements(e => e.Text(Game.Settings.moveRight.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.sprint).Elements(e => e.Text(Game.Settings.sprint.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.jump).Elements(e => e.Text(Game.Settings.jump.Display()));
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.moveUp);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.MoveDown);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.moveLeft);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.moveRight);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.sprint);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.jump);
             contents.Create<VerticalSpace>();
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.breath).Elements(e => e.Text(Game.Settings.breath.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.attack).Elements(e => e.Text(Game.Settings.attack.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability1).Elements(e => e.Text(Game.Settings.ability1.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability2).Elements(e => e.Text(Game.Settings.ability2.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability3).Elements(e => e.Text(Game.Settings.ability3.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.ability4).Elements(e => e.Text(Game.Settings.ability4.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.cancelAbility).Elements(e => e.Text(Game.Settings.cancelAbility.Display()));
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.breath);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.attack);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.ability1);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.ability2);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.ability3);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.ability4);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.cancelAbility);
             contents.Create<VerticalSpace>();
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.zoomIn).Elements(e => e.Text(Game.Settings.zoomIn.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.zoomOut).Elements(e => e.Text(Game.Settings.zoomOut.Display()));
-            contents.Create<Labeled<Label>>().Bind(Game.Settings.rotateCamera).Elements(e => e.Text(Game.Settings.rotateCamera.Display()));
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.zoomIn);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.zoomOut);
+            contents.Create<Labeled<Keybind>>("keybind").Bind(Game.Settings.rotateCamera);
             contents.Create<VerticalSpace>().Size(Size.Huge);
         }
     }
