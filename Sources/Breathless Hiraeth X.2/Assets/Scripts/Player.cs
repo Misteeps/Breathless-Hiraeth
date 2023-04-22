@@ -418,7 +418,7 @@ namespace Game
 
         public async void AttackHit()
         {
-            int hits = 0;
+            bool hit = false;
             for (int i = 0; i < Monolith.encounters.Length; i++)
             {
                 Encounter encounter = Monolith.encounters[i];
@@ -429,13 +429,13 @@ namespace Game
                     float angle = Vector3.Angle(monster.transform.position - transform.position, transform.rotation * Vector3.forward);
                     if (distance < 2 && angle < 90)
                     {
-                        monster.TakeDamage(10 + (Progress.damage * 3));
-                        hits++;
+                        monster.TakeDamage(10 + (Progress.damage * 4));
+                        hit = true;
                     }
                 }
             }
 
-            if (hits > 0)
+            if (hit)
             {
                 Time.timeScale = 0.1f;
                 await GeneralUtilities.DelayMS(60);

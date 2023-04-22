@@ -25,16 +25,16 @@ namespace Game
             rainMain.loop = true;
 
             rain.Play();
-            for (int tick = 0; tick < 50; tick++)
+            for (int tick = 0; tick < 25; tick++)
             {
-                await GeneralUtilities.DelayMS(100);
+                await GeneralUtilities.DelayMS(200);
                 for (int i = 0; i < Monolith.encounters.Length; i++)
                 {
                     Encounter encounter = Monolith.encounters[i];
                     if (!encounter.gameObject.activeSelf || Vector3.Distance(transform.position, encounter.transform.position) > encounter.ChaseRange) continue;
                     foreach (Monster monster in encounter.monsters)
                         if (Vector3.Distance(transform.position, monster.transform.position) < 7)
-                            monster.TakeDamage(1 + (Progress.magic * 3));
+                            monster.TakeDamage(1 + Progress.magic);
                 }
 
                 if (tick > 36) summonMain.loop = false;

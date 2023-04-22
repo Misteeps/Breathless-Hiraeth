@@ -69,6 +69,7 @@ MonoBehaviour:
   trigger: {fileID: 7831517458496380180}
   guid: X
   reward: 
+  difficulty: 1
   startState: 2
   aggroTime: 2
   chaseRangeScale: 2

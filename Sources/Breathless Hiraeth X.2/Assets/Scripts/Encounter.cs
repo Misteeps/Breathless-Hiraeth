@@ -56,6 +56,7 @@ namespace Game
 
         public string guid = Guid.NewGuid().ToString();
         public string reward;
+        public float difficulty;
         public Status startState;
         public float aggroTime;
         public float chaseRangeScale;
@@ -241,7 +242,7 @@ namespace Game
                         {
                             Monster monster = Instantiate(type.prefab, transform).GetComponent<Monster>();
                             monster.transform.position = RandomPoint();
-                            monster.encounter = this;
+                            monster.Bind(this);
                             monsters.Add(monster);
                         }
                     }

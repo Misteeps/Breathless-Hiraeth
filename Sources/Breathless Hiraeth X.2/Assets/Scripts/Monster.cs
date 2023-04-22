@@ -58,8 +58,6 @@ namespace Game
         private void Start()
         {
             speedModifier = 1;
-            maxHealth = 60;
-            health = maxHealth;
 
             agent.avoidancePriority = RNG.Generic.Int(0, 100);
             animIDMoveSpeed = Animator.StringToHash("MoveSpeed");
@@ -68,6 +66,22 @@ namespace Game
         {
             animator.SetFloat(animIDMoveSpeed, Mathf.InverseLerp(0, maxSpeed, new Vector2(agent.velocity.x, agent.velocity.y).magnitude));
             PositionHealthBar();
+        }
+        public void Bind(Encounter encounter)
+        {
+            this.encounter = encounter;
+            maxHealth = (size) switch
+            {
+                Size.Mini => 30,
+                Size.Small => 45,
+                Size.Medium => 60,
+                Size.Large => 80,
+                Size.Huge => 100,
+                _ => 1,
+            };
+
+            maxHealth = Mathf.RoundToInt(maxHealth * encounter.difficulty);
+            health = maxHealth;
         }
 
         public void Move(Vector3 position, float speedScale = 1)
@@ -166,7 +180,7 @@ namespace Game
                 UI.Hud.Instance.Insert(0, healthbar);
             }
 
-            healthbar[0].style.width = new UnityEngine.UIElements.Length((float)health / (float)maxHealth * 100f, UnityEngine.UIElements.LengthUnit.Percent);
+            healthbar[0].style.width = (health <= 0) ? 0 : new UnityEngine.UIElements.Length((float)health / (float)maxHealth * 100f, UnityEngine.UIElements.LengthUnit.Percent);
         }
         private void RemoveHealthbar() => healthbar?.RemoveFromHierarchy();
 

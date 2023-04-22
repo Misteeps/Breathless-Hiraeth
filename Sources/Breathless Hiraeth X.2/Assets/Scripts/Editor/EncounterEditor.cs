@@ -90,6 +90,7 @@ namespace Game.Editor
             root.Create<VerticalSpace>();
             root.Create<Labeled<StringInput>>().Bind(encounter.IValue("guid"));
             root.Create<Labeled<StringInput>>().Bind(encounter.IValue("reward"));
+            root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("difficulty")).Elements(e => e.Modify(1, 5, 1));
             root.Create<VerticalSpace>();
             root.Create<Labeled<Dropdown<Encounter.Status>>>().Modify("Start State").Elements(e => e.Bind<Encounter.Status>(encounter.IValue("startState")));
             root.Create<Labeled<FloatInputSlider>>().Bind(encounter.IValue("aggroTime")).Elements(e => e.Modify(0, 10, 1));

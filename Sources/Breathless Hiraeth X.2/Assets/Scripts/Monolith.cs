@@ -43,8 +43,6 @@ namespace Game
 
         public static Encounter[] encounters;
 
-        public float Difficulty { get; set; }
-
         private float pressure;
         private float pressureScale;
         public static float Pressure
