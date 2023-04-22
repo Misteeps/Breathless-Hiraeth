@@ -81,6 +81,10 @@ namespace Game.UI
             Div viewport = this.Create<Div>("viewport", "flexible");
 
             Div map = viewport.Create<Div>("gui", "background1", "map", "flexible");
+            Div navigation = map.Create<Div>("navigation");
+            navigation.Create<Div>("player");
+            navigation.Create<Div>("arrow");
+            map.Create<Label>("lmao").Size(Size.Large).Text("Lmao, map wasn't finished.\nGood luck finding your way around.");
 
             Div abilities = viewport.Create<Div>("gui", "background2", "abilities");
             abilities.Create<Ability>().Bind(1, "green", "Forest Glide", "Conjure a path boosting movement speed and repelling monsters");

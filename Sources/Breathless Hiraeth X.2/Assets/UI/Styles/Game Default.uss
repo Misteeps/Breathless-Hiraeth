@@ -758,7 +758,37 @@ Background
     flex-direction: row;
 }
 
-.layer#Menu > .viewport > .map {
+.layer#Menu > .viewport > .map > .navigation {
+    margin: auto;
+    width: 140px;
+    height: 140px;
+}
+
+.layer#Menu > .viewport > .map > .navigation > .player {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('project://database/Assets/UI/Images GUI/Map Player.png?fileID=2800000&guid=918768cd5c110324fac138142221e264&type=3#Map Player');
+    background-size: 40% 40%;
+}
+
+.layer#Menu > .viewport > .map > .navigation > .arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: 100% 100%;
+    background-image: url('project://database/Assets/UI/Images GUI/Map Arrow.png?fileID=2800000&guid=160ab4ad2da93064380475ea7b8f0b07&type=3#Map Arrow');
+}
+
+.layer#Menu > .viewport > .map > .lmao {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
 }
 
 .layer#Menu > .viewport > .abilities {
