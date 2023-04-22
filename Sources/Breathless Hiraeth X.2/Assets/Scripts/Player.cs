@@ -357,6 +357,7 @@ namespace Game
                 default: attackChain = 1; goto case 0;
 
                 case 0:
+                    swordSlash1.Play();
                     animator.CrossFade("Attack Slash Left", 0.3f);
                     ImpulseMovement(transform.forward, 4);
                     ImpulseSpeed(0, 1);
@@ -366,6 +367,7 @@ namespace Game
                     break;
 
                 case 1:
+                    swordSlash2.Play();
                     animator.CrossFade("Attack Slash Right", 0.3f);
                     ImpulseMovement(transform.forward, 5);
                     ImpulseSpeed(0, 1);
@@ -375,6 +377,7 @@ namespace Game
                     break;
 
                 case 2:
+                    swordSlash2.Play();
                     animator.CrossFade("Attack Spin", 0.3f);
                     ImpulseMovement(transform.forward, 6);
                     ImpulseSpeed(0, 1);
@@ -384,6 +387,7 @@ namespace Game
                     break;
 
                 case 3:
+                    swordSlash3.Play();
                     animator.CrossFade("Attack Slam", 0.3f);
                     ImpulseMovement(transform.forward, 3, 0.4f);
                     ImpulseSpeed(0, 1, 0.4f);
