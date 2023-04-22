@@ -413,8 +413,17 @@ namespace Game
                 await GeneralUtilities.DelayFrame(1);
                 combatTimer = 5;
                 ability.Aim();
-                if (Inputs.Attack.Held) { ability.Cast(); break; }
-                if (Inputs.CancelAbility.Held || !aimAbility) { ability.Destroy(); break; }
+                if (Inputs.Attack.Held)
+                {
+                    if (ability.aimDecal.enabled) ability.Cast();
+                    else UI.Hud.Instance.Tip("Ability too far", 2000);
+                    break;
+                }
+                if (Inputs.CancelAbility.Held || !aimAbility)
+                {
+                    ability.Destroy();
+                    break;
+                }
             }
 
             aimAbility = false;

@@ -22,7 +22,7 @@ namespace Game
         }
         public override async void Cast()
         {
-            Aiming = false;
+            aimDecal.enabled = false;
             Monolith.Player.animator.CrossFade("Ability Normal 1", 0.1f);
 
             brambles = new ParticleSystem[10];
