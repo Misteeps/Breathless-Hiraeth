@@ -27,6 +27,7 @@ namespace Game
 
             Monolith.Player.transform.position = transform.position;
             Monolith.Player.gameObject.SetActive(true);
+            Monolith.Player.Combat = !Inputs.Sprint.Held;
             explosion.Play();
 
             for (int i = 0; i < Monolith.encounters.Length; i++)

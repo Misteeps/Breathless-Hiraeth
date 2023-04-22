@@ -37,8 +37,8 @@ namespace Game
                             monster.TakeDamage(1 + Progress.magic);
                 }
 
-                if (tick > 36) summonMain.loop = false;
-                if (tick > 42) rainMain.loop = false;
+                if (tick > 15) summonMain.loop = false;
+                if (tick > 20) rainMain.loop = false;
             }
 
             await GeneralUtilities.DelayMS(1500);
