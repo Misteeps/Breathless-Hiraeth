@@ -247,20 +247,22 @@ namespace Game
                     catch (Exception exception) { exception.Error($"Failed spawning monsters in wave {CurrentWaveIndex:info}"); }
             }
         }
-        public void Reward()
+        public async void Reward()
         {
             if (string.IsNullOrEmpty(reward)) return;
             if (Progress.encounters.Contains(guid)) return;
 
+            await GeneralUtilities.DelayMS(2000);
             Progress.encounters.Add(guid);
+
             switch (reward)
             {
-                case "Heart": Progress.hearts++; Monolith.Player.Health++; UI.Hud.Instance.Banner("Hearts Increased"); break;
-                case "Memory": Progress.memories++; UI.Hud.Instance.Banner("Memory Found"); break;
-                case "Damage": Progress.damage++; UI.Hud.Instance.Banner("Damage Up"); break;
-                case "Abilitiy": Progress.ability++; UI.Hud.Instance.Banner("Abilitiy Up"); break;
-                case "Speed": Progress.speed++; UI.Hud.Instance.Banner("Speed Up"); break;
-                case "Cooldown": Progress.cooldown++; UI.Hud.Instance.Banner("Cooldown Decrease"); break;
+                case "Heart": Progress.hearts++; Monolith.Player.Health++; Monolith.Player.heartsUpgrade.Play(); UI.Hud.Instance.Banner("Hearts Increased"); break;
+                case "Memory": Progress.memories++; Monolith.Player.memoriesUpgrade.Play(); UI.Hud.Instance.Banner("Memory Found"); break;
+                case "Damage": Progress.damage++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Damage Up"); break;
+                case "Abilitiy": Progress.ability++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Abilitiy Up"); break;
+                case "Speed": Progress.speed++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Speed Up"); break;
+                case "Cooldown": Progress.cooldown++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Cooldown Decrease"); break;
             }
 
             Progress.Save();
