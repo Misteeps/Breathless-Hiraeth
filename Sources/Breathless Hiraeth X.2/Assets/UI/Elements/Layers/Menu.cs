@@ -84,9 +84,9 @@ namespace Game.UI
 
             Div abilities = viewport.Create<Div>("gui", "background2", "abilities");
             abilities.Create<Ability>().Bind(1, "green", "Forest Glide", "Conjure a path boosting movement speed and repelling monsters");
-            abilities.Create<Ability>().Bind(2, "red", "Inferno Eruption", "Unleash an explosion dealing massive damage to enemies in the radius");
-            abilities.Create<Ability>().Bind(3, "purple", "Void Warp", "Teleport to a new location");
-            abilities.Create<Ability>().Bind(4, "yellow", "Radiant Sunburst", "Summons the energy of the sun to harm monsters around you");
+            abilities.Create<Ability>().Bind(2, "red", "Inferno Eruption", "Unleash an delayed explosion dealing massive damage to enemies");
+            abilities.Create<Ability>().Bind(3, "purple", "Void Warp", "Teleport to a new location and slightly hurt nearby enemies upon arrival");
+            abilities.Create<Ability>().Bind(4, "yellow", "Radiant Sunburst", "Summon a barrage of swords imbued with the power of the sun");
 
             Div stats = viewport.Create<Div>("gui", "background2", "stats");
             stats.Create<LabelInput>("stat", "icon").Name("hearts").Bind(() => $"+{Progress.hearts}", null);
