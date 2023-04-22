@@ -178,7 +178,7 @@ namespace Game
         }
         private async void Breath()
         {
-            Player.Invincible = true;
+            Player.invincible = true;
             Time.timeScale = 0.2f;
             new Transition(() => Pressure, value => Pressure = value, Pressure, 20, "Pressure").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
 
@@ -188,7 +188,7 @@ namespace Game
                 if (Inputs.Ability1.Down) break;
             }
 
-            Player.Invincible = false;
+            Player.invincible = false;
             Time.timeScale = 1;
         }
 
