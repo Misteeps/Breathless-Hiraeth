@@ -602,8 +602,44 @@ Background
 }
 
 .layer#Hud > .abilities > .ability {
+    padding: 22px 22px 30px 22px;
     width: 100px;
     height: 100px;
+    font-size: 24px;
+    -unity-font-style: bold;
+    text-overflow: clip;
+    transition: -unity-background-image-tint-color 360ms ease-out-circ;
+}
+
+.layer#Hud > .abilities > .ability.cooldown {
+    -unity-background-image-tint-color: rgb(51, 51, 51);
+    
+}
+
+.layer#Hud > .abilities > .ability > .icon {
+    width: 100%;
+    height: 100%;
+    transition: opacity 360ms ease-out-circ;
+}
+
+.layer#Hud > .abilities > .ability.cooldown > .icon {
+    opacity: 0;
+}
+
+.layer#Hud > .abilities > .ability.green > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Green.png?fileID=2800000&guid=8aeac20f170c1de499c6758c45c73c6e&type=3#Ability Green');
+}
+
+.layer#Hud > .abilities > .ability.red > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Red.png?fileID=2800000&guid=97868ff6319e3404a8ac2d86c5c3e4f5&type=3#Ability Red');
+}
+
+.layer#Hud > .abilities > .ability.purple > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Purple.png?fileID=2800000&guid=6695d439c6fa29e4ca3e4b3a32c603ab&type=3#Ability Purple');
+}
+
+.layer#Hud > .abilities > .ability.yellow > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Yellow.png?fileID=2800000&guid=aa752f48242230544b82a15336346e8e&type=3#Ability Yellow');
 }
 
 .layer#Hud > .stage {
@@ -738,6 +774,7 @@ Background
 }
 
 .layer#Menu > .viewport > .abilities > .ability > .button {
+    padding: 30px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -747,9 +784,25 @@ Background
     background-size: 100% auto;
 }
 
-.layer#Menu > .viewport > .abilities > .ability > .icon {
+.layer#Menu > .viewport > .abilities > .ability > .button > .icon {
     width: 100%;
     height: 100%;
+}
+
+.layer#Menu > .viewport > .abilities > .ability > .button.green > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Green.png?fileID=2800000&guid=8aeac20f170c1de499c6758c45c73c6e&type=3#Ability Green');
+}
+
+.layer#Menu > .viewport > .abilities > .ability > .button.red > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Red.png?fileID=2800000&guid=97868ff6319e3404a8ac2d86c5c3e4f5&type=3#Ability Red');
+}
+
+.layer#Menu > .viewport > .abilities > .ability > .button.purple > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Purple.png?fileID=2800000&guid=6695d439c6fa29e4ca3e4b3a32c603ab&type=3#Ability Purple');
+}
+
+.layer#Menu > .viewport > .abilities > .ability > .button.yellow > .icon {
+    background-image: url('project://database/Assets/UI/Images GUI/Ability Yellow.png?fileID=2800000&guid=aa752f48242230544b82a15336346e8e&type=3#Ability Yellow');
 }
 
 .layer#Menu > .viewport > .abilities > .ability > .title {

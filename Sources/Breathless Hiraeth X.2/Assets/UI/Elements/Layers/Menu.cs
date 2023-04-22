@@ -84,7 +84,7 @@ namespace Game.UI
 
             Div abilities = viewport.Create<Div>("gui", "background2", "abilities");
             abilities.Create<Ability>().Bind(1, "green", "Forest Glide", "Conjure a path boosting movement speed and repelling monsters");
-            abilities.Create<Ability>().Bind(2, "red", "Inferno Eruption", "Unleash an delayed explosion dealing massive damage to enemies");
+            abilities.Create<Ability>().Bind(2, "red", "Inferno Eruption", "Unleash a delayed explosion dealing massive damage to enemies");
             abilities.Create<Ability>().Bind(3, "purple", "Void Warp", "Teleport to a new location and slightly hurt nearby enemies upon arrival");
             abilities.Create<Ability>().Bind(4, "yellow", "Radiant Sunburst", "Summon a barrage of swords imbued with the power of the sun");
 

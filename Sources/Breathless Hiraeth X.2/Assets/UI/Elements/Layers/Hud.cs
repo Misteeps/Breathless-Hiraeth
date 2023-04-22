@@ -16,10 +16,10 @@ namespace Game.UI
         public readonly Div pressure;
 
         public readonly Div abilities;
-        public readonly Div ability1;
-        public readonly Div ability2;
-        public readonly Div ability3;
-        public readonly Div ability4;
+        public readonly Label ability1;
+        public readonly Label ability2;
+        public readonly Label ability3;
+        public readonly Label ability4;
 
         public readonly Label breath;
 
@@ -42,14 +42,32 @@ namespace Game.UI
             gauge.Create<Div>("tick", "3");
 
             abilities = this.Create<Div>("abilities");
-            ability1 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
-            ability2 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
-            ability3 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
-            ability4 = abilities.Create<Div>("ability", "gui", "button", "square", "icon", "gray");
+            ability1 = abilities.Create<Label>("ability", "gui", "button", "square", "icon", "gray");
+            ability1.Create<Div>("icon");
+            ability2 = abilities.Create<Label>("ability", "gui", "button", "square", "icon", "gray");
+            ability2.Create<Div>("icon");
+            ability3 = abilities.Create<Label>("ability", "gui", "button", "square", "icon", "gray");
+            ability3.Create<Div>("icon");
+            ability4 = abilities.Create<Label>("ability", "gui", "button", "square", "icon", "gray");
+            ability4.Create<Div>("icon");
 
             stage = this.Create<Label>("stage");
             breath = this.Create<Label>("breath").Text("Press [F] to take a deep breath");
             breath.schedule.Execute(() => breath.style.translate = new UnityEngine.UIElements.Translate(RNG.Generic.Int(-2, 2), RNG.Generic.Int(-2, 2))).Every(10);
+        }
+
+        public void UpdateAbilities()
+        {
+
+        }
+        public void CooldownAbilities()
+        {
+            Set(ability1, RNG.Generic.Float(0, 20));
+            Set(ability2, RNG.Generic.Float(0, 20));
+            Set(ability3, RNG.Generic.Float(0, 20));
+            Set(ability4, RNG.Generic.Float(0, 20));
+
+            static void Set(Label ability, float seconds) => ability.Text(seconds.ToString((seconds < 3) ? "f1" : "f0")).EnableInClassList("cooldown", seconds > 0);
         }
 
         public void Scale(float scale)
