@@ -179,8 +179,12 @@ namespace Game
         private async void Breath()
         {
             Player.invincible = true;
-            Time.timeScale = 0.2f;
-            new Transition(() => Pressure, value => Pressure = value, Pressure, 20, "Pressure").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
+            new Transition(() => 1, value =>
+            {
+                Pressure = Mathf.Lerp(20, 100, value);
+                Time.timeScale = value;
+                Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
+            }, 1, 0).Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
 
             while (true)
             {
@@ -190,6 +194,7 @@ namespace Game
 
             Player.invincible = false;
             Time.timeScale = 1;
+            Game.Camera.ColorAdjustments.saturation.value = 0;
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));

@@ -20,6 +20,7 @@ namespace Game
         public static Vignette Vignette { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is Vignette) as Vignette;
         public static ChromaticAberration ChromaticAberration { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is ChromaticAberration) as ChromaticAberration;
         public static ShadowsMidtonesHighlights ShadowsMidtonesHighlights { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is ShadowsMidtonesHighlights) as ShadowsMidtonesHighlights;
+        public static ColorAdjustments ColorAdjustments { get; } = Monolith.Refs.volumeProfile.components.Find(component => component is ColorAdjustments) as ColorAdjustments;
 
         public static float FOV { get => VirtualCamera.m_Lens.FieldOfView; set => VirtualCamera.m_Lens.FieldOfView = value; }
 
