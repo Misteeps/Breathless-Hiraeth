@@ -10,6 +10,8 @@ namespace Game
 {
     public abstract class Ability : MonoBehaviour
     {
+        public static Vector3 VFXOffset => new Vector3(0, 0.15f, 0);
+
         public DecalProjector aimDecal;
 
         public virtual void Aim()
@@ -18,7 +20,7 @@ namespace Game
             if (!Physics.Raycast(ray, out RaycastHit hit, 100, 3145728)) aimDecal.enabled = false;
             else
             {
-                transform.position = hit.point;
+                transform.position = hit.point + VFXOffset;
                 aimDecal.enabled = true;
             }
         }

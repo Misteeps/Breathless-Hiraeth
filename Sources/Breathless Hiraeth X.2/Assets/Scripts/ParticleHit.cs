@@ -23,7 +23,7 @@ namespace Game
             foreach (ParticleCollisionEvent collision in collisions)
                 try
                 {
-                    GameObject gameObject = Instantiate(hitPrefab, collision.intersection, new Quaternion(), transform);
+                    GameObject gameObject = Instantiate(hitPrefab, collision.intersection + Ability.VFXOffset, new Quaternion(), transform);
                     Destroy(gameObject, lifespan);
                 }
                 catch (Exception exception) { exception.Error($"Failed spawning particle hit from {gameObject:ref}"); }

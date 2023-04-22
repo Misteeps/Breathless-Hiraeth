@@ -97,6 +97,8 @@ namespace Game
         public ParticleSystem memoriesUpgrade;
         public ParticleSystem statsUpgrade;
         public ParticleSystem natureBoost;
+        public ParticleSystem voidImplosionSmall;
+        public ParticleSystem voidImplosionLarge;
         public ParticleSystem swordSummon;
         public ParticleSystem celestialBreath;
         public ParticleSystem celestialBurst;
