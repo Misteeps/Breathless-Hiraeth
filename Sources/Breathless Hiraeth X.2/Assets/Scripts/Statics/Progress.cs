@@ -20,7 +20,7 @@ namespace Game
         public static int abilities;
 
         public static int damage;
-        public static int ability;
+        public static int magic;
         public static int speed;
         public static int cooldown;
 
@@ -47,7 +47,7 @@ namespace Game
                                 case "Abilities": abilities = int.Parse((string)item.value); break;
 
                                 case "Damage": damage = int.Parse((string)item.value); break;
-                                case "Abilitiy": ability = int.Parse((string)item.value); break;
+                                case "Magic": magic = int.Parse((string)item.value); break;
                                 case "Speed": speed = int.Parse((string)item.value); break;
                                 case "Cooldown": cooldown = int.Parse((string)item.value); break;
 
@@ -73,7 +73,7 @@ namespace Game
             ini.AddItem("Abilities", abilities);
 
             ini.AddItem("Damage", damage);
-            ini.AddItem("Abilitiy", ability);
+            ini.AddItem("Magic", magic);
             ini.AddItem("Speed", speed);
             ini.AddItem("Cooldown", cooldown);
 
@@ -94,7 +94,7 @@ namespace Game
             abilities = 0;
 
             damage = 0;
-            ability = 0;
+            magic = 0;
             speed = 0;
             cooldown = 0;
 

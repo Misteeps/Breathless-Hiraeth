@@ -260,9 +260,9 @@ namespace Game
                 case "Heart": Progress.hearts++; Monolith.Player.Health++; Monolith.Player.heartsUpgrade.Play(); UI.Hud.Instance.Banner("Hearts Increased"); break;
                 case "Memory": Progress.memories++; Monolith.Player.memoriesUpgrade.Play(); UI.Hud.Instance.Banner("Memory Found"); break;
                 case "Damage": Progress.damage++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Damage Up"); break;
-                case "Abilitiy": Progress.ability++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Abilitiy Up"); break;
+                case "Magic": Progress.magic++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Magic Up"); break;
                 case "Speed": Progress.speed++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Speed Up"); break;
-                case "Cooldown": Progress.cooldown++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Cooldown Decrease"); break;
+                case "Cooldown": Progress.cooldown++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Cooldowns Decrease"); break;
             }
 
             Progress.Save();

@@ -93,7 +93,7 @@ namespace Game.UI
             stats.Create<LabelInput>("stat", "icon").Name("memories").Bind(() => $"+{Progress.memories}", null);
             stats.Create<VerticalSpace>().Size(Size.Huge);
             stats.Create<LabelInput>("stat", "icon").Name("damage").Bind(() => $"+{Progress.damage}", null);
-            stats.Create<LabelInput>("stat", "icon").Name("ability").Bind(() => $"+{Progress.ability}", null);
+            stats.Create<LabelInput>("stat", "icon").Name("magic").Bind(() => $"+{Progress.magic}", null);
             stats.Create<LabelInput>("stat", "icon").Name("speed").Bind(() => $"+{Progress.speed}", null);
             stats.Create<LabelInput>("stat", "icon").Name("cooldown").Bind(() => $"+{Progress.cooldown}", null);
 
