@@ -139,6 +139,9 @@ namespace Game
                 lastMouseX = Inputs.MouseX;
             }
 
+            if (Inputs.Breath.Down && Pressure >= 30)
+                Breath();
+
             if (Inputs.Escape.Down)
             {
                 if (UI.Root.Layer == null) UI.Menu.Show();
@@ -172,6 +175,21 @@ namespace Game
                 catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
 
             encounters = list.ToArray();
+        }
+        private async void Breath()
+        {
+            Player.Invincible = true;
+            Time.timeScale = 0.2f;
+            new Transition(() => Pressure, value => Pressure = value, Pressure, 20, "Pressure").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
+
+            while (true)
+            {
+                await GeneralUtilities.DelayFrame(1);
+                if (Inputs.Ability1.Down) break;
+            }
+
+            Player.Invincible = false;
+            Time.timeScale = 1;
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));

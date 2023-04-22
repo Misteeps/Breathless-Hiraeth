@@ -37,20 +37,7 @@ namespace Game
         [SerializeField] private float combatTimer;
         public int attackChain;
         public float attackTimer;
-        public bool VisibleSword
-        {
-            get => visibleSword;
-            set
-            {
-                if (value == visibleSword) return;
-                visibleSword = value;
-
-                (int start, int end) = (visibleSword) ? (0, 1) : (1, 0);
-                sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
-                sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
-                sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
-            }
-        }
+        public bool Invincible { get => invincible; set => invincible = value; }
         public bool Combat
         {
             get => combatTimer != 0;
@@ -71,6 +58,20 @@ namespace Game
                     animator.SetBool(animIDCombat, false);
                     Camera.ZoomOffset = 0;
                 }
+            }
+        }
+        public bool VisibleSword
+        {
+            get => visibleSword;
+            set
+            {
+                if (value == visibleSword) return;
+                visibleSword = value;
+
+                (int start, int end) = (visibleSword) ? (0, 1) : (1, 0);
+                sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
+                sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
+                sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
             }
         }
 
