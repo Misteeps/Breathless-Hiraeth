@@ -127,6 +127,13 @@ namespace Game
             if (encounter.State != Encounter.Status.Attack)
                 encounter.State = Encounter.Status.Attack;
 
+            switch (Monolith.PressureStage)
+            {
+                case 1: damage = Mathf.RoundToInt(damage * 2); break;
+                case 2: damage = Mathf.RoundToInt(damage * 3); break;
+                case 3: damage = Mathf.RoundToInt(damage * 4); break;
+            }
+
             attackAnim = false;
             lockAnim = true;
             speedModifier = 0;

@@ -452,6 +452,13 @@ namespace Game
         {
             if (invincible) return;
 
+            switch (Monolith.PressureStage)
+            {
+                case 1: damage = Mathf.RoundToInt(damage * 2); break;
+                case 2: damage = Mathf.RoundToInt(damage * 4); break;
+                case 3: damage = Mathf.RoundToInt(damage * 6); break;
+            }
+
             animator.Play((RNG.Generic.Bool()) ? "Hurt Head" : "Hurt Stomach");
             Health -= damage;
 
