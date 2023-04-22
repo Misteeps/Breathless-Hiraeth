@@ -13,6 +13,16 @@ namespace Game
         public static Vector3 VFXOffset => new Vector3(0, 0.15f, 0);
 
         public DecalProjector aimDecal;
+        public bool Aiming
+        {
+            get => enabled;
+            set
+            {
+                enabled = value;
+                aimDecal.enabled = value;
+            }
+        }
+
 
         public virtual void Aim()
         {
@@ -21,12 +31,12 @@ namespace Game
             else
             {
                 transform.position = hit.point + VFXOffset;
-                aimDecal.enabled = true;
+                transform.rotation = Monolith.Player.transform.rotation;
             }
         }
         public virtual void Destroy()
         {
-            aimDecal.enabled = false;
+            Aiming = false;
             Destroy(gameObject);
         }
         public abstract void Cast();

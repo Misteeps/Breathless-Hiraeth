@@ -14,7 +14,7 @@ namespace Game
 
         public override async void Cast()
         {
-            aimDecal.enabled = false;
+            Aiming = false;
 
             Monolith.Player.swordSummon.Play();
             await GeneralUtilities.DelayMS(400);

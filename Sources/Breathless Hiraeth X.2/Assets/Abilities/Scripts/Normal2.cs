@@ -14,7 +14,7 @@ namespace Game
 
         public override async void Cast()
         {
-            aimDecal.enabled = false;
+            Aiming = false;
 
             explosion.Play();
             await GeneralUtilities.DelayMS(1360);
