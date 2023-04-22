@@ -252,10 +252,10 @@ namespace Game
         public async void Reward()
         {
             if (string.IsNullOrEmpty(reward)) return;
-            if (Progress.encounters.Contains(guid)) return;
+            if (Progress.guids.Contains(guid)) return;
 
             await GeneralUtilities.DelayMS(2000);
-            Progress.encounters.Add(guid);
+            Progress.guids.Add(guid);
 
             switch (reward)
             {

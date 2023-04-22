@@ -24,13 +24,13 @@ namespace Game
         public static int speed;
         public static int cooldown;
 
-        public static List<string> encounters;
+        public static List<string> guids;
 
 
         public static void Load()
         {
             lastSaved = DateTime.Now;
-            encounters = new List<string>();
+            guids = new List<string>();
 
             if (FileUtilities.Load("Save.ini", out FileUtilities.INI ini))
                 try
@@ -51,7 +51,7 @@ namespace Game
                                 case "Speed": speed = int.Parse((string)item.value); break;
                                 case "Cooldown": cooldown = int.Parse((string)item.value); break;
 
-                                default: encounters.Add(item.key); break;
+                                default: guids.Add(item.key); break;
                             }
                 }
                 catch (Exception exception) { exception.Error($"Failed loading save file"); Defaults(); }
@@ -77,8 +77,8 @@ namespace Game
             ini.AddItem("Speed", speed);
             ini.AddItem("Cooldown", cooldown);
 
-            foreach (string encounter in encounters)
-                ini.AddItem(encounter, true);
+            foreach (string guid in guids)
+                ini.AddItem(guid, true);
 
             if (FileUtilities.Save("Save.ini", ini))
                 lastSaved = DateTime.Now;
@@ -98,7 +98,7 @@ namespace Game
             speed = 0;
             cooldown = 0;
 
-            encounters = new List<string>();
+            guids = new List<string>();
         }
     }
 }

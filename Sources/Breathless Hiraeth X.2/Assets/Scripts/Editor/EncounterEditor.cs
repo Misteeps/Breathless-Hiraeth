@@ -102,5 +102,23 @@ namespace Game.Editor
 
             return root.Refresh();
         }
+
+
+        [MenuItem("GameObject/Memory GUIDs", false, -10)]
+        public static void AssignMemoryGUID()
+        {
+            GameObject root = GameObject.FindWithTag("Memories");
+            if (root == null) ConsoleUtilities.Warn($"No memories found");
+
+            for (int i = 0; i < root.transform.childCount; i++)
+                try
+                {
+                    GameObject memory = root.transform.GetChild(i).gameObject;
+                    if (memory.layer != 7) throw new Exception($"GameObject [{i}] '{memory.name}' not in memory layer");
+                    if (Guid.TryParse(memory.name, out _)) continue;
+                    else memory.name = Guid.NewGuid().ToString();
+                }
+                catch (Exception exception) { exception.Error($"Failed assigning guid to memory"); }
+        }
     }
 }

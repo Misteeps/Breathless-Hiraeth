@@ -122,13 +122,23 @@ namespace Game
             UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
 
             encounters = new Encounter[0];
-            ScanEncounters();
             Pressure = 0;
             PressureScale = 2;
+
+            InitializeScene();
         }
 
         private void Update()
         {
+            if (Inputs.Escape.Down)
+            {
+                if (UI.Root.Layer == null) UI.Menu.Show();
+                else UI.Root.Layer.Hide();
+            }
+
+            if (Inputs.Breath.Down && Pressure >= 30)
+                Breath();
+
             if ((Inputs.ScrollUp || Inputs.ZoomIn.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom + 1);
             if ((Inputs.ScrollDown || Inputs.ZoomOut.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom - 1);
 
@@ -137,15 +147,6 @@ namespace Game
             {
                 Game.Camera.Rotation += (Inputs.MouseX - lastMouseX) / 2;
                 lastMouseX = Inputs.MouseX;
-            }
-
-            if (Inputs.Breath.Down && Pressure >= 30)
-                Breath();
-
-            if (Inputs.Escape.Down)
-            {
-                if (UI.Root.Layer == null) UI.Menu.Show();
-                else UI.Root.Layer.Hide();
             }
 
             // Debug
@@ -164,18 +165,6 @@ namespace Game
             if (Input.GetKeyDown(KeyCode.KeypadMultiply)) Player.speedModifier = Mathf.Clamp(Player.speedModifier + 1, 1, 20);
         }
 
-        public void ScanEncounters()
-        {
-            GameObject root = GameObject.FindWithTag("Encounters");
-            if (root == null) ConsoleUtilities.Warn($"No encounters found");
-
-            List<Encounter> list = new List<Encounter>();
-            for (int i = 0; i < root.transform.childCount; i++)
-                try { list.Add(root.transform.GetChild(i).GetComponent<Encounter>()); }
-                catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
-
-            encounters = list.ToArray();
-        }
         private async void Breath()
         {
             Player.invincible = true;
@@ -195,6 +184,37 @@ namespace Game
             Player.invincible = false;
             Time.timeScale = 1;
             Game.Camera.ColorAdjustments.saturation.value = 0;
+        }
+
+        public static void ScanEncounters()
+        {
+            GameObject root = GameObject.FindWithTag("Encounters");
+            if (root == null) ConsoleUtilities.Warn($"No encounters found");
+
+            List<Encounter> list = new List<Encounter>();
+            for (int i = 0; i < root.transform.childCount; i++)
+                try { list.Add(root.transform.GetChild(i).GetComponent<Encounter>()); }
+                catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
+
+            encounters = list.ToArray();
+        }
+        public static void ScanMemories()
+        {
+            GameObject root = GameObject.FindWithTag("Memories");
+            if (root == null) ConsoleUtilities.Warn($"No memories found");
+
+            for (int i = 0; i < root.transform.childCount; i++)
+                try
+                {
+                    GameObject gameObject = root.transform.GetChild(i).gameObject;
+                    gameObject.SetActive(!Progress.guids.Contains(gameObject.name));
+                }
+                catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
+        }
+        public static void InitializeScene()
+        {
+            ScanEncounters();
+            ScanMemories();
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));
@@ -231,6 +251,9 @@ namespace Game
             operation.allowSceneActivation = true;
 
             ConsoleUtilities.Log($"Loaded scene {scene:info}");
+
+            await GeneralUtilities.DelayMS(100);
+            InitializeScene();
         }
     }
 }

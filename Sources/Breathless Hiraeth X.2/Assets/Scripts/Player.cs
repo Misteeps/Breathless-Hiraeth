@@ -523,6 +523,7 @@ namespace Game
             switch (other.gameObject.layer)
             {
                 case 6: FairyTrigger(other.GetComponent<Fairy>()); break;
+                case 7: MemoryTrigger(other.gameObject); break;
                 case 28: other.GetComponent<Encounter>().State = Encounter.Status.Notice; break;
             }
         }
@@ -585,6 +586,17 @@ namespace Game
             speedModifier = 1;
             lockActions = false;
             Combat = false;
+        }
+        private void MemoryTrigger(GameObject memory)
+        {
+            memory.SetActive(false);
+            if (Progress.guids.Contains(memory.name))
+                return;
+
+            Progress.guids.Add(memory.name);
+            Progress.memories++;
+            memoriesUpgrade.Play();
+            UI.Hud.Instance.Banner("Memory Found");
         }
     }
 }
