@@ -4919,7 +4919,7 @@ GameObject:
   - component: {fileID: 3072095509611507405}
   - component: {fileID: 160101713339855471}
   m_Layer: 0
-  m_Name: Buff Memory
+  m_Name: Buff Memories
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -79,6 +79,20 @@ namespace Game
         public Animator animator;
         public CharacterController controller;
 
+        [Header("Abilities")]
+
+        [Header("VFX")]
+        public ParticleSystem swordSlash1;
+        public ParticleSystem swordSlash2;
+        public ParticleSystem swordSlash3;
+        public ParticleSystem heartsUpgrade;
+        public ParticleSystem memoriesUpgrade;
+        public ParticleSystem statsUpgrade;
+        public ParticleSystem natureBoost;
+        public ParticleSystem swordSummon;
+        public ParticleSystem celestialBreath;
+        public ParticleSystem celestialBurst;
+
         [Header("Debug")]
         [SerializeField] private int health;
         [SerializeField] private bool invincible;
