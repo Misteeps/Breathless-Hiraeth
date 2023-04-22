@@ -221,7 +221,8 @@ namespace Game
             animator.SetLayerWeight(0, 1);
             animator.SetLayerWeight(1, 1);
             animator.SetLayerWeight(2, 1);
-            animator.SetLayerWeight(3, 0);
+            animator.SetLayerWeight(3, 1);
+            animator.SetLayerWeight(4, 0);
 
             this.enabled = enabled;
             animator.enabled = enabled;
@@ -481,7 +482,8 @@ namespace Game
             animator.SetLayerWeight(0, 0);
             animator.SetLayerWeight(1, 0);
             animator.SetLayerWeight(2, 0);
-            animator.SetLayerWeight(3, 1);
+            animator.SetLayerWeight(3, 0);
+            animator.SetLayerWeight(4, 1);
             animator.CrossFade((RNG.Generic.Bool()) ? "Death Kneel" : "Death Fall", 0.2f);
 
             UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 0, 1).Curve(Function.Sine, Direction.InOut, 6f).Start();
