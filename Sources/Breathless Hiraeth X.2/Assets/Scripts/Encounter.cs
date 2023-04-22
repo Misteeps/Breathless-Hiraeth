@@ -160,6 +160,7 @@ namespace Game
                     break;
 
                 case Status.Attack:
+                    if (!Monolith.Player.gameObject.activeSelf) return;
                     Monolith.Pressure += monsters.Count / Monolith.PressureScale * Time.deltaTime;
                     List<Monster> dead = new List<Monster>();
 

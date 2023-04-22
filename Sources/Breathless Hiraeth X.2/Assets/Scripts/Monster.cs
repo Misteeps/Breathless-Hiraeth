@@ -58,7 +58,7 @@ namespace Game
         private void Start()
         {
             speedModifier = 1;
-            maxHealth = 30;
+            maxHealth = 60;
             health = maxHealth;
 
             agent.avoidancePriority = RNG.Generic.Int(0, 100);

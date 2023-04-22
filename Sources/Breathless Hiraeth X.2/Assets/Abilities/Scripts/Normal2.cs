@@ -18,7 +18,16 @@ namespace Game
 
             explosion.Play();
             await GeneralUtilities.DelayMS(1360);
-            Debug.Log("Damage");
+
+            for (int i = 0; i < Monolith.encounters.Length; i++)
+            {
+                Encounter encounter = Monolith.encounters[i];
+                if (!encounter.gameObject.activeSelf || Vector3.Distance(transform.position, encounter.transform.position) > encounter.ChaseRange) continue;
+                foreach (Monster monster in encounter.monsters)
+                    if (Vector3.Distance(transform.position, monster.transform.position) < 6)
+                        monster.TakeDamage(10 + (Progress.magic * 3));
+            }
+
             await GeneralUtilities.DelayMS(2000);
 
             Destroy();
