@@ -419,7 +419,10 @@ namespace Game
         public async void AttackHit()
         {
             int hits = 0;
-            foreach (Encounter encounter in encounters)
+            for (int i = 0; i < Monolith.encounters.Length; i++)
+            {
+                Encounter encounter = Monolith.encounters[i];
+                if (!encounter.gameObject.activeSelf || Vector3.Distance(transform.position, encounter.transform.position) > encounter.ChaseRange) continue;
                 foreach (Monster monster in encounter.monsters)
                 {
                     float distance = Vector3.Distance(transform.position, monster.transform.position);
@@ -430,6 +433,7 @@ namespace Game
                         hits++;
                     }
                 }
+            }
 
             if (hits > 0)
             {

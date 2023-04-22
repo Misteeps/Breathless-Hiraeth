@@ -3726,7 +3726,7 @@ GameObject:
   - component: {fileID: 1091702769}
   m_Layer: 0
   m_Name: Encounters
-  m_TagString: Untagged
+  m_TagString: Encounters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6525,6 +6525,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
       propertyPath: aggroTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
+      propertyPath: startState
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}

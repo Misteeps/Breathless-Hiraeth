@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using UnityEngine;
@@ -39,6 +40,8 @@ namespace Game
 
         public static GameObject PlayerObject { get; private set; }
         public static Player Player { get; private set; }
+
+        public static Encounter[] encounters;
 
         public float Difficulty { get; set; }
 
@@ -119,6 +122,9 @@ namespace Game
 
             UI.Root.Instance.Add(UI.Overlay.Instance);
             UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
+
+            encounters = new Encounter[0];
+            ScanEncounters();
             Pressure = 0;
             PressureScale = 2;
         }
@@ -155,6 +161,19 @@ namespace Game
             if (Input.GetKeyDown(KeyCode.KeypadPlus)) Pressure = 100;
             if (Input.GetKeyDown(KeyCode.KeypadMinus)) Player.speedModifier = Mathf.Clamp(Player.speedModifier - 1, 1, 20);
             if (Input.GetKeyDown(KeyCode.KeypadMultiply)) Player.speedModifier = Mathf.Clamp(Player.speedModifier + 1, 1, 20);
+        }
+
+        public void ScanEncounters()
+        {
+            GameObject root = GameObject.FindWithTag("Encounters");
+            if (root == null) ConsoleUtilities.Warn($"No encounters found");
+
+            List<Encounter> list = new List<Encounter>();
+            for (int i = 0; i < root.transform.childCount; i++)
+                try { list.Add(root.transform.GetChild(i).GetComponent<Encounter>()); }
+                catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
+
+            encounters = list.ToArray();
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));

@@ -110,6 +110,8 @@ namespace Game
         public async void TakeDamage(int damage)
         {
             if (health <= 0) return;
+            if (encounter.State != Encounter.Status.Attack)
+                encounter.State = Encounter.Status.Attack;
 
             attackAnim = false;
             lockAnim = true;
