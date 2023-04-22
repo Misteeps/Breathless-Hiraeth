@@ -282,6 +282,7 @@ namespace Game
         public static Bool fpsCounter = new Bool("FPS Counter", false, value => UI.Overlay.Instance.fps.Display(value));
         public static Bool vSync = new Bool("V-Sync", true, value => QualitySettings.vSyncCount = (value) ? 1 : 0);
         public static Float renderScale = new Float("Render Scale", 1, 0.5f, 1.25f, value => Monolith.Refs.quality.renderScale = value);
+        public static Float viewDistance = new Float("View Distance", 2, 0.5f, 4f, value => QualitySettings.lodBias = value);
         public static Choice<int> textureQuality = new Choice<int>("Texture Quality", TextureQualities, value => QualitySettings.globalTextureMipmapLimit = value);
         public static Choice<int> anisotropicFiltering = new Choice<int>("Anisotropic Filtering", DefaultAnisotropicFiltering, AnisotropicFilterings, value => Texture.SetGlobalAnisotropicFilteringLimits(-1, value));
         public static Choice<int> antiAliasing = new Choice<int>("Anti-aliasing", DefaultAntiAliasing, AntiAliases, value => Monolith.Refs.quality.msaaSampleCount = value);
