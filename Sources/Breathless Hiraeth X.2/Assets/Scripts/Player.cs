@@ -80,6 +80,14 @@ namespace Game
         public CharacterController controller;
 
         [Header("Abilities")]
+        public GameObject abilityNormal1;
+        public GameObject abilityNormal2;
+        public GameObject abilityNormal3;
+        public GameObject abilityNormal4;
+        public GameObject abilitySuper1;
+        public GameObject abilitySuper2;
+        public GameObject abilitySuper3;
+        public GameObject abilitySuper4;
 
         [Header("VFX")]
         public ParticleSystem swordSlash1;
@@ -157,10 +165,10 @@ namespace Game
             }
 
             if (Inputs.Attack.Down && CanAttack) Attack();
-            else if (Inputs.Ability1.Down && CanAbility) Ability(Ability1);
-            else if (Inputs.Ability2.Down && CanAbility) Ability(Ability2);
-            else if (Inputs.Ability3.Down && CanAbility) Ability(Ability3);
-            else if (Inputs.Ability4.Down && CanAbility) Ability(Ability4);
+            else if (Inputs.Ability1.Down && CanAbility) Ability(abilityNormal1);
+            else if (Inputs.Ability2.Down && CanAbility) Ability(abilityNormal2);
+            else if (Inputs.Ability3.Down && CanAbility) Ability(abilityNormal3);
+            else if (Inputs.Ability4.Down && CanAbility) Ability(abilityNormal4);
             else if (Inputs.Sprint.Down && !lockActions) Combat = false;
 
             if (transform.position.y < 0)
@@ -383,7 +391,7 @@ namespace Game
                     break;
             }
         }
-        private async void Ability(Action action)
+        private async void Ability(GameObject abilityPrefab)
         {
             aimAbility = true;
             Combat = true;
@@ -392,31 +400,18 @@ namespace Game
             if (Settings.abilityZoom)
                 Camera.ZoomOffset = -8;
 
+            Ability ability = Instantiate(abilityPrefab).GetComponent<Ability>();
             while (true)
             {
                 await GeneralUtilities.DelayFrame(1);
-                if (Inputs.Attack.Held) { action.Invoke(); break; }
-                if (Inputs.CancelAbility.Held || !aimAbility) { break; }
+                combatTimer = 5;
+                ability.Aim();
+                if (Inputs.Attack.Held) { ability.Cast(); break; }
+                if (Inputs.CancelAbility.Held || !aimAbility) { ability.Destroy(); break; }
             }
 
             aimAbility = false;
             Combat = !Inputs.Sprint.Held;
-        }
-        private void Ability1()
-        {
-
-        }
-        private void Ability2()
-        {
-
-        }
-        private void Ability3()
-        {
-
-        }
-        private void Ability4()
-        {
-
         }
 
         public async void AttackHit()

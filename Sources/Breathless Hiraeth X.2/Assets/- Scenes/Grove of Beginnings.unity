@@ -6402,6 +6402,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilitySuper1
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilitySuper2
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilitySuper3
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilitySuper4
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilityNormal1
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilityNormal2
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilityNormal3
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
+    - target: {fileID: 4603446619649987803, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
+      propertyPath: abilityNormal4
+      value: 
+      objectReference: {fileID: 1436480643222834486, guid: 4f71e9e8eab3f4841a9573d9027f0e35, type: 3}
     - target: {fileID: 6014483644731588554, guid: 3441fa8ccb78b5e4f8ecbb1717273d16, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
