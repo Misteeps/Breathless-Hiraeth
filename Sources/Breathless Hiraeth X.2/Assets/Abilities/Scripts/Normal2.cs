@@ -15,6 +15,7 @@ namespace Game
         public override async void Cast()
         {
             Aiming = false;
+            Monolith.Player.animator.CrossFade("Ability Normal 2", 0.1f);
 
             explosion.Play();
             await GeneralUtilities.DelayMS(1360);

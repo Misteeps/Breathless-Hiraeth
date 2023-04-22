@@ -15,6 +15,7 @@ namespace Game
         public override async void Cast()
         {
             Aiming = false;
+            Monolith.Player.animator.CrossFade("Ability Normal 4", 0.1f);
 
             Monolith.Player.swordSummon.Play();
             await GeneralUtilities.DelayMS(400);
