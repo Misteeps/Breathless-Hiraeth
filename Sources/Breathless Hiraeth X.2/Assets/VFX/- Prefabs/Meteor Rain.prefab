@@ -98054,6 +98054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4323915017563068948}
+  - component: {fileID: 1717183229611746729}
   - component: {fileID: 1117050278664520672}
   - component: {fileID: 5468079951814535771}
   m_Layer: 0
@@ -98078,6 +98079,21 @@ Transform:
   m_Father: {fileID: 1399209696151054484}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717183229611746729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9048076787137983350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0348138bbbfeb64c8064a441c3f25e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 1117050278664520672}
+  hitPrefab: {fileID: 4670850727160928460, guid: da4bf34c2465c4f47afaac1596e93884, type: 3}
+  lifespan: 0.5
 --- !u!198 &1117050278664520672
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -102961,6 +102977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 978869485570739585}
+  - component: {fileID: 7167984624682592608}
   - component: {fileID: 6992971933366352919}
   - component: {fileID: 5146161636143144889}
   m_Layer: 0
@@ -102985,6 +103002,21 @@ Transform:
   m_Father: {fileID: 1399209696151054484}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7167984624682592608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9063435806803073294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0348138bbbfeb64c8064a441c3f25e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystem: {fileID: 6992971933366352919}
+  hitPrefab: {fileID: 2073153673055798679, guid: 2ff47c5435051fa4c80759b5759f47fa, type: 3}
+  lifespan: 0.5
 --- !u!198 &6992971933366352919
 ParticleSystem:
   m_ObjectHideFlags: 0
