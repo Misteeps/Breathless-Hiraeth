@@ -5289,6 +5289,8 @@ MonoBehaviour:
     audioMixer: {fileID: 24100000, guid: 3a3a3520091135044b814b15ebcc7566, type: 2}
     uiDocument: {fileID: 1590200031}
     uiStyle: {fileID: 7433441132597879392, guid: 7ea9cd2986892c746946064bb304f03f, type: 3}
+    uiClick: {fileID: 8300000, guid: 173ff695121d6bd4dab43a0a3afa7c65, type: 3}
+    uiError: {fileID: 8300000, guid: 763cc9a56e2aefb4e81e4b8864b2db66, type: 3}
 --- !u!4 &1590200030
 Transform:
   m_ObjectHideFlags: 0

@@ -46,12 +46,14 @@ namespace Game.UI
                 if (keybind == null) throw new NullReferenceException("Keybind");
                 if (primaryBind && keybind.lockPrimary)
                 {
+                    Audio.UI.global.PlayOneShot(Monolith.Refs.uiError);
                     primary.ClassToggle("red", "yellow", true);
                     await GeneralUtilities.DelayMS(120);
                     primary.ClassToggle("red", "yellow", false);
                     return;
                 }
 
+                Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick);
                 KeyCode key = (primaryBind) ? keybind.Primary : keybind.Secondary;
                 Button button = (primaryBind) ? primary : secondary;
                 button.ClassToggle("green", "yellow", true);
@@ -61,8 +63,8 @@ namespace Game.UI
                 while (loop)
                 {
                     await GeneralUtilities.DelayFrame(1);
-                    if (Input.GetKeyDown(KeyCode.Escape)) return;
-                    if (Input.GetKeyDown(key)) break;
+                    if (Input.GetKeyDown(KeyCode.Escape)) break;
+                    if (Input.GetKeyDown(key)) { key = KeyCode.None; break; }
                     foreach (KeyCode keycode in Enum.GetValues(typeof(KeyCode)))
                         if (Input.GetKeyDown(keycode))
                         {
@@ -96,8 +98,8 @@ namespace Game.UI
             CreateKeybinds(contents);
 
             Div options = center.Create<Div>("gui", "background3", "options");
-            options.Create<Button>("gui", "rectangle", "purple").Modify("Defaults").Bind(_ => { Game.Settings.Defaults(null); this.Refresh(); });
-            options.Create<Button>("gui", "rectangle", "green").Modify("Return").Bind(_ => UI.Settings.Hide());
+            options.Create<Button>("gui", "rectangle", "purple").Modify("Defaults").Bind(_ => { Game.Settings.Defaults(null); this.Refresh(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
+            options.Create<Button>("gui", "rectangle", "green").Modify("Return").Bind(_ => { UI.Settings.Hide(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
         }
 
         public override void Hide(int milliseconds)

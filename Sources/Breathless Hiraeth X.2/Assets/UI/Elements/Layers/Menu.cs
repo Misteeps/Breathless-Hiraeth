@@ -102,9 +102,9 @@ namespace Game.UI
             stats.Create<LabelInput>("stat", "icon").Name("cooldown").Bind(() => $"+{Progress.cooldown}", null);
 
             Div options = this.Create<Div>("gui", "background3", "options");
-            options.Create<Button>("gui", "rectangle", "green").Modify("Resume").Bind(_ => UI.Menu.Hide());
-            options.Create<Button>("gui", "rectangle", "yellow").Modify("Settings").Bind(_ => { UI.Menu.Hide(); UI.Settings.Show(); });
-            options.Create<Button>("gui", "rectangle", "red").Modify("Quit").Bind(_ => { Game.Progress.Save(); Game.Settings.Save(); GeneralUtilities.Quit(); });
+            options.Create<Button>("gui", "rectangle", "green").Modify("Resume").Bind(_ => { UI.Menu.Hide(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
+            options.Create<Button>("gui", "rectangle", "yellow").Modify("Settings").Bind(_ => { UI.Menu.Hide(); UI.Settings.Show(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
+            options.Create<Button>("gui", "rectangle", "red").Modify("Quit").Bind(_ => { Game.Progress.Save(); Game.Settings.Save(); GeneralUtilities.Quit(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
 
             Label saved = this.Create<LabelInput>("saved").Bind(() => $"Last Saved: {Progress.lastSaved.ToShortTimeString()}", null);
         }

@@ -25,6 +25,8 @@ namespace Game
             public AudioMixer audioMixer;
             public UIDocument uiDocument;
             public StyleSheet uiStyle;
+            public AudioClip uiClick;
+            public AudioClip uiError;
         }
         #endregion References
 
