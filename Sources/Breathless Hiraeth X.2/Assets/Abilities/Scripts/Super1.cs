@@ -28,6 +28,7 @@ namespace Game
         }
         public override async void Cast()
         {
+            Monolith.Player.castingSuper = true;
             aimDecal.enabled = false;
             decals.SetActive(false);
 

@@ -110,6 +110,7 @@ namespace Game
         [Header("Debug")]
         [SerializeField] private int health;
         [SerializeField] private bool breathing;
+        [SerializeField] public bool castingSuper;
         [SerializeField] public bool invincible;
         [SerializeField] public bool lockActions;
         [SerializeField] private bool aimAbility;
@@ -153,14 +154,14 @@ namespace Game
                     abilityCooldown4 = 0;
                     UI.Hud.Instance.UpdateAbilities();
                     float start = Monolith.Pressure;
-                    new Transition(() => 1, value =>
+                    new Transition(() => 0, value =>
                     {
                         VisibleSword = false;
-                        Monolith.Pressure = Mathf.Lerp(20, start, value);
-                        animator.SetLayerWeight(5, 1 - value);
-                        Time.timeScale = value;
-                        Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
-                    }, 1, 0, "Breathing").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
+                        Monolith.Pressure = Mathf.Lerp(start, 20, value);
+                        animator.SetLayerWeight(5, value);
+                        Time.timeScale = 1 - value;
+                        Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(0, -20, value);
+                    }, 0, 1, "Breathing").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
                     breathing = true;
                 }
                 else
@@ -539,11 +540,18 @@ namespace Game
             while (Breathing)
             {
                 await GeneralUtilities.DelayFrame(1);
-                if (Inputs.Ability1.Down) TryAbility(1, abilitySuper1);
-                else if (Inputs.Ability2.Down) TryAbility(2, abilitySuper2);
-                else if (Inputs.Ability3.Down) TryAbility(3, abilitySuper3);
-                else if (Inputs.Ability4.Down) TryAbility(4, abilitySuper4);
+                if (castingSuper) continue;
+
+                Vector3 lookDirection = new Vector3(Inputs.MouseX - (Screen.width / 2), 0, Inputs.MouseY - (Screen.height / 2));
+                targetRotation = Quaternion.LookRotation(lookDirection).eulerAngles.y + Camera.Rotation;
+                transform.eulerAngles = new Vector3(0, targetRotation, 0);
+
+                if (Inputs.Ability1.Down && CanAbility) TryAbility(1, abilitySuper1);
+                else if (Inputs.Ability2.Down && CanAbility) TryAbility(2, abilitySuper2);
+                else if (Inputs.Ability3.Down && CanAbility) TryAbility(3, abilitySuper3);
+                else if (Inputs.Ability4.Down && CanAbility) TryAbility(4, abilitySuper4);
             }
+            castingSuper = false;
         }
 
         public async void AttackHit()

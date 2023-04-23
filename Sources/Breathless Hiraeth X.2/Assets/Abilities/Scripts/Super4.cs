@@ -21,6 +21,7 @@ namespace Game
         }
         public override async void Cast()
         {
+            Monolith.Player.castingSuper = true;
             aimDecal.enabled = false;
 
             Monolith.Player.animator.CrossFade("Ability Super 4", 0.1f);
