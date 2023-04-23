@@ -167,10 +167,10 @@ namespace Game
                     enabled = true;
                     invincible = false;
                     animator.updateMode = AnimatorUpdateMode.Normal;
+                    new Transition(() => 1, value => animator.SetLayerWeight(5, value), 1, 0).Curve(Function.Circular, Direction.Out, 2000).Modify(1, true).Start();
                     new Transition(() => 0, value =>
                     {
                         Monolith.Pressure = Mathf.Lerp(20, 0, value);
-                        animator.SetLayerWeight(5, 1 - value);
                         Time.timeScale = value;
                         Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
                     }, 0, 1, "Breathing").Curve(Function.Circular, Direction.Out, 200).Modify(1, true).Start();
