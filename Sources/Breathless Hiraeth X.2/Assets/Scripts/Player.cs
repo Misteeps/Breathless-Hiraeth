@@ -74,11 +74,6 @@ namespace Game
             }
         }
 
-        [Header("References")]
-        public Transform sword;
-        public Animator animator;
-        public CharacterController controller;
-
         [Header("Abilities")]
         public GameObject abilityNormal1;
         public GameObject abilityNormal2;
@@ -106,6 +101,23 @@ namespace Game
         public ParticleSystem swordSummon;
         public ParticleSystem celestialBreath;
         public ParticleSystem celestialBurst;
+
+        [Header("SFX")]
+        public AudioClip slash1;
+        public AudioClip slash2;
+        public AudioClip slash3;
+        public AudioClip slash4;
+        public AudioClip hit1;
+        public AudioClip hit2;
+        public AudioClip footstep1;
+        public AudioClip footstep2;
+
+        [Header("References")]
+        public Transform sword;
+        public Animator animator;
+        public CharacterController controller;
+        public new AudioSource audio;
+        public AudioSource footsteps;
 
         [Header("Debug")]
         [SerializeField] private int health;
@@ -426,6 +438,7 @@ namespace Game
                 default: attackChain = 1; goto case 0;
 
                 case 0:
+                    audio.PlayOneShot(slash1);
                     swordSlash1.Play();
                     animator.CrossFade("Attack Slash Left", 0.3f);
                     ImpulseMovement(transform.forward, 4);
@@ -436,6 +449,7 @@ namespace Game
                     break;
 
                 case 1:
+                    audio.PlayOneShot(slash2);
                     swordSlash2.Play();
                     animator.CrossFade("Attack Slash Right", 0.3f);
                     ImpulseMovement(transform.forward, 5);
@@ -446,6 +460,7 @@ namespace Game
                     break;
 
                 case 2:
+                    audio.PlayOneShot(slash3);
                     swordSlash2.Play();
                     animator.CrossFade("Attack Spin", 0.3f);
                     ImpulseMovement(transform.forward, 6);
@@ -456,6 +471,7 @@ namespace Game
                     break;
 
                 case 3:
+                    audio.PlayOneShot(slash4);
                     swordSlash3.Play();
                     animator.CrossFade("Attack Slam", 0.3f);
                     ImpulseMovement(transform.forward, 3, 0.4f);
@@ -553,6 +569,7 @@ namespace Game
             }
             castingSuper = false;
         }
+        public void Footstep(float volume) => footsteps.PlayOneShot((RNG.Generic.Bool()) ? footstep1 : footstep2, volume);
 
         public async void AttackHit()
         {
@@ -575,6 +592,7 @@ namespace Game
 
             if (hit)
             {
+                audio.PlayOneShot((RNG.Generic.Bool()) ? hit1 : hit2);
                 Time.timeScale = 0.1f;
                 await GeneralUtilities.DelayMS(60);
                 Time.timeScale = 0.4f;
