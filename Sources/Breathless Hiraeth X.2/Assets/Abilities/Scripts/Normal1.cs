@@ -78,6 +78,7 @@ namespace Game
                 brambles[i] = bramble;
                 bramble.Play();
                 NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
+                obstacle.carving = true;
                 new Transition(() => 0, value => obstacle.radius = value, 0, 3.6f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
                 await GeneralUtilities.DelayMS(200);
             }
@@ -98,6 +99,8 @@ namespace Game
                 ParticleSystem bramble = brambles[i];
                 if (bramble == null) continue;
                 bramble.Play();
+                NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
+                obstacle.carving = false;
                 brambles[i] = null;
                 await GeneralUtilities.DelayMS(200);
             }
