@@ -17,12 +17,11 @@ namespace Game
         public override async void Cast()
         {
             aimDecal.enabled = false;
-            Monolith.Player.animator.CrossFade("Ability Super 2", 0.1f);
-            await GeneralUtilities.DelayMS(2200);
-            Monolith.Player.Breathing = false;
 
+            Monolith.Player.animator.CrossFade("Ability Super 2", 0.1f);
             explosion.Play();
             await GeneralUtilities.DelayMS(1360);
+            Monolith.Player.Breathing = false;
             pillar.Play();
             rain.Play();
 

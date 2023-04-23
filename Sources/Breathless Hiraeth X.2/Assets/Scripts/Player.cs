@@ -173,7 +173,7 @@ namespace Game
                         animator.SetLayerWeight(5, 1 - value);
                         Time.timeScale = value;
                         Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
-                    }, 0, 1, "Breathing").Curve(Function.Circular, Direction.Out, 420).Modify(1, true).Start();
+                    }, 0, 1, "Breathing").Curve(Function.Circular, Direction.Out, 200).Modify(1, true).Start();
                 }
 
                 breathing = value;

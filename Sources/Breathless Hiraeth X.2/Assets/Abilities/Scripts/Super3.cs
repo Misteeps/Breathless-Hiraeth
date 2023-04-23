@@ -16,12 +16,11 @@ namespace Game
         public override async void Cast()
         {
             aimDecal.enabled = false;
-            Monolith.Player.animator.CrossFade("Ability Super 3", 0.1f);
-            await GeneralUtilities.DelayMS(100);
-            Monolith.Player.Breathing = false;
 
+            Monolith.Player.animator.CrossFade("Ability Super 3", 0.1f);
             Monolith.Player.voidImplosionLarge.Play();
             await GeneralUtilities.DelayMS(800);
+            Monolith.Player.Breathing = false;
             Monolith.Player.gameObject.SetActive(false);
 
             Vector3 start = Monolith.Player.transform.position;
