@@ -168,22 +168,32 @@ namespace Game
 
         private async void Breath()
         {
+            Player.enabled = false;
             Player.invincible = true;
+            Player.VisibleSword = false;
+            Player.Combat = false;
+            Player.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
             float start = Pressure;
             new Transition(() => 1, value =>
             {
                 Pressure = Mathf.Lerp(20, start, value);
+                Player.animator.SetLayerWeight(5, 1 - value);
                 Time.timeScale = value;
                 Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
             }, 1, 0).Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
+            await GeneralUtilities.DelayMS(1000);
 
             while (true)
             {
                 await GeneralUtilities.DelayFrame(1);
-                if (Inputs.Ability1.Down) break;
+                if (Inputs.Jump.Down) break;
             }
 
+            Player.enabled = true;
             Player.invincible = false;
+            Player.animator.updateMode = AnimatorUpdateMode.Normal;
+            Player.animator.SetLayerWeight(5, 0);
             Time.timeScale = 1;
             Game.Camera.ColorAdjustments.saturation.value = 0;
         }

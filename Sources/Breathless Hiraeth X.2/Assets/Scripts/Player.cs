@@ -46,9 +46,9 @@ namespace Game
                 visibleSword = value;
 
                 (int start, int end) = (visibleSword) ? (0, 1) : (1, 0);
-                sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
-                sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
-                sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Start();
+                sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
+                sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
+                sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
             }
         }
         public bool Combat
@@ -222,6 +222,7 @@ namespace Game
             animator.SetLayerWeight(2, 1);
             animator.SetLayerWeight(3, 1);
             animator.SetLayerWeight(4, 0);
+            animator.SetLayerWeight(5, 0);
 
             this.enabled = enabled;
             animator.enabled = enabled;
@@ -492,6 +493,7 @@ namespace Game
             animator.SetLayerWeight(2, 0);
             animator.SetLayerWeight(3, 0);
             animator.SetLayerWeight(4, 1);
+            animator.SetLayerWeight(5, 0);
             animator.CrossFade((RNG.Generic.Bool()) ? "Death Kneel" : "Death Fall", 0.2f);
 
             UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 0, 1).Curve(Function.Sine, Direction.InOut, 6f).Start();
