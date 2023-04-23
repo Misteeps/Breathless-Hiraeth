@@ -161,11 +161,15 @@ namespace Game
                         Time.timeScale = value;
                         Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
                     }, 1, 0, "Breathing").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
+                    breathing = true;
                 }
                 else
                 {
+                    breathing = false;
                     enabled = true;
                     invincible = false;
+                    VisibleSword = false;
+                    Combat = !Inputs.Sprint.Held;
                     animator.updateMode = AnimatorUpdateMode.Normal;
                     new Transition(() => 1, value => animator.SetLayerWeight(5, value), 1, 0).Curve(Function.Circular, Direction.Out, 2000).Modify(1, true).Start();
                     new Transition(() => 0, value =>
@@ -175,8 +179,6 @@ namespace Game
                         Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
                     }, 0, 1, "Breathing").Curve(Function.Circular, Direction.Out, 200).Modify(1, true).Start();
                 }
-
-                breathing = value;
             }
         }
         public bool CanAttack => !lockActions && !aimAbility && !(Combat && attackTimer > 0);
