@@ -33,7 +33,20 @@ namespace Game
                         monster.TakeDamage(40 + (Progress.magic * 15));
             }
 
-            await GeneralUtilities.DelayMS(2000);
+            await GeneralUtilities.DelayMS(900);
+            
+            for (int tick = 0; tick < 10; tick++)
+            {
+                await GeneralUtilities.DelayMS(100);
+                for (int i = 0; i < Monolith.encounters.Length; i++)
+                {
+                    Encounter encounter = Monolith.encounters[i];
+                    if (!encounter.gameObject.activeSelf || Vector3.Distance(transform.position, encounter.transform.position) > encounter.ChaseRange) continue;
+                    foreach (Monster monster in encounter.monsters)
+                        if (Vector3.Distance(transform.position, monster.transform.position) < 18)
+                            monster.TakeDamage(6 + Progress.magic);
+                }
+            }
 
             Destroy();
         }
