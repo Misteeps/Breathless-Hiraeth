@@ -11,7 +11,6 @@ namespace Game
     public interface IBramble
     {
         public static IBramble Active;
-
         public bool Speeding { get; set; }
     }
 
@@ -37,8 +36,8 @@ namespace Game
 
             IBramble.Active = this;
 
-            SpawnBramble();
-            DestroyBramble(6000);
+            SpawnBrambles();
+            DestroyBrambles(6000);
 
             while (Speeding)
             {
@@ -58,50 +57,56 @@ namespace Game
                 Monolith.Player.speedModifier = (inRange) ? 2 : 1;
             }
 
-            DestroyBramble(0);
+            DestroyBrambles(0);
             await GeneralUtilities.DelayMS(2000);
 
             Destroy();
         }
 
-        private async void SpawnBramble()
+        private async void SpawnBramble(int index, Vector3 position)
+        {
+            if (Physics.Raycast(position + new Vector3(0, 500, 0), Vector3.down, out RaycastHit hit, 1000, 3145728))
+                position = hit.point;
+
+            ParticleSystem bramble = Instantiate(bramblePrefab, position, new Quaternion(), transform).GetComponent<ParticleSystem>();
+            brambles[index] = bramble;
+            bramble.Play();
+
+            NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
+            new Transition(() => 0, value => obstacle.radius = value, 0, 3.6f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
+            obstacle.carving = true;
+
+            await GeneralUtilities.DelayMS(2000);
+            bramble.Pause();
+        }
+        private async void SpawnBrambles()
         {
             brambles = new ParticleSystem[10];
             Speeding = true;
 
             for (int i = 0; i < brambles.Length; i++)
             {
-                Vector3 position = transform.position + (transform.forward * (4 * i));
-                if (Physics.Raycast(position + new Vector3(0, 500, 0), Vector3.down, out RaycastHit hit, 1000, 3145728))
-                    position = hit.point;
-                ParticleSystem bramble = Instantiate(bramblePrefab, position, new Quaternion(), transform).GetComponent<ParticleSystem>();
-                brambles[i] = bramble;
-                bramble.Play();
-                NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
-                obstacle.carving = true;
-                new Transition(() => 0, value => obstacle.radius = value, 0, 3.6f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
-                await GeneralUtilities.DelayMS(200);
-            }
-
-            for (int i = 0; i < brambles.Length; i++)
-            {
-                brambles[i].Pause();
+                SpawnBramble(i, transform.position + (transform.forward * (4 * i)));
                 await GeneralUtilities.DelayMS(200);
             }
         }
-        private async void DestroyBramble(int milliseconds)
+
+        private void DestroyBramble(int index, ParticleSystem bramble)
+        {
+            if (bramble == null) return;
+            brambles[index] = null;
+            bramble.Play();
+
+            NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
+            obstacle.carving = false;
+        }
+        private async void DestroyBrambles(int milliseconds)
         {
             await GeneralUtilities.DelayMS(milliseconds);
 
             for (int i = 0; i < brambles.Length; i++)
             {
-
-                ParticleSystem bramble = brambles[i];
-                if (bramble == null) continue;
-                bramble.Play();
-                NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
-                obstacle.carving = false;
-                brambles[i] = null;
+                DestroyBramble(i, brambles[i]);
                 await GeneralUtilities.DelayMS(200);
             }
 
