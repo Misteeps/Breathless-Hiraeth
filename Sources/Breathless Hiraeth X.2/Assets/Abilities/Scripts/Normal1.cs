@@ -8,11 +8,18 @@ using Simplex;
 
 namespace Game
 {
-    public class Normal1 : Ability
+    public interface IBramble
+    {
+        public static IBramble Active;
+
+        public bool Speeding { get; set; }
+    }
+
+    public class Normal1 : Ability, IBramble
     {
         [SerializeField] private GameObject bramblePrefab;
         private ParticleSystem[] brambles;
-        private bool speeding;
+        public bool Speeding { get; set; }
 
 
         public override void Aim()
@@ -25,9 +32,42 @@ namespace Game
             aimDecal.enabled = false;
             Monolith.Player.animator.CrossFade("Ability Normal 1", 0.1f);
 
+            if (IBramble.Active != null)
+                IBramble.Active.Speeding = false;
+
+            IBramble.Active = this;
+
+            SpawnBramble();
+            DestroyBramble(6000);
+
+            while (Speeding)
+            {
+                await GeneralUtilities.DelayFrame(1);
+                if (Monolith.Player.lockActions) continue;
+                bool inRange = false;
+                for (int i = 0; i < brambles.Length; i++)
+                {
+                    ParticleSystem bramble = brambles[i];
+                    if (bramble == null) continue;
+                    if (Vector3.Distance(brambles[i].transform.position, Monolith.Player.transform.position) < 4)
+                    {
+                        inRange = true;
+                        break;
+                    }
+                }
+                Monolith.Player.speedModifier = (inRange) ? 2 : 1;
+            }
+
+            DestroyBramble(0);
+            await GeneralUtilities.DelayMS(2000);
+
+            Destroy();
+        }
+
+        private async void SpawnBramble()
+        {
             brambles = new ParticleSystem[10];
-            speeding = true;
-            Speed();
+            Speeding = true;
 
             for (int i = 0; i < brambles.Length; i++)
             {
@@ -47,41 +87,22 @@ namespace Game
                 brambles[i].Pause();
                 await GeneralUtilities.DelayMS(200);
             }
-
-            await GeneralUtilities.DelayMS(6000);
+        }
+        private async void DestroyBramble(int milliseconds)
+        {
+            await GeneralUtilities.DelayMS(milliseconds);
 
             for (int i = 0; i < brambles.Length; i++)
             {
-                brambles[i].Play();
+
+                ParticleSystem bramble = brambles[i];
+                if (bramble == null) continue;
+                bramble.Play();
                 brambles[i] = null;
                 await GeneralUtilities.DelayMS(200);
             }
 
-            speeding = false;
-            await GeneralUtilities.DelayMS(1000);
-
-            Destroy();
-        }
-
-        private async void Speed()
-        {
-            while (speeding)
-            {
-                await GeneralUtilities.DelayFrame(1);
-                if (Monolith.Player.lockActions) continue;
-                bool inRange = false;
-                for (int i = 0; i < brambles.Length; i++)
-                {
-                    ParticleSystem bramble = brambles[i];
-                    if (bramble == null) continue;
-                    if (Vector3.Distance(brambles[i].transform.position, Monolith.Player.transform.position) < 4)
-                    {
-                        inRange = true;
-                        break;
-                    }
-                }
-                Monolith.Player.speedModifier = (inRange) ? 2 : 1;
-            }
+            Speeding = false;
         }
     }
 }

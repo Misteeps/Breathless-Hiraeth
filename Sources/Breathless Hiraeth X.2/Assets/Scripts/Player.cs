@@ -518,7 +518,7 @@ namespace Game
                 ability.Aim();
                 if (Inputs.Attack.Held)
                 {
-                    if (ability.aimDecal.enabled) { ability.Cast(); SetAbilityCooldown(index, ability.cooldown - (Progress.cooldown * 0.5f)); }
+                    if (ability.aimDecal.enabled) { ability.Cast(); SetAbilityCooldown(index, ability.cooldown); }
                     else UI.Hud.Instance.Tip("Ability too far", 2000);
                     break;
                 }
@@ -538,10 +538,10 @@ namespace Game
             switch (index)
             {
                 default: throw new ArgumentOutOfRangeException("Ability index");
-                case 1: abilityCooldown1 = cooldown; break;
-                case 2: abilityCooldown2 = cooldown; break;
-                case 3: abilityCooldown3 = cooldown; break;
-                case 4: abilityCooldown4 = cooldown; break;
+                case 1: abilityCooldown1 = cooldown - (Progress.cooldown * 0.4f); break;
+                case 2: abilityCooldown2 = cooldown - (Progress.cooldown * 0.4f); break;
+                case 3: abilityCooldown3 = cooldown - (Progress.cooldown * 0.8f); break;
+                case 4: abilityCooldown4 = cooldown - (Progress.cooldown * 0.8f); break;
             }
         }
 
