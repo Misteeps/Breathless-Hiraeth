@@ -21,8 +21,8 @@ namespace Game
         public override async void Cast()
         {
             aimDecal.enabled = false;
-            Monolith.Player.animator.CrossFade("Ability Normal 4", 0.1f);
-            await GeneralUtilities.DelayMS(600);
+            Monolith.Player.animator.CrossFade("Ability Super 4", 0.1f);
+            await GeneralUtilities.DelayMS(2400);
             Monolith.Player.Breathing = false;
 
             await GeneralUtilities.DelayMS(8000);
