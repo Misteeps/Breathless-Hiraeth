@@ -216,6 +216,10 @@ namespace Game
             fallTime = 0;
             encounters = new List<Encounter>();
 
+            this.enabled = enabled;
+            animator.enabled = enabled;
+            controller.enabled = enabled;
+
             animator.Play("Movement 1D");
             animator.SetLayerWeight(0, 1);
             animator.SetLayerWeight(1, 1);
@@ -223,10 +227,6 @@ namespace Game
             animator.SetLayerWeight(3, 1);
             animator.SetLayerWeight(4, 0);
             animator.SetLayerWeight(5, 0);
-
-            this.enabled = enabled;
-            animator.enabled = enabled;
-            controller.enabled = enabled;
         }
 
         private void CheckGround()
