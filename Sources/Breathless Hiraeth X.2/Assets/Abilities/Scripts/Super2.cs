@@ -34,7 +34,7 @@ namespace Game
             }
 
             await GeneralUtilities.DelayMS(900);
-            
+
             for (int tick = 0; tick < 10; tick++)
             {
                 await GeneralUtilities.DelayMS(100);
