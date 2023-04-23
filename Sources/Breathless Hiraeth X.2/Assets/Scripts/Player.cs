@@ -400,9 +400,9 @@ namespace Game
                 animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, deltaTime * acceleration);
                 animator.SetFloat(animIDMoveX, animationSpeedX);
                 animator.SetFloat(animIDMoveY, animationSpeedY);
-            }, force, 2, "Player Move Impulse").Curve(function, direction, duration).Start();
+            }, force, 2, "Player Move Impulse").Curve(function, direction, duration).Modify(1, true).Start();
         }
-        private void ImpulseSpeed(float start, float end, float duration = 0.25f, Function function = Function.Exponential, Direction direction = Direction.Out) => new Transition(() => speedModifier, value => speedModifier = value, start, end, "Player Modify Speed").Curve(function, direction, duration).Start();
+        private void ImpulseSpeed(float start, float end, float duration = 0.25f, Function function = Function.Exponential, Direction direction = Direction.Out) => new Transition(() => speedModifier, value => speedModifier = value, start, end, "Player Modify Speed").Curve(function, direction, duration).Modify(1, true).Start();
 
         private float LerpSpeed(float targetSpeed)
         {
