@@ -565,7 +565,7 @@ namespace Game
                 {
                     float distance = Vector3.Distance(transform.position, monster.transform.position);
                     float angle = Vector3.Angle(monster.transform.position - transform.position, transform.rotation * Vector3.forward);
-                    if (distance < 2 && angle < 90)
+                    if (distance < 2 && angle < 135)
                     {
                         monster.TakeDamage(10 + (Progress.damage * 4));
                         hit = true;
@@ -600,7 +600,7 @@ namespace Game
             else
             {
                 invincible = true;
-                await GeneralUtilities.DelayMS(320);
+                await GeneralUtilities.DelayMS(1200);
                 invincible = false;
             }
         }

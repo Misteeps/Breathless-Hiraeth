@@ -110,8 +110,13 @@ namespace Game
                 if (!attackAnim) return;
             }
 
-            attackAnim = false;
+            await GeneralUtilities.DelayMS(200);
+            if (lockAnim) return;
             speedModifier = 1;
+
+            await GeneralUtilities.DelayMS(600);
+            if (lockAnim) return;
+            attackAnim = false;
         }
 
         public void AttackHit(float maxAngle, int damage)
@@ -148,8 +153,9 @@ namespace Game
                 await GeneralUtilities.DelayMS(AnimDuration(1));
             }
 
-            lockAnim = false;
             speedModifier = 1;
+            await GeneralUtilities.DelayMS(200);
+            lockAnim = false;
         }
         public async void Die()
         {
