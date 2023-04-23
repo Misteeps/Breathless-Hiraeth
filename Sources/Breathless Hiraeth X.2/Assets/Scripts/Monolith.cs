@@ -134,9 +134,6 @@ namespace Game
                 else UI.Root.Layer.Hide();
             }
 
-            if (Inputs.Breath.Down && Pressure >= 30)
-                Player.Breath();
-
             if ((Inputs.ScrollUp || Inputs.ZoomIn.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom + 1);
             if ((Inputs.ScrollDown || Inputs.ZoomOut.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom - 1);
 
@@ -196,7 +193,7 @@ namespace Game
             ScanMemories();
 
             Pressure = 0;
-            PressureScale = 2;
+            PressureScale = 1;
 
             UI.Hud.Instance.UpdateAbilities();
         }

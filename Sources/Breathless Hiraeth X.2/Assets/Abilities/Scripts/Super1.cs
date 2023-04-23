@@ -24,6 +24,8 @@ namespace Game
         {
             aimDecal.enabled = false;
             Monolith.Player.animator.CrossFade("Ability Normal 1", 0.1f);
+            await GeneralUtilities.DelayMS(600);
+            Monolith.Player.Breathing = false;
 
             if (IBramble.Active != null)
                 IBramble.Active.Speeding = false;

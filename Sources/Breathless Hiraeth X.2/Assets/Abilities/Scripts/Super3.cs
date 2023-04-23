@@ -17,6 +17,8 @@ namespace Game
         {
             aimDecal.enabled = false;
             Monolith.Player.animator.CrossFade("Ability Normal 3", 0.1f);
+            await GeneralUtilities.DelayMS(600);
+            Monolith.Player.Breathing = false;
 
             Monolith.Player.voidImplosionLarge.Play();
             await GeneralUtilities.DelayMS(800);

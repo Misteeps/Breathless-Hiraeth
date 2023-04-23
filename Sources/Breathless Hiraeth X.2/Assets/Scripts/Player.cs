@@ -230,6 +230,7 @@ namespace Game
             else if (Inputs.Ability2.Down && CanAbility) TryAbility(2, abilityNormal2);
             else if (Inputs.Ability3.Down && CanAbility) TryAbility(3, abilityNormal3);
             else if (Inputs.Ability4.Down && CanAbility) TryAbility(4, abilityNormal4);
+            else if (Inputs.Breath.Down && Monolith.Pressure >= 30 && grounded) Breath();
             else if (Inputs.Sprint.Down && !lockActions) Combat = false;
 
             if (transform.position.y < 0)
@@ -411,20 +412,6 @@ namespace Game
         }
         private Quaternion LerpRotation(float targetRotation) => Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSpeed), 0.0f);
 
-        public async void Breath()
-        {
-            Breathing = true;
-            while (Breathing)
-            {
-                await GeneralUtilities.DelayFrame(1);
-                if (Inputs.Jump.Down) Breathing = false;
-                else if (Inputs.Ability1.Down) TryAbility(1, abilityNormal1);
-                else if (Inputs.Ability2.Down) TryAbility(2, abilityNormal2);
-                else if (Inputs.Ability3.Down) TryAbility(3, abilityNormal3);
-                else if (Inputs.Ability4.Down) TryAbility(4, abilityNormal4);
-            }
-        }
-
         private void Attack()
         {
             Combat = true;
@@ -476,7 +463,7 @@ namespace Game
                     break;
             }
         }
-        public async void TryAbility(int index, GameObject abilityPrefab)
+        private async void TryAbility(int index, GameObject abilityPrefab)
         {
             Label label;
             float cooldown;
@@ -501,7 +488,7 @@ namespace Game
                 Ability(index, abilityPrefab);
             }
         }
-        public async void Ability(int index, GameObject abilityPrefab)
+        private async void Ability(int index, GameObject abilityPrefab)
         {
             aimAbility = true;
             Combat = true;
@@ -533,7 +520,7 @@ namespace Game
             Combat = !Inputs.Sprint.Held;
             UI.Hud.Instance.UpdateAbilities();
         }
-        public void SetAbilityCooldown(int index, float cooldown)
+        private void SetAbilityCooldown(int index, float cooldown)
         {
             switch (index)
             {
@@ -542,6 +529,18 @@ namespace Game
                 case 2: abilityCooldown2 = cooldown - (Progress.cooldown * 0.4f); break;
                 case 3: abilityCooldown3 = cooldown - (Progress.cooldown * 0.8f); break;
                 case 4: abilityCooldown4 = cooldown - (Progress.cooldown * 0.8f); break;
+            }
+        }
+        private async void Breath()
+        {
+            Breathing = true;
+            while (Breathing)
+            {
+                await GeneralUtilities.DelayFrame(1);
+                if (Inputs.Ability1.Down) TryAbility(1, abilitySuper1);
+                else if (Inputs.Ability2.Down) TryAbility(2, abilitySuper2);
+                else if (Inputs.Ability3.Down) TryAbility(3, abilitySuper3);
+                else if (Inputs.Ability4.Down) TryAbility(4, abilitySuper4);
             }
         }
 
