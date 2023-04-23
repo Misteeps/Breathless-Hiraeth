@@ -1424,7 +1424,7 @@ MonoBehaviour:
   abilityNormal2: {fileID: 1436480643222834486, guid: 6f95638b526f34f43906be77066d9003, type: 3}
   abilityNormal3: {fileID: 1436480643222834486, guid: 319dbe54db90e694888eb16ba93937c6, type: 3}
   abilityNormal4: {fileID: 1436480643222834486, guid: 86208fafa9dc1d44ea90c8b1e9ebdced, type: 3}
-  abilitySuper1: {fileID: 0}
+  abilitySuper1: {fileID: 1436480643222834486, guid: cf4e1bca6f7fd7242adf34ac9fb4b85a, type: 3}
   abilitySuper2: {fileID: 1436480643222834486, guid: 8259d3d16c4aed942a12b1e7029a2486, type: 3}
   abilitySuper3: {fileID: 1436480643222834486, guid: a2dfd631bfbfc3d4b8ab1ed21bfb2974, type: 3}
   abilitySuper4: {fileID: 1436480643222834486, guid: 298332c8f9b35de4a8b867f386b4b336, type: 3}

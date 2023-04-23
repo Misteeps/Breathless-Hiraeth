@@ -35,6 +35,8 @@ namespace Game
                 IBramble.Active.Speeding = false;
 
             IBramble.Active = this;
+            brambles = new ParticleSystem[10];
+            Speeding = true;
 
             SpawnBrambles();
             DestroyBrambles(6000);
@@ -73,7 +75,7 @@ namespace Game
             bramble.Play();
 
             NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
-            new Transition(() => 0, value => obstacle.radius = value, 0, 3.6f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
+            new Transition(() => 0, value => obstacle.radius = value, 0, 2.4f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
             obstacle.carving = true;
 
             await GeneralUtilities.DelayMS(2000);
@@ -81,9 +83,6 @@ namespace Game
         }
         private async void SpawnBrambles()
         {
-            brambles = new ParticleSystem[10];
-            Speeding = true;
-
             for (int i = 0; i < brambles.Length; i++)
             {
                 SpawnBramble(i, transform.position + (transform.forward * (4 * i)));
