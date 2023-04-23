@@ -1093,7 +1093,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48f8bd3f925cc18459345d87c5c24726, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1425,9 +1425,13 @@ MonoBehaviour:
   abilityNormal3: {fileID: 1436480643222834486, guid: 319dbe54db90e694888eb16ba93937c6, type: 3}
   abilityNormal4: {fileID: 1436480643222834486, guid: 86208fafa9dc1d44ea90c8b1e9ebdced, type: 3}
   abilitySuper1: {fileID: 0}
-  abilitySuper2: {fileID: 0}
-  abilitySuper3: {fileID: 0}
-  abilitySuper4: {fileID: 0}
+  abilitySuper2: {fileID: 1436480643222834486, guid: 8259d3d16c4aed942a12b1e7029a2486, type: 3}
+  abilitySuper3: {fileID: 1436480643222834486, guid: a2dfd631bfbfc3d4b8ab1ed21bfb2974, type: 3}
+  abilitySuper4: {fileID: 1436480643222834486, guid: 298332c8f9b35de4a8b867f386b4b336, type: 3}
+  abilityCooldown1: 0
+  abilityCooldown2: 0
+  abilityCooldown3: 0
+  abilityCooldown4: 0
   swordSlash1: {fileID: 7009421165977441449}
   swordSlash2: {fileID: 4586457254081335685}
   swordSlash3: {fileID: 4822483133523289172}
@@ -1441,6 +1445,7 @@ MonoBehaviour:
   celestialBreath: {fileID: 1440522045094701638}
   celestialBurst: {fileID: 6470910548345854031}
   health: 0
+  breathing: 0
   invincible: 0
   lockActions: 0
   aimAbility: 0
@@ -1452,3 +1457,4 @@ MonoBehaviour:
   verticalVelocity: 0
   jumpCooldownTimer: 0
   fallTimer: 0
+  deltaTime: 0

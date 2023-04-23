@@ -70,7 +70,7 @@ namespace Game
                 Encounter encounter = Monolith.encounters[i];
                 if (!encounter.gameObject.activeSelf || Vector3.Distance(position, encounter.transform.position) > encounter.ChaseRange) continue;
                 foreach (Monster monster in encounter.monsters)
-                    if (Vector3.Distance(position, monster.transform.position) < 2.5f)
+                    if (Vector3.Distance(position, monster.transform.position) < 4)
                         monster.TakeDamage(10 + (Progress.magic * 8));
             }
         }
