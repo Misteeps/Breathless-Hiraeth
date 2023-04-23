@@ -613,7 +613,11 @@ Background
 
 .layer#Hud > .abilities > .ability.cooldown {
     -unity-background-image-tint-color: rgb(51, 51, 51);
-    
+}
+
+.layer#Hud > .abilities > .ability.error {
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+    transition: -unity-background-image-tint-color 0ms ease-out-circ;
 }
 
 .layer#Hud > .abilities > .ability > .icon {

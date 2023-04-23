@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfa52e489ed33e4fb37d2bb71fe6d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 8
   aimDecal: {fileID: 3638017499107334676}
   explosion: {fileID: 5634104827899230794}
 --- !u!1 &1506797090723331437

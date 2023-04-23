@@ -123,9 +123,6 @@ namespace Game
             UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
 
             encounters = new Encounter[0];
-            Pressure = 0;
-            PressureScale = 2;
-
             InitializeScene();
         }
 
@@ -197,6 +194,11 @@ namespace Game
 
             ScanEncounters();
             ScanMemories();
+
+            Pressure = 0;
+            PressureScale = 2;
+
+            UI.Hud.Instance.UpdateAbilities();
         }
 
         public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));

@@ -12,6 +12,7 @@ namespace Game
     {
         public static Vector3 VFXOffset => new Vector3(0, 0.15f, 0);
 
+        public float cooldown;
         public DecalProjector aimDecal;
 
 

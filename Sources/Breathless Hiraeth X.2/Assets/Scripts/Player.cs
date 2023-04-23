@@ -88,6 +88,10 @@ namespace Game
         public GameObject abilitySuper2;
         public GameObject abilitySuper3;
         public GameObject abilitySuper4;
+        public float abilityCooldown1;
+        public float abilityCooldown2;
+        public float abilityCooldown3;
+        public float abilityCooldown4;
 
         [Header("VFX")]
         public ParticleSystem swordSlash1;
@@ -117,6 +121,7 @@ namespace Game
         [SerializeField] private float verticalVelocity;
         [SerializeField] private float jumpCooldownTimer;
         [SerializeField] private float fallTimer;
+        [SerializeField] private float deltaTime;
         private List<Encounter> encounters;
 
         public int Health
@@ -142,6 +147,11 @@ namespace Game
                     VisibleSword = false;
                     Combat = false;
                     animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+                    abilityCooldown1 = 0;
+                    abilityCooldown2 = 0;
+                    abilityCooldown3 = 0;
+                    abilityCooldown4 = 0;
+                    UI.Hud.Instance.UpdateAbilities();
                     float start = Monolith.Pressure;
                     new Transition(() => 1, value =>
                     {
@@ -191,6 +201,13 @@ namespace Game
         }
         private void Update()
         {
+            deltaTime = Time.deltaTime;
+            abilityCooldown1 -= deltaTime;
+            abilityCooldown2 -= deltaTime;
+            abilityCooldown3 -= deltaTime;
+            abilityCooldown4 -= deltaTime;
+            UI.Hud.Instance.CooldownAbilities();
+
             CheckGround();
             MoveVertical();
 
@@ -199,20 +216,20 @@ namespace Game
             {
                 MoveHorizontalCombat();
 
-                attackTimer -= Time.deltaTime;
+                attackTimer -= deltaTime;
                 if (Settings.autoExitCombat)
                 {
-                    combatTimer -= Time.deltaTime;
+                    combatTimer -= deltaTime;
                     if (combatTimer < 0)
                         Combat = false;
                 }
             }
 
             if (Inputs.Attack.Down && CanAttack) Attack();
-            else if (Inputs.Ability1.Down && CanAbility) Ability(abilityNormal1);
-            else if (Inputs.Ability2.Down && CanAbility) Ability(abilityNormal2);
-            else if (Inputs.Ability3.Down && CanAbility) Ability(abilityNormal3);
-            else if (Inputs.Ability4.Down && CanAbility) Ability(abilityNormal4);
+            else if (Inputs.Ability1.Down && CanAbility) TryAbility(1, abilityNormal1);
+            else if (Inputs.Ability2.Down && CanAbility) TryAbility(2, abilityNormal2);
+            else if (Inputs.Ability3.Down && CanAbility) TryAbility(3, abilityNormal3);
+            else if (Inputs.Ability4.Down && CanAbility) TryAbility(4, abilityNormal4);
             else if (Inputs.Sprint.Down && !lockActions) Combat = false;
 
             if (transform.position.y < 0)
@@ -248,6 +265,10 @@ namespace Game
             invincible = false;
             lockActions = false;
             aimAbility = false;
+            abilityCooldown1 = 0;
+            abilityCooldown2 = 0;
+            abilityCooldown3 = 0;
+            abilityCooldown4 = 0;
             speed = 0;
             animationSpeedX = 0;
             animationSpeedY = 0;
@@ -296,7 +317,7 @@ namespace Game
                 }
 
                 if (jumpCooldownTimer >= 0.0f)
-                    jumpCooldownTimer -= Time.deltaTime;
+                    jumpCooldownTimer -= deltaTime;
             }
             else
             {
@@ -304,12 +325,12 @@ namespace Game
 
                 animator.SetBool(animIDGrounded, false);
 
-                if (fallTimer >= 0.0f) fallTimer -= Time.deltaTime;
+                if (fallTimer >= 0.0f) fallTimer -= deltaTime;
                 else animator.SetBool(animIDFreeFall, true);
             }
 
             if (verticalVelocity < terminalVelocity)
-                verticalVelocity += gravity * Time.deltaTime;
+                verticalVelocity += gravity * deltaTime;
         }
         private void MoveHorizontalNormal()
         {
@@ -331,9 +352,9 @@ namespace Game
             }
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, targetRotation, 0.0f) * Vector3.forward;
-            controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+            controller.Move(targetDirection.normalized * (speed * deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * deltaTime);
 
-            animationSpeedY = Mathf.Lerp(animationSpeedY, targetSpeed, Time.deltaTime * acceleration);
+            animationSpeedY = Mathf.Lerp(animationSpeedY, targetSpeed, deltaTime * acceleration);
             animator.SetFloat(animIDMoveY, animationSpeedY);
             VisibleSword = targetSpeed <= 3;
         }
@@ -354,11 +375,11 @@ namespace Game
             speed = LerpSpeed(targetSpeed);
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, Camera.Rotation, 0.0f) * moveDirection;
-            controller.Move(targetDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+            controller.Move(targetDirection.normalized * (speed * deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * deltaTime);
 
             Vector3 velocity = transform.InverseTransformDirection(targetDirection * targetSpeed);
-            animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, Time.deltaTime * acceleration);
-            animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, Time.deltaTime * acceleration);
+            animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, deltaTime * acceleration);
+            animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, deltaTime * acceleration);
             animator.SetFloat(animIDMoveX, animationSpeedX);
             animator.SetFloat(animIDMoveY, animationSpeedY);
         }
@@ -368,11 +389,11 @@ namespace Game
             new Transition(() => force, value =>
             {
                 force = value;
-                controller.Move(moveDirection.normalized * (force * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
+                controller.Move(moveDirection.normalized * (force * deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * deltaTime);
 
                 Vector3 velocity = transform.InverseTransformDirection(moveDirection * force * 3);
-                animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, Time.deltaTime * acceleration);
-                animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, Time.deltaTime * acceleration);
+                animationSpeedX = Mathf.Lerp(animationSpeedX, velocity.x, deltaTime * acceleration);
+                animationSpeedY = Mathf.Lerp(animationSpeedY, velocity.z, deltaTime * acceleration);
                 animator.SetFloat(animIDMoveX, animationSpeedX);
                 animator.SetFloat(animIDMoveY, animationSpeedY);
             }, force, 2, "Player Move Impulse").Curve(function, direction, duration).Start();
@@ -385,7 +406,7 @@ namespace Game
             float speedOffset = 0.1f;
 
             return (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
-                ? Mathf.Round(Mathf.Lerp(currentHorizontalSpeed, targetSpeed, Time.deltaTime * acceleration) * 1000f) / 1000f
+                ? Mathf.Round(Mathf.Lerp(currentHorizontalSpeed, targetSpeed, deltaTime * acceleration) * 1000f) / 1000f
                 : targetSpeed;
         }
         private Quaternion LerpRotation(float targetRotation) => Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSpeed), 0.0f);
@@ -397,10 +418,10 @@ namespace Game
             {
                 await GeneralUtilities.DelayFrame(1);
                 if (Inputs.Jump.Down) Breathing = false;
-                else if (Inputs.Ability1.Down) Ability(abilityNormal1);
-                else if (Inputs.Ability2.Down) Ability(abilityNormal2);
-                else if (Inputs.Ability3.Down) Ability(abilityNormal3);
-                else if (Inputs.Ability4.Down) Ability(abilityNormal4);
+                else if (Inputs.Ability1.Down) TryAbility(1, abilityNormal1);
+                else if (Inputs.Ability2.Down) TryAbility(2, abilityNormal2);
+                else if (Inputs.Ability3.Down) TryAbility(3, abilityNormal3);
+                else if (Inputs.Ability4.Down) TryAbility(4, abilityNormal4);
             }
         }
 
@@ -455,7 +476,32 @@ namespace Game
                     break;
             }
         }
-        private async void Ability(GameObject abilityPrefab)
+        public async void TryAbility(int index, GameObject abilityPrefab)
+        {
+            Label label;
+            float cooldown;
+            switch (index)
+            {
+                default: throw new ArgumentOutOfRangeException("Ability index");
+                case 1: label = UI.Hud.Instance.ability1; cooldown = abilityCooldown1; break;
+                case 2: label = UI.Hud.Instance.ability2; cooldown = abilityCooldown2; break;
+                case 3: label = UI.Hud.Instance.ability3; cooldown = abilityCooldown3; break;
+                case 4: label = UI.Hud.Instance.ability4; cooldown = abilityCooldown4; break;
+            }
+
+            if (cooldown > 0 || Progress.abilities < index)
+            {
+                label.AddToClassList("error");
+                await GeneralUtilities.DelayMS(10);
+                label.RemoveFromClassList("error");
+            }
+            else
+            {
+                label.AddToClassList("lit");
+                Ability(index, abilityPrefab);
+            }
+        }
+        public async void Ability(int index, GameObject abilityPrefab)
         {
             aimAbility = true;
             Combat = true;
@@ -472,7 +518,7 @@ namespace Game
                 ability.Aim();
                 if (Inputs.Attack.Held)
                 {
-                    if (ability.aimDecal.enabled) ability.Cast();
+                    if (ability.aimDecal.enabled) { ability.Cast(); SetAbilityCooldown(index, ability.cooldown - (Progress.cooldown * 0.5f)); }
                     else UI.Hud.Instance.Tip("Ability too far", 2000);
                     break;
                 }
@@ -485,6 +531,18 @@ namespace Game
 
             aimAbility = false;
             Combat = !Inputs.Sprint.Held;
+            UI.Hud.Instance.UpdateAbilities();
+        }
+        public void SetAbilityCooldown(int index, float cooldown)
+        {
+            switch (index)
+            {
+                default: throw new ArgumentOutOfRangeException("Ability index");
+                case 1: abilityCooldown1 = cooldown; break;
+                case 2: abilityCooldown2 = cooldown; break;
+                case 3: abilityCooldown3 = cooldown; break;
+                case 4: abilityCooldown4 = cooldown; break;
+            }
         }
 
         public async void AttackHit()

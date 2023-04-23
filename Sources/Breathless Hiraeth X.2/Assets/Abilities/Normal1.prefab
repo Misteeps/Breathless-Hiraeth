@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef949fbf7803a2f40b830bf8cf60c3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 10
   aimDecal: {fileID: 6244093732246096614}
   bramblePrefab: {fileID: 3319496963851453325, guid: 12171b5c9442cab48afc00f807458be4, type: 3}
 --- !u!1 &6524376814325110514

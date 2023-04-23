@@ -37,7 +37,7 @@ namespace Game
                 if (!encounter.gameObject.activeSelf || Vector3.Distance(transform.position, encounter.transform.position) > encounter.ChaseRange) continue;
                 foreach (Monster monster in encounter.monsters)
                     if (Vector3.Distance(transform.position, monster.transform.position) < 3)
-                        monster.TakeDamage(10 + (Progress.magic * 3));
+                        monster.TakeDamage(10 + (Progress.magic * 8));
             }
 
             await GeneralUtilities.DelayMS(2000);

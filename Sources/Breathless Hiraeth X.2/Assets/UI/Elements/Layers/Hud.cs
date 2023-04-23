@@ -58,16 +58,30 @@ namespace Game.UI
 
         public void UpdateAbilities()
         {
+            ability1.ClassToggle("green", "gray", Progress.abilities >= 1);
+            ability2.ClassToggle("red", "gray", Progress.abilities >= 2);
+            ability3.ClassToggle("purple", "gray", Progress.abilities >= 3);
+            ability4.ClassToggle("yellow", "gray", Progress.abilities >= 4);
 
+            ability1.RemoveFromClassList("lit");
+            ability2.RemoveFromClassList("lit");
+            ability3.RemoveFromClassList("lit");
+            ability4.RemoveFromClassList("lit");
+
+            CooldownAbilities();
         }
         public void CooldownAbilities()
         {
-            Set(ability1, RNG.Generic.Float(0, 20));
-            Set(ability2, RNG.Generic.Float(0, 20));
-            Set(ability3, RNG.Generic.Float(0, 20));
-            Set(ability4, RNG.Generic.Float(0, 20));
+            Set(ability1, Monolith.Player.abilityCooldown1);
+            Set(ability2, Monolith.Player.abilityCooldown2);
+            Set(ability3, Monolith.Player.abilityCooldown3);
+            Set(ability4, Monolith.Player.abilityCooldown4);
 
-            static void Set(Label ability, float seconds) => ability.Text(seconds.ToString((seconds < 3) ? "f1" : "f0")).EnableInClassList("cooldown", seconds > 0);
+            static void Set(Label ability, float seconds)
+            {
+                string text = (seconds <= 0) ? null : (seconds < 3) ? seconds.ToString("f1") : seconds.ToString("f0");
+                ability.Text(text).EnableInClassList("cooldown", seconds > 0);
+            }
         }
 
         public void Scale(float scale)
