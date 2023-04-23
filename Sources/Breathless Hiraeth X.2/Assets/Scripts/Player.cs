@@ -42,7 +42,7 @@ namespace Game
             get => visibleSword;
             set
             {
-                if (value == visibleSword) return;
+                if (value == visibleSword || Breathing) return;
                 visibleSword = value;
 
                 (int start, int end) = (visibleSword) ? (0, 1) : (1, 0);
@@ -105,6 +105,7 @@ namespace Game
 
         [Header("Debug")]
         [SerializeField] private int health;
+        [SerializeField] private bool breathing;
         [SerializeField] public bool invincible;
         [SerializeField] public bool lockActions;
         [SerializeField] private bool aimAbility;
@@ -125,6 +126,47 @@ namespace Game
             {
                 health = Mathf.Clamp(value, 0, Progress.hearts);
                 UI.Hud.Instance.SetHealth(health);
+            }
+        }
+        public bool Breathing
+        {
+            get => breathing;
+            set
+            {
+                if (value == breathing) return;
+
+                if (value)
+                {
+                    enabled = false;
+                    invincible = true;
+                    VisibleSword = false;
+                    Combat = false;
+                    animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+                    float start = Monolith.Pressure;
+                    new Transition(() => 1, value =>
+                    {
+                        VisibleSword = false;
+                        Monolith.Pressure = Mathf.Lerp(20, start, value);
+                        animator.SetLayerWeight(5, 1 - value);
+                        Time.timeScale = value;
+                        Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
+                    }, 1, 0, "Breathing").Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
+                }
+                else
+                {
+                    enabled = true;
+                    invincible = false;
+                    animator.updateMode = AnimatorUpdateMode.Normal;
+                    new Transition(() => 0, value =>
+                    {
+                        Monolith.Pressure = Mathf.Lerp(20, 0, value);
+                        animator.SetLayerWeight(5, 1 - value);
+                        Time.timeScale = value;
+                        Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
+                    }, 0, 1, "Breathing").Curve(Function.Circular, Direction.Out, 420).Modify(1, true).Start();
+                }
+
+                breathing = value;
             }
         }
         public bool CanAttack => !lockActions && !aimAbility && !(Combat && attackTimer > 0);
@@ -347,6 +389,20 @@ namespace Game
                 : targetSpeed;
         }
         private Quaternion LerpRotation(float targetRotation) => Quaternion.Euler(0.0f, Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, rotationSpeed), 0.0f);
+
+        public async void Breath()
+        {
+            Breathing = true;
+            while (Breathing)
+            {
+                await GeneralUtilities.DelayFrame(1);
+                if (Inputs.Jump.Down) Breathing = false;
+                else if (Inputs.Ability1.Down) Ability(abilityNormal1);
+                else if (Inputs.Ability2.Down) Ability(abilityNormal2);
+                else if (Inputs.Ability3.Down) Ability(abilityNormal3);
+                else if (Inputs.Ability4.Down) Ability(abilityNormal4);
+            }
+        }
 
         private void Attack()
         {

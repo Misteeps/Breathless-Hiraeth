@@ -110,7 +110,7 @@ namespace Game.UI
                 return;
 
             stage = this.Create<Label>("stage").Text($"Damage Dealt x{pressure + 1}\nDamage Taken x{pressure * 2}");
-            stage.schedule.Execute(() => stage.AddToClassList("show")).ExecuteLater(10);
+            stage.schedule.Execute(() => stage?.AddToClassList("show")).ExecuteLater(10);
         }
         public void Banner(string text, int duration = 4000)
         {
@@ -143,7 +143,7 @@ namespace Game.UI
                 return;
 
             tip = this.Create<Label>("tip").Text(text);
-            tip.schedule.Execute(() => tip.AddToClassList("show")).ExecuteLater(10);
+            tip.schedule.Execute(() => tip?.AddToClassList("show")).ExecuteLater(10);
             tip.schedule.Execute(() => Tip(null)).ExecuteLater(duration);
         }
         public void FairyDialog(string text)
@@ -160,7 +160,7 @@ namespace Game.UI
                 return;
 
             dialog = this.Create<Label>("dialog").Text(text);
-            dialog.schedule.Execute(() => dialog.AddToClassList("show")).ExecuteLater(10);
+            dialog.schedule.Execute(() => dialog?.AddToClassList("show")).ExecuteLater(10);
         }
         public void PositionFairyDialog(Vector3 fairy)
         {

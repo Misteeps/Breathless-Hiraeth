@@ -138,7 +138,7 @@ namespace Game
             }
 
             if (Inputs.Breath.Down && Pressure >= 30)
-                Breath();
+                Player.Breath();
 
             if ((Inputs.ScrollUp || Inputs.ZoomIn.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom + 1);
             if ((Inputs.ScrollDown || Inputs.ZoomOut.Down) && UI.Root.Layer == null) Settings.zoom.Set(Settings.zoom - 1);
@@ -164,38 +164,6 @@ namespace Game
             if (Input.GetKeyDown(KeyCode.KeypadPlus)) Pressure = 100;
             if (Input.GetKeyDown(KeyCode.KeypadMinus)) Player.speedModifier = Mathf.Clamp(Player.speedModifier - 1, 1, 20);
             if (Input.GetKeyDown(KeyCode.KeypadMultiply)) Player.speedModifier = Mathf.Clamp(Player.speedModifier + 1, 1, 20);
-        }
-
-        private async void Breath()
-        {
-            Player.enabled = false;
-            Player.invincible = true;
-            Player.VisibleSword = false;
-            Player.Combat = false;
-            Player.animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-
-            float start = Pressure;
-            new Transition(() => 1, value =>
-            {
-                Pressure = Mathf.Lerp(20, start, value);
-                Player.animator.SetLayerWeight(5, 1 - value);
-                Time.timeScale = value;
-                Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
-            }, 1, 0).Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
-            await GeneralUtilities.DelayMS(1000);
-
-            while (true)
-            {
-                await GeneralUtilities.DelayFrame(1);
-                if (Inputs.Jump.Down) break;
-            }
-
-            Player.enabled = true;
-            Player.invincible = false;
-            Player.animator.updateMode = AnimatorUpdateMode.Normal;
-            Player.animator.SetLayerWeight(5, 0);
-            Time.timeScale = 1;
-            Game.Camera.ColorAdjustments.saturation.value = 0;
         }
 
         public static void ScanEncounters()
