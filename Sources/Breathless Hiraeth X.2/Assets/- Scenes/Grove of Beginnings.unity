@@ -3101,10 +3101,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fairy
       objectReference: {fileID: 0}
-    - target: {fileID: 9062069500483370134, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
-      propertyPath: ShapeModule.m_Position.x
-      value: 0.037685107
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

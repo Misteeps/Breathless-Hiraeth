@@ -41,6 +41,7 @@ namespace Game
         public static GameObject PlayerObject { get; private set; }
         public static Player Player { get; private set; }
 
+        public static Fairy fairy;
         public static Encounter[] encounters;
 
         private float pressure;
@@ -168,9 +169,10 @@ namespace Game
         private async void Breath()
         {
             Player.invincible = true;
+            float start = Pressure;
             new Transition(() => 1, value =>
             {
-                Pressure = Mathf.Lerp(20, 100, value);
+                Pressure = Mathf.Lerp(20, start, value);
                 Time.timeScale = value;
                 Game.Camera.ColorAdjustments.saturation.value = Mathf.Lerp(-20, 0, value);
             }, 1, 0).Curve(Function.Circular, Direction.Out, 1000).Modify(1, true).Start();
@@ -213,6 +215,8 @@ namespace Game
         }
         public static void InitializeScene()
         {
+            fairy = GameObject.FindWithTag("Fairy").GetComponent<Fairy>();
+
             ScanEncounters();
             ScanMemories();
         }

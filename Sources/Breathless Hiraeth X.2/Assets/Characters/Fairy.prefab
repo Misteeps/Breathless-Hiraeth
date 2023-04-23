@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9062069500483370134}
   m_Layer: 6
   m_Name: Fairy
-  m_TagString: Untagged
+  m_TagString: Fairy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,10 @@ MonoBehaviour:
   particles: {fileID: 9062069500483370134}
   trigger: {fileID: 1604624533153136260}
   spinSpeed: 200
-  sceneWarp: 
-  currentDialog: 0
+  currentScene: 
+  nextScene: 
   currentPosition: 0
+  currentDialog: 0
   positions: []
 --- !u!135 &1604624533153136260
 SphereCollider:
