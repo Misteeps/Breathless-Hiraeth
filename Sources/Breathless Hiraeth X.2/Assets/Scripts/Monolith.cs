@@ -33,6 +33,13 @@ namespace Game
             public AudioClip memorySparkle2;
             public AudioClip upgrade1;
             public AudioClip upgrade2;
+            public AudioClip songStart;
+            public AudioClip songEnd;
+            public AudioClip songCredits;
+            public AudioClip song1;
+            public AudioClip song2;
+            public AudioClip song3;
+            public AudioClip ambiance;
         }
         #endregion References
 
@@ -228,6 +235,19 @@ namespace Game
             Pressure = 0;
             Game.Camera.ColorAdjustments.saturation.value = 0;
             UI.Hud.Instance.Banner(fairy.CurrentScene);
+
+            if (!Audio.Ambiance.global.isPlaying)
+            {
+                Audio.Ambiance.global.clip = Refs.ambiance;
+                Audio.Ambiance.global.loop = true;
+                Audio.Ambiance.global.Play();
+            }
+
+            if (!Audio.Music.global.isPlaying)
+            {
+                Audio.Music.global.clip = Refs.songStart;
+                Audio.Music.global.Play();
+            }
         }
 
         public static bool Load(string scene, bool respawn = false) => Load(scene, new Vector3(0, 100, 0), respawn);

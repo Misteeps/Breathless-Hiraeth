@@ -758,6 +758,13 @@ MonoBehaviour:
     memorySparkle2: {fileID: 8300000, guid: e3bd1e4fd5948424ab0082a36460e0fd, type: 3}
     upgrade1: {fileID: 8300000, guid: e2f8025af96759b4b9fe89db05c9fbda, type: 3}
     upgrade2: {fileID: 8300000, guid: d69b1dfe5da329a408dd4a19c8e21194, type: 3}
+    songStart: {fileID: 8300000, guid: 43f2bf7db8c8ed147892e4f5bdf4ee71, type: 3}
+    songEnd: {fileID: 8300000, guid: c707a0634af705c4a99b5e0b49ed04ee, type: 3}
+    songCredits: {fileID: 8300000, guid: b6fbc17b5df2e2b45811ba4ab8feb777, type: 3}
+    song1: {fileID: 8300000, guid: 4f9480ebf7903374cad93809bb72455c, type: 3}
+    song2: {fileID: 8300000, guid: faf3dfaf4a0f04f4091352f88ee9e8ab, type: 3}
+    song3: {fileID: 8300000, guid: 0bf792650bce62b49a98538a9c25f7d5, type: 3}
+    ambiance: {fileID: 8300000, guid: 87e040f84c5fcca4c8bbfe712a596411, type: 3}
 --- !u!4 &1590200030
 Transform:
   m_ObjectHideFlags: 0
