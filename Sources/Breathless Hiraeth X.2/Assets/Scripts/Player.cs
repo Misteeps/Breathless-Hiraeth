@@ -348,7 +348,7 @@ namespace Game
         }
         private void MoveHorizontalNormal()
         {
-            float targetSpeed = ((Inputs.Sprint.Held) ? sprintSpeed : moveSpeed) * speedModifier + (Progress.speed / 20f);
+            float targetSpeed = ((Inputs.Sprint.Held) ? sprintSpeed : moveSpeed) * speedModifier + (Progress.speed / 12f);
             Vector3 direction = Vector3.zero;
             if (Input.GetKey(KeyCode.W)) direction += Vector3.forward;
             if (Input.GetKey(KeyCode.S)) direction += Vector3.back;
@@ -378,7 +378,7 @@ namespace Game
             targetRotation = Quaternion.LookRotation(lookDirection).eulerAngles.y + Camera.Rotation;
             transform.rotation = LerpRotation(targetRotation);
 
-            float targetSpeed = combatSpeed * speedModifier + (Progress.speed / 20f);
+            float targetSpeed = combatSpeed * speedModifier + (Progress.speed / 12f);
             Vector3 moveDirection = Vector3.zero;
             if (Input.GetKey(KeyCode.W)) moveDirection += Vector3.forward;
             if (Input.GetKey(KeyCode.S)) moveDirection += Vector3.back;

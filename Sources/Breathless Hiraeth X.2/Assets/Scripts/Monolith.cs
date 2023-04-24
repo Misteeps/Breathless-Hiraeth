@@ -168,6 +168,16 @@ namespace Game
                 case 3: Pressure = Mathf.Max(90, Pressure - Time.deltaTime); break;
             }
 
+            AudioClip song = Audio.Music.global.clip;
+            if (song != null && Audio.Music.global.time > song.length - 2f)
+            {
+                if (song == Refs.songStart) Audio.Music.global.clip = Refs.song1;
+                else if (song == Refs.song1) Audio.Music.global.clip = Refs.song2;
+                else if (song == Refs.song2) Audio.Music.global.clip = Refs.song3;
+                else if (song == Refs.song3) Audio.Music.global.clip = Refs.song1;
+                Audio.Music.global.Play();
+            }
+
             // Debug
             if (Input.GetKeyDown(KeyCode.Keypad0)) Pressure = 0;
             if (Input.GetKeyDown(KeyCode.Keypad1)) Pressure = 10;
@@ -245,7 +255,7 @@ namespace Game
             if (!Audio.Music.global.isPlaying)
             {
                 Audio.Music.global.clip = Refs.songStart;
-                Audio.Music.global.volume = 0.1f;
+                Audio.Music.global.volume = 0.16f;
                 Audio.Music.global.Play();
             }
         }
