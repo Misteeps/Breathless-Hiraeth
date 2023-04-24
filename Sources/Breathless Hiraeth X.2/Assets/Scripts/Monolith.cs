@@ -133,9 +133,6 @@ namespace Game
             UI.Splash.Show();
 
             UI.Root.Instance.Add(UI.Overlay.Instance);
-
-            //UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
-            //InitializeScene();
         }
 
         private void Update()
@@ -184,7 +181,12 @@ namespace Game
 
             List<Encounter> list = new List<Encounter>();
             for (int i = 0; i < root.transform.childCount; i++)
-                try { list.Add(root.transform.GetChild(i).GetComponent<Encounter>()); }
+                try
+                {
+                    Encounter encounter = root.transform.GetChild(i).GetComponent<Encounter>();
+                    list.Add(encounter);
+                    encounter.Restart();
+                }
                 catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
 
             encounters = list.ToArray();
@@ -217,8 +219,8 @@ namespace Game
             Game.Camera.ColorAdjustments.saturation.value = 0;
         }
 
-        public static bool Load(string scene) => Load(scene, new Vector3(0, 100, 0));
-        public static bool Load(string scene, Vector3 playerPosition)
+        public static bool Load(string scene, bool respawn = false) => Load(scene, new Vector3(0, 100, 0), respawn);
+        public static bool Load(string scene, Vector3 playerPosition, bool respawn = false)
         {
             if (!Application.CanStreamedLevelBeLoaded(scene))
             {
@@ -227,11 +229,11 @@ namespace Game
             }
             else
             {
-                LoadSequence(scene, playerPosition);
+                LoadSequence(scene, playerPosition, respawn);
                 return true;
             }
         }
-        private static async void LoadSequence(string scene, Vector3 playerPosition)
+        private static async void LoadSequence(string scene, Vector3 playerPosition, bool respawn = false)
         {
             ConsoleUtilities.Log($"Loading scene {scene:info}");
             Player.invincible = true;
@@ -265,19 +267,34 @@ namespace Game
 
             UI.Overlay.Instance.loading.RemoveFromClassList("show");
             await GeneralUtilities.DelayMS(1000);
-            Player.enabled = true;
-            Instance.enabled = true;
 
             new Transition(() => 0, value => Audio.Master.SetVolume((int)value), 0, Settings.masterVolume, "Master Volume").Curve(Function.Quadratic, Direction.Out, 600).Start();
             UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Quadratic, Direction.Out, 600).Start();
 
-            InitializeScene();
+            if (respawn) Respawn();
+            else
+            {
+                Player.enabled = true;
+                Instance.enabled = true;
+                InitializeScene();
+            }
+
             ConsoleUtilities.Log($"Loaded scene {scene:info}");
         }
 
-        public static void Respawn()
+        public static async void Respawn()
         {
+            Player.enabled = false;
+            Player.VisibleSword = false;
+            Instance.enabled = false;
+            InitializeScene();
 
+            Player.animator.Play("Wake Up");
+            await GeneralUtilities.DelayMS(8000);
+
+            Player.enabled = true;
+            Player.VisibleSword = true;
+            Instance.enabled = true;
         }
         public static void ResetSaves()
         {

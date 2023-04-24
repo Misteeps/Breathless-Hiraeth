@@ -255,22 +255,6 @@ namespace Game
                 Enable(true, new Vector3(0, 100, 0));
         }
 
-        public async void WakeUp()
-        {
-#if UNITY_EDITOR
-            await GeneralUtilities.DelayFrame(1);
-#else
-            enabled = false;
-            VisibleSword = false;
-            animator.Play("Wake Up");
-
-            await GeneralUtilities.DelayMS(8000);
-
-            enabled = true;
-            VisibleSword = true;
-#endif
-        }
-
         public void Enable(bool enabled, Vector3 position)
         {
             transform.rotation = new Quaternion();
