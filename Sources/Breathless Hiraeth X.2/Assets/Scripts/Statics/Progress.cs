@@ -84,7 +84,7 @@ namespace Game
                 lastSaved = DateTime.Now;
         }
 
-        private static void Defaults()
+        public static void Defaults()
         {
             scene = "Grove of Beginnings";
             position = 0;

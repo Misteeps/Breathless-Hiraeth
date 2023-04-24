@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 using UnityEngine;
 using UnityEngine.Audio;
@@ -217,15 +216,22 @@ namespace Game
 
             Pressure = 0;
             PressureScale = 1;
-
-            UI.Hud.Instance.UpdateAbilities();
+            Game.Camera.ColorAdjustments.saturation.value = 0;
         }
 
-        public static void Load(string scene) => LoadSequence(scene, new Vector3(0, 100, 0));
-        public static void Load(string scene, Vector3 playerPosition)
+        public static bool Load(string scene) => Load(scene, new Vector3(0, 100, 0));
+        public static bool Load(string scene, Vector3 playerPosition)
         {
-            // Verify scene
-            LoadSequence(scene, playerPosition);
+            if (!Application.CanStreamedLevelBeLoaded(scene))
+            {
+                ConsoleUtilities.Error($"Scene {scene:info} not found");
+                return false;
+            }
+            else
+            {
+                LoadSequence(scene, playerPosition);
+                return true;
+            }
         }
         private static async void LoadSequence(string scene, Vector3 playerPosition)
         {
@@ -269,6 +275,17 @@ namespace Game
 
             InitializeScene();
             ConsoleUtilities.Log($"Loaded scene {scene:info}");
+        }
+
+        public static void Respawn()
+        {
+
+        }
+        public static void ResetSaves()
+        {
+            ConsoleUtilities.Log($"Resetting Saves");
+            Progress.Defaults();
+            Load(Progress.scene);
         }
     }
 }

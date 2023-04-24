@@ -67,7 +67,8 @@ namespace Game.UI
         }
         public override async void Hide(int milliseconds)
         {
-            Monolith.Load(Progress.scene);
+            if (!Monolith.Load(Progress.scene))
+                Monolith.ResetSaves();
 
             try
             {

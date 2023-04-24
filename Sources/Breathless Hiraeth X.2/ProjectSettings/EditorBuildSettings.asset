@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/- Scenes/Start.unity
+    guid: 689e8012cdf033847b1b634ab9ebc667
+  - enabled: 1
     path: Assets/- Scenes/Grove of Beginnings.unity
     guid: be2ac2f79ab38144586daaaa4e0deecd
   m_configObjects: {}

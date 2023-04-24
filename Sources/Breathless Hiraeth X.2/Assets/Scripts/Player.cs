@@ -37,42 +37,6 @@ namespace Game
         [SerializeField] private float combatTimer;
         public int attackChain;
         public float attackTimer;
-        public bool VisibleSword
-        {
-            get => visibleSword;
-            set
-            {
-                if (value == visibleSword || Breathing) return;
-                visibleSword = value;
-
-                (int start, int end) = (visibleSword) ? (0, 1) : (1, 0);
-                sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
-                sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
-                sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
-            }
-        }
-        public bool Combat
-        {
-            get => combatTimer != 0;
-            set
-            {
-                if (value)
-                {
-                    combatTimer = 5;
-                    animator.SetBool(animIDCombat, true);
-                    VisibleSword = true;
-                    Camera.ZoomOffset = (Settings.combatZoom) ? -4 : 0;
-                }
-                else
-                {
-                    combatTimer = 0;
-                    attackChain = 0;
-                    aimAbility = false;
-                    animator.SetBool(animIDCombat, false);
-                    Camera.ZoomOffset = 0;
-                }
-            }
-        }
 
         [Header("Abilities")]
         public GameObject abilityNormal1;
@@ -196,6 +160,42 @@ namespace Game
                 }
             }
         }
+        public bool VisibleSword
+        {
+            get => visibleSword;
+            set
+            {
+                if (value == visibleSword || Breathing) return;
+                visibleSword = value;
+
+                (int start, int end) = (visibleSword) ? (0, 1) : (1, 0);
+                sword.Transition(TransformField.LocalScale, Unit.X, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
+                sword.Transition(TransformField.LocalScale, Unit.Y, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
+                sword.Transition(TransformField.LocalScale, Unit.Z, start, end).Curve(Function.Cubic, Direction.Out, 320).Modify(1, true).Start();
+            }
+        }
+        public bool Combat
+        {
+            get => combatTimer != 0;
+            set
+            {
+                if (value)
+                {
+                    combatTimer = 5;
+                    animator.SetBool(animIDCombat, true);
+                    VisibleSword = true;
+                    Camera.ZoomOffset = (Settings.combatZoom) ? -4 : 0;
+                }
+                else
+                {
+                    combatTimer = 0;
+                    attackChain = 0;
+                    aimAbility = false;
+                    animator.SetBool(animIDCombat, false);
+                    Camera.ZoomOffset = 0;
+                }
+            }
+        }
         public bool CanAttack => !lockActions && !aimAbility && !(Combat && attackTimer > 0);
         public bool CanAbility => !lockActions && !aimAbility;
 
@@ -287,7 +287,6 @@ namespace Game
             abilityCooldown2 = 0;
             abilityCooldown3 = 0;
             abilityCooldown4 = 0;
-            breathing = false;
             castingSuper = false;
             invincible = false;
             lockActions = false;
@@ -304,8 +303,10 @@ namespace Game
             encounters = new List<Encounter>();
 
             Health = Progress.hearts;
+            Breathing = false;
             VisibleSword = false;
             Combat = false;
+            UI.Hud.Instance.UpdateAbilities();
 
             this.enabled = enabled;
             animator.enabled = enabled;
