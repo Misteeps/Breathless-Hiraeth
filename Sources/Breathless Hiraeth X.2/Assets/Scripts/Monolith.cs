@@ -227,6 +227,7 @@ namespace Game
 
             Pressure = 0;
             Game.Camera.ColorAdjustments.saturation.value = 0;
+            UI.Hud.Instance.Banner(fairy.CurrentScene);
         }
 
         public static bool Load(string scene, bool respawn = false) => Load(scene, new Vector3(0, 100, 0), respawn);

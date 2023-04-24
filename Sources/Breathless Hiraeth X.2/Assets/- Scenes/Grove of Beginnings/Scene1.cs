@@ -7,7 +7,7 @@ using Simplex;
 
 namespace Game
 {
-    public class Scene0 : MonoBehaviour
+    public class Scene1 : MonoBehaviour
     {
         private int sequence;
 
