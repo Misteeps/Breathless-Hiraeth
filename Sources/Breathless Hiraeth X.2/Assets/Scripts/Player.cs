@@ -713,8 +713,11 @@ namespace Game
                     UI.Hud.Instance.PositionFairyDialog(fairy.transform.position);
 
                     if (Inputs.Click.Down || Inputs.Breath.Down)
+                    {
+                        Audio.SFX.global.PlayOneShot(Monolith.Refs.upgrade2, 0.5f);
                         if (!fairy.DisplayDialog(fairy.CurrentDialog + 1))
                             break;
+                    }
 
                     if (Vector3.Distance(transform.position, fairy.transform.position) > 6)
                     {
@@ -732,10 +735,11 @@ namespace Game
         }
         private void MemoryTrigger(GameObject memory)
         {
-            memory.SetActive(false);
+            memory.GetComponent<AudioSource>().Transition(AudioSourceField.Volume, Unit.X, 1, 0, () => memory.SetActive(false)).Curve(Function.Quadratic, Direction.Out, 400).Start();
             if (Progress.guids.Contains(memory.name))
                 return;
 
+            Audio.SFX.global.PlayOneShot(Monolith.Refs.upgrade2, 0.5f);
             Progress.guids.Add(memory.name);
             Progress.memories++;
             memoriesUpgrade.Play();

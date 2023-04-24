@@ -27,6 +27,10 @@ namespace Game
             public StyleSheet uiStyle;
             public AudioClip uiClick;
             public AudioClip uiError;
+            public AudioClip memorySparkle1;
+            public AudioClip memorySparkle2;
+            public AudioClip upgrade1;
+            public AudioClip upgrade2;
         }
         #endregion References
 
@@ -184,6 +188,9 @@ namespace Game
                 {
                     GameObject gameObject = root.transform.GetChild(i).gameObject;
                     gameObject.SetActive(!Progress.guids.Contains(gameObject.name));
+                    AudioSource audio = gameObject.GetComponent<AudioSource>();
+                    audio.clip = (RNG.Generic.Bool()) ? Refs.memorySparkle1 : Refs.memorySparkle2;
+                    audio.Play();
                 }
                 catch (Exception exception) { exception.Error($"Failed finding encounter in child"); }
         }
