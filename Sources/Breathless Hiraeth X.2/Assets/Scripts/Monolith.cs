@@ -35,7 +35,6 @@ namespace Game
             public AudioClip upgrade2;
             public AudioClip songStart;
             public AudioClip songEnd;
-            public AudioClip songCredits;
             public AudioClip song1;
             public AudioClip song2;
             public AudioClip song3;
@@ -246,6 +245,7 @@ namespace Game
             if (!Audio.Music.global.isPlaying)
             {
                 Audio.Music.global.clip = Refs.songStart;
+                Audio.Music.global.volume = 0.1f;
                 Audio.Music.global.Play();
             }
         }
