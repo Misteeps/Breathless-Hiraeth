@@ -101,6 +101,12 @@ namespace Game
                 transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y - 1.6f).Curve(Function.Sine, Direction.InOut, 800).Start();
                 await GeneralUtilities.DelayMS(800);
                 transform.Transition(TransformField.Position, Unit.Y, transform.position.y, transform.position.y + 500).Curve(Function.Sine, Direction.In, 10f).Start();
+                await GeneralUtilities.DelayMS(1000);
+
+                Progress.scene = nextScene;
+                Progress.position = 0;
+                Progress.Save();
+                Monolith.Load(nextScene);
             }
             else
             {
