@@ -2123,6 +2123,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 47d0155a-680b-4eb9-aefd-647d0b4a6b88
       objectReference: {fileID: 0}
+    - target: {fileID: 2827374327853459162, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480875448882558437, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2897,15 +2905,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 94269137398738709, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 94269137398738709, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 109.62
+      value: 102.3
       objectReference: {fileID: 0}
     - target: {fileID: 94269137398738709, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 190
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 94269137398738709, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3098,6 +3106,10 @@ PrefabInstance:
     - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_Name
       value: Fairy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3787,6 +3799,14 @@ PrefabInstance:
     - target: {fileID: 2827374327853459162, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
       propertyPath: m_Name
       value: 15d50c1a-fa1f-4f6c-8e26-d38c6abff4da
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827374327853459162, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480875448882558437, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5842,6 +5862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Encounter.01
       objectReference: {fileID: 0}
+    - target: {fileID: 1459552138692833584, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
       propertyPath: guid
       value: 15481be6-8f52-4923-9e50-c6064c70b0ae
@@ -6614,6 +6638,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: a38c50f1-6894-47a2-bff0-53568612e573
       objectReference: {fileID: 0}
+    - target: {fileID: 2827374327853459162, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480875448882558437, guid: 7e23ea881e51f404e98c96d69de05e35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6674,6 +6706,10 @@ PrefabInstance:
     - target: {fileID: 1459552138692833584, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
       propertyPath: m_Name
       value: Encounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459552138692833584, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5764975517090158307, guid: 6e29a6944e987e24e8e4761d4c433455, type: 3}
       propertyPath: guid
