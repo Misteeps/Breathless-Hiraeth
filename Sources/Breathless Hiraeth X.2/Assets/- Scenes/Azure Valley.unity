@@ -926,7 +926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849638967406871101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: currentScene
-      value: Whispering Meadows
+      value: Azure Valley
       objectReference: {fileID: 0}
     - target: {fileID: 8358159748503331101, guid: eed1e418cc21bdd468384ab011da3665, type: 3}
       propertyPath: m_Name
