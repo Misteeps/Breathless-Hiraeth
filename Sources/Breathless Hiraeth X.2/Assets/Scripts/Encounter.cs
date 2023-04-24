@@ -249,6 +249,7 @@ namespace Game
                         {
                             Monster monster = Instantiate(type.prefab, transform).GetComponent<Monster>();
                             monster.transform.position = RandomPoint();
+                            monster.Spawn();
                             monster.Bind(this);
                             monsters.Add(monster);
                         }

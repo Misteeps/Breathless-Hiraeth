@@ -172,6 +172,20 @@ namespace Game
             await GeneralUtilities.DelayMS(4000);
             Destroy(gameObject);
         }
+        public async void Spawn()
+        {
+            attackAnim = false;
+            lockAnim = true;
+            speedModifier = 0;
+
+            transform.localScale = Vector3.zero;
+            new Transition(() => 0, value => transform.localScale = new Vector3(value, value, value), 0, 1).Curve(Function.Back, Direction.InOut, 1600).Start();
+            await GeneralUtilities.DelayMS(1600);
+
+            lockAnim = false;
+            speedModifier = 1;
+
+        }
 
         private int AnimDuration(float percentage) => (int)(animator.GetCurrentAnimatorStateInfo(0).length * percentage * 1000);
 

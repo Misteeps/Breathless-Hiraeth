@@ -135,7 +135,7 @@ namespace Game.UI
             contents.Create<Labeled<ToggleCheck>>().Bind(Game.Settings.vSync);
             contents.Create<VerticalSpace>();
             contents.Create<Labeled<FloatInputSlider>>().Bind(Game.Settings.renderScale).Elements(e => e.Modify(0.5f, 1.25f, 2));
-            contents.Create<Labeled<FloatInputSlider>>().Bind(Game.Settings.viewDistance).Elements(e => e.Modify(0.5f, 4f, 1));
+            contents.Create<Labeled<FloatInputSlider>>().Bind(Game.Settings.viewDistance).Elements(e => e.Modify(0.5f, 5f, 1));
             contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.textureQuality);
             contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.anisotropicFiltering);
             contents.Create<Labeled<Dropdown<int>>>().BindDropdown(Game.Settings.antiAliasing);

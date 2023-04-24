@@ -256,11 +256,13 @@ namespace Game
         }
 
 #if UNITY_WEBGL
+        private static float DefaultViewDistance => 2;
         private static int DefaultAnisotropicFiltering => 4;
         private static int DefaultAntiAliasing => 2;
         private static SoftShadowQuality DefaultShadowQuality => SoftShadowQuality.Low;
         private static int DefaultShadowDistance => 15;
 #else
+        private static float DefaultViewDistance => 3;
         private static int DefaultAnisotropicFiltering => 16;
         private static int DefaultAntiAliasing => 8;
         private static SoftShadowQuality DefaultShadowQuality => SoftShadowQuality.High;
@@ -281,8 +283,8 @@ namespace Game
         public static Int fpsLimit = new Int("FPS Limit", 361, 0, int.MaxValue, value => Application.targetFrameRate = (value == 361) ? 0 : value);
         public static Bool fpsCounter = new Bool("FPS Counter", false, value => UI.Overlay.Instance.fps.Display(value));
         public static Bool vSync = new Bool("V-Sync", true, value => QualitySettings.vSyncCount = (value) ? 1 : 0);
-        public static Float renderScale = new Float("Render Scale", 1, 0.5f, 1.25f, value => Monolith.Refs.quality.renderScale = value);
-        public static Float viewDistance = new Float("View Distance", 2, 0.5f, 4f, value => QualitySettings.lodBias = value);
+        public static Float renderScale = new Float("Render Scale", 1, 0.1f, 4f, value => Monolith.Refs.quality.renderScale = value);
+        public static Float viewDistance = new Float("View Distance", DefaultViewDistance, 0.1f, 10f, value => QualitySettings.lodBias = value);
         public static Choice<int> textureQuality = new Choice<int>("Texture Quality", TextureQualities, value => QualitySettings.globalTextureMipmapLimit = value);
         public static Choice<int> anisotropicFiltering = new Choice<int>("Anisotropic Filtering", DefaultAnisotropicFiltering, AnisotropicFilterings, value => Texture.SetGlobalAnisotropicFilteringLimits(-1, value));
         public static Choice<int> antiAliasing = new Choice<int>("Anti-aliasing", DefaultAntiAliasing, AntiAliases, value => Monolith.Refs.quality.msaaSampleCount = value);
