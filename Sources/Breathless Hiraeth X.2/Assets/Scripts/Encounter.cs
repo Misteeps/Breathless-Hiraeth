@@ -267,12 +267,12 @@ namespace Game
             AudioClip clip = Monolith.Refs.upgrade1;
             switch (reward)
             {
-                case "Heart": Progress.hearts++; Monolith.Player.Health++; Monolith.Player.heartsUpgrade.Play(); UI.Hud.Instance.Banner("Hearts Increased"); break;
-                case "Memory": Progress.memories++; Monolith.Player.memoriesUpgrade.Play(); UI.Hud.Instance.Banner("Memory Found"); clip = Monolith.Refs.upgrade2; break;
-                case "Damage": Progress.damage++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Damage Up"); break;
-                case "Magic": Progress.magic++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Magic Up"); break;
-                case "Speed": Progress.speed++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Speed Up"); break;
-                case "Cooldown": Progress.cooldown++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Cooldowns Decrease"); break;
+                case "Heart": Progress.hearts += 2; Monolith.Player.Health++; Monolith.Player.heartsUpgrade.Play(); UI.Hud.Instance.Banner("Hearts Increased"); break;
+                case "Memory": Progress.memories += 1; Monolith.Player.memoriesUpgrade.Play(); UI.Hud.Instance.Banner("Memory Found"); clip = Monolith.Refs.upgrade2; break;
+                case "Damage": Progress.damage += 2; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Damage Up"); break;
+                case "Magic": Progress.magic += 2; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Magic Up"); break;
+                case "Speed": Progress.speed += 2; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Speed Up"); break;
+                case "Cooldown": Progress.cooldown += 2; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Cooldowns Decrease"); break;
             }
 
             Monolith.Player.audio.PlayOneShot(clip, 0.6f);
