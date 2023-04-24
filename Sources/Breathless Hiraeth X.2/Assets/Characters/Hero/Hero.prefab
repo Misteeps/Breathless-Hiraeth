@@ -1645,6 +1645,7 @@ MonoBehaviour:
   hit2: {fileID: 8300000, guid: d2ca67accf3fd4e418d3d640e946e7a3, type: 3}
   footstep1: {fileID: 8300000, guid: cb961508c495402448abfe57ae326735, type: 3}
   footstep2: {fileID: 8300000, guid: 206f7ba53dcfd7d4fb571fee638dab41, type: 3}
+  hurt: {fileID: 8300000, guid: d27104076025aad4ca07f59676c74efb, type: 3}
   sword: {fileID: 1214498343260920384}
   animator: {fileID: 8266243098872052024}
   controller: {fileID: 3142858220769582314}
@@ -1656,6 +1657,7 @@ MonoBehaviour:
   invincible: 0
   lockActions: 0
   aimAbility: 0
+  lastFootstep: 0
   speed: 0
   animationSpeedX: 0
   animationSpeedY: 0

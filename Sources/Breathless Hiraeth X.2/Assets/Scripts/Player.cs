@@ -111,6 +111,7 @@ namespace Game
         public AudioClip hit2;
         public AudioClip footstep1;
         public AudioClip footstep2;
+        public AudioClip hurt;
 
         [Header("References")]
         public Transform sword;
@@ -621,6 +622,7 @@ namespace Game
                 case 3: damage = Mathf.RoundToInt(damage * 6); break;
             }
 
+            audio.PlayOneShot(hurt);
             animator.Play((RNG.Generic.Bool()) ? "Hurt Head" : "Hurt Stomach");
             Health -= damage;
 
