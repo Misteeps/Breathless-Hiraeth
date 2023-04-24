@@ -220,6 +220,7 @@ namespace Game
         public static void InitializeScene()
         {
             fairy = GameObject.FindWithTag("Fairy")?.GetComponent<Fairy>();
+            fairy.GoToPosition(Progress.position);
 
             ScanEncounters();
             ScanMemories();
