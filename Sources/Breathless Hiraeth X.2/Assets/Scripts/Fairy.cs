@@ -104,7 +104,7 @@ namespace Game
             }
             else
             {
-                SpinRadius = 1;
+                SpinRadius = 0;
 
                 Position position = positions[index];
                 Vector2 start = new Vector2(transform.position.x, transform.position.z);
@@ -124,6 +124,7 @@ namespace Game
                 transform.Transition(TransformField.Position, Unit.Y, transform.position.y, position.y).Curve(Function.Sine, Direction.InOut, shortDuration).Start();
                 await GeneralUtilities.DelayMS(shortDuration);
 
+                SpinRadius = 1;
                 trigger.enabled = true;
             }
         }
