@@ -107,6 +107,13 @@ namespace Game
             NavMeshObstacle obstacle = bramble.GetComponent<NavMeshObstacle>();
             new Transition(() => 0, value => obstacle.radius = value, 0, 2f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
 
+            if (index % 3 == 0)
+            {
+                AudioSource audio = bramble.GetComponent<AudioSource>();
+                audio.volume = 0.2f;
+                audio.Play();
+            }
+
             await GeneralUtilities.DelayMS(2000);
             bramble.Pause();
         }

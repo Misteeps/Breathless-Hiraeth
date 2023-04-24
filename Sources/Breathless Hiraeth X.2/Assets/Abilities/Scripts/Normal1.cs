@@ -78,6 +78,9 @@ namespace Game
             new Transition(() => 0, value => obstacle.radius = value, 0, 2.4f).Curve(Function.Quadratic, Direction.Out, 2f).Start();
             obstacle.carving = true;
 
+            if (index % 3 == 0)
+                bramble.GetComponent<AudioSource>().Play();
+
             await GeneralUtilities.DelayMS(2000);
             bramble.Pause();
         }
