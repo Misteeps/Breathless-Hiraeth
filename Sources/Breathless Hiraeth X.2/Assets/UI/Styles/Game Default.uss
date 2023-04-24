@@ -423,33 +423,33 @@ Background
     justify-content: center;
 }
 
-.layer#Splash > .area >.image {
+.layer#Splash > .area > .image {
     opacity: 0;
 	margin: 20px;
     scale: 0.6;
 }
 
-.layer#Splash > .area >.image.top {
+.layer#Splash > .area > .image.top {
     width: 500px;
     height: 500px;
     background-image: url('project://database/Assets/UI/Images/Awesome Duo Plate.png?fileID=2800000&guid=7ed81262d5d9fe7409caa1301927d1a5&type=3#Awesome Duo Plate');
     background-size: 80%;
 }
 
-.layer#Splash > .area >.image.bottom {
+.layer#Splash > .area > .image.bottom {
     width: 420px;
     height: 200px;
     background-image: url('project://database/Assets/UI/Images/Lv99.png?fileID=2800000&guid=8433cdf7ff6f2a54b82fa1f472cda770&type=3#Lv99');
     background-size: 80%;
 }
 
-.layer#Splash > .area >.image.show {
+.layer#Splash > .area > .image.show {
     opacity: 1;
     scale: 1;
     transition: all 400ms ease-out-elastic;
 }
 
-.layer#Splash > .area >.warning {
+.layer#Splash > .area > .warning {
     opacity: 0;
 	margin: 20px;
     font-size: 60px;
@@ -903,8 +903,26 @@ Background
 
 .layer#Menu > .saved {
     position: absolute;
-    bottom: 80px;
-    right: 60px
+    bottom: 280px;
+    right: 60px;
+}
+
+.layer#Menu > .respawn {
+    position: absolute;
+    bottom: 140px;
+    right: 52px;
+    width: 200px;
+    height: 60px;
+    font-size: 18px;
+}
+
+.layer#Menu > .reset {
+    position: absolute;
+    bottom: 72px;
+    right: 52px;
+    width: 200px;
+    height: 60px;
+    font-size: 18px;
 }
 
 /* Settings */

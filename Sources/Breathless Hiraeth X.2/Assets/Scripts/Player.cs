@@ -633,7 +633,8 @@ namespace Game
             foreach (Encounter encounter in encounters)
                 encounter.State = Encounter.Status.Patrol;
 
-            this.enabled = false;
+            Monolith.Instance.enabled = false;
+            enabled = false;
             controller.enabled = false;
             animator.SetLayerWeight(0, 0);
             animator.SetLayerWeight(1, 0);
@@ -647,7 +648,12 @@ namespace Game
             await GeneralUtilities.DelayMS(6400);
 
             Enable(true, new Vector3(0, 100, 0));
-            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Sine, Direction.InOut, 6f).Start();
+            enabled = false;
+
+            await GeneralUtilities.DelayMS(1000);
+
+            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Quadratic, Direction.Out, 600).Start();
+            Monolith.Respawn();
         }
 
         public void EnterEncounter(Encounter encounter) => encounters.Add(encounter);

@@ -300,7 +300,7 @@ namespace Game
         {
             ConsoleUtilities.Log($"Resetting Saves");
             Progress.Defaults();
-            Load(Progress.scene);
+            Load(Progress.scene, true);
         }
     }
 }

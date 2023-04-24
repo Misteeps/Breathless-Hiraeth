@@ -106,7 +106,9 @@ namespace Game.UI
             options.Create<Button>("gui", "rectangle", "yellow").Modify("Settings").Bind(_ => { UI.Menu.Hide(); UI.Settings.Show(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
             options.Create<Button>("gui", "rectangle", "red").Modify("Quit").Bind(_ => { Game.Progress.Save(); Game.Settings.Save(); GeneralUtilities.Quit(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
 
-            Label saved = this.Create<LabelInput>("saved").Bind(() => $"Last Saved: {Progress.lastSaved.ToShortTimeString()}", null);
+            this.Create<LabelInput>("saved").Bind(() => $"Last Saved: {Progress.lastSaved.ToShortTimeString()}", null);
+            this.Create<Button>("gui", "rectangle", "purple", "respawn").Modify("Respawn").Bind(_ => { UI.Menu.Hide(); Monolith.Player.Die(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
+            this.Create<Button>("gui", "rectangle", "red", "reset").Modify("Reset Saves").Bind(_ => { UI.Menu.Hide(); Monolith.ResetSaves(); Audio.UI.global.PlayOneShot(Monolith.Refs.uiClick); });
         }
     }
 }
