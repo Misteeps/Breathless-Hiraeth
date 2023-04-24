@@ -11,10 +11,14 @@ namespace Game
     {
         [SerializeField] private ParticleSystem explosion;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource explosionAudio;
+
 
         public override async void Cast()
         {
             aimDecal.enabled = false;
+            explosionAudio.Play();
             Monolith.Player.animator.CrossFade("Ability Normal 2", 0.1f);
 
             explosion.Play();
@@ -29,7 +33,7 @@ namespace Game
                         monster.TakeDamage(40 + (Progress.magic * 15));
             }
 
-            await GeneralUtilities.DelayMS(2000);
+            await GeneralUtilities.DelayMS(3000);
 
             Destroy();
         }

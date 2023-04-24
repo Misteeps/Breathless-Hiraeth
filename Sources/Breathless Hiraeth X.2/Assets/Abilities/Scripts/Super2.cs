@@ -13,16 +13,22 @@ namespace Game
         [SerializeField] private ParticleSystem pillar;
         [SerializeField] private ParticleSystem rain;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource explosionAudio;
+        [SerializeField] private AudioSource rainAudio;
+
 
         public override async void Cast()
         {
             Monolith.Player.castingSuper = true;
             aimDecal.enabled = false;
+            explosionAudio.Play();
 
             Monolith.Player.animator.CrossFade("Ability Super 2", 0.1f);
             explosion.Play();
             await GeneralUtilities.DelayMS(1360);
             Monolith.Player.Breathing = false;
+            rainAudio.Play();
             pillar.Play();
             rain.Play();
 
@@ -50,6 +56,7 @@ namespace Game
                 }
             }
 
+            await GeneralUtilities.DelayMS(1000);
             Destroy();
         }
     }
