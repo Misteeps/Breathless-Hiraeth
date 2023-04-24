@@ -12,12 +12,17 @@ namespace Game
         [SerializeField] private ParticleSystem explosion;
         [SerializeField] private GameObject lightningPrefab;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip implosionAudio;
+        [SerializeField] private AudioClip explosionAudio;
+
 
         public override async void Cast()
         {
             Monolith.Player.castingSuper = true;
             aimDecal.enabled = false;
 
+            Monolith.Player.audio.PlayOneShot(implosionAudio, 0.5f);
             Monolith.Player.animator.CrossFade("Ability Super 3", 0.1f);
             Monolith.Player.voidImplosionLarge.Play();
             await GeneralUtilities.DelayMS(800);
@@ -45,6 +50,7 @@ namespace Game
             Monolith.Player.transform.position = transform.position;
             Monolith.Player.gameObject.SetActive(true);
             Monolith.Player.Combat = !Inputs.Sprint.Held;
+            Monolith.Player.audio.PlayOneShot(explosionAudio, 0.5f);
             explosion.Play();
 
             for (int i = 0; i < Monolith.encounters.Length; i++)

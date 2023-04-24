@@ -106,6 +106,8 @@ MonoBehaviour:
   aimDecal: {fileID: 7697297793218996560}
   explosion: {fileID: 5352356693538805849}
   lightningPrefab: {fileID: 7375171115923540867, guid: b5ca800756242184f88dc1704d4ee3ee, type: 3}
+  implosionAudio: {fileID: 8300000, guid: b5bbadf84e660204db0998a7bd02375b, type: 3}
+  explosionAudio: {fileID: 8300000, guid: 05107620ec0266f4abe1292d1e8b78e3, type: 3}
 --- !u!1001 &550895991593167381
 PrefabInstance:
   m_ObjectHideFlags: 0

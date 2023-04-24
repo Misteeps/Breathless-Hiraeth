@@ -11,10 +11,15 @@ namespace Game
     {
         [SerializeField] private ParticleSystem explosion;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip implosionAudio;
+        [SerializeField] private AudioClip explosionAudio;
+
 
         public override async void Cast()
         {
             aimDecal.enabled = false;
+            Monolith.Player.audio.PlayOneShot(implosionAudio, 0.5f);
             Monolith.Player.animator.CrossFade("Ability Normal 3", 0.1f);
 
             Monolith.Player.voidImplosionSmall.Play();
@@ -29,6 +34,7 @@ namespace Game
             Monolith.Player.transform.position = transform.position;
             Monolith.Player.gameObject.SetActive(true);
             Monolith.Player.Combat = !Inputs.Sprint.Held;
+            Monolith.Player.audio.PlayOneShot(explosionAudio, 0.5f);
             explosion.Play();
 
             for (int i = 0; i < Monolith.encounters.Length; i++)
