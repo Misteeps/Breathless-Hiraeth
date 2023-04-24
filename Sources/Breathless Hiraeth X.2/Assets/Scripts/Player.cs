@@ -644,6 +644,7 @@ namespace Game
             animator.SetLayerWeight(5, 0);
             animator.CrossFade((RNG.Generic.Bool()) ? "Death Kneel" : "Death Fall", 0.2f);
 
+            new Transition(() => Monolith.Pressure, value => Monolith.Pressure = value, Monolith.Pressure, 0, "Pressure").Curve(Function.Sine, Direction.Out, 4f).Start();
             UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 0, 1).Curve(Function.Sine, Direction.InOut, 6f).Start();
             await GeneralUtilities.DelayMS(6400);
 
@@ -651,6 +652,7 @@ namespace Game
             enabled = false;
 
             await GeneralUtilities.DelayMS(1000);
+            animator.Play("Empty", 4);
 
             UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Quadratic, Direction.Out, 600).Start();
             Monolith.Respawn();

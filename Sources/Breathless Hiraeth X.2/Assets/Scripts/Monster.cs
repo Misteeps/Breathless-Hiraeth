@@ -195,7 +195,7 @@ namespace Game
 
             healthbar[0].style.width = (health <= 0) ? 0 : new UnityEngine.UIElements.Length((float)health / (float)maxHealth * 100f, UnityEngine.UIElements.LengthUnit.Percent);
         }
-        private void RemoveHealthbar() => healthbar?.RemoveFromHierarchy();
+        public void RemoveHealthbar() => healthbar?.RemoveFromHierarchy();
 
 
 #if UNITY_EDITOR

@@ -210,10 +210,18 @@ namespace Game
 
         public void Restart()
         {
+            gameObject.SetActive(true);
+
             try
             {
-                while (transform.childCount > 0)
-                    Destroy(transform.GetChild(0).gameObject);
+                foreach (Monster monster in monsters)
+                {
+                    monster.RemoveHealthbar();
+                    Destroy(monster.gameObject);
+                }
+
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
             }
             catch (Exception exception) { exception.Error($"Failed restarting encounter"); }
 

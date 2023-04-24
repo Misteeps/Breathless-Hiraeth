@@ -289,8 +289,12 @@ namespace Game
             Instance.enabled = false;
             InitializeScene();
 
+#if UNITY_EDITOR
+            await GeneralUtilities.DelayFrame(1);
+#else
             Player.animator.Play("Wake Up");
             await GeneralUtilities.DelayMS(8000);
+#endif
 
             Player.enabled = true;
             Player.VisibleSword = true;
