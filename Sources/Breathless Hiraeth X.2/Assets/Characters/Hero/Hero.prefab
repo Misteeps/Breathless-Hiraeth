@@ -1651,6 +1651,9 @@ MonoBehaviour:
   controller: {fileID: 3142858220769582314}
   audio: {fileID: 8298864853057725621}
   footsteps: {fileID: 8334805534142054233}
+  pressureRumble: {fileID: 0}
+  pressureLFE: {fileID: 0}
+  pressureTinnitus: {fileID: 0}
   health: 0
   breathing: 0
   castingSuper: 0

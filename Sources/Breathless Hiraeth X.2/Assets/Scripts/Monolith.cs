@@ -23,6 +23,9 @@ namespace Game
             public UniversalRenderPipelineAsset quality;
             public VolumeProfile volumeProfile;
             public AudioMixer audioMixer;
+            public AudioSource pressureRumble;
+            public AudioSource pressureLFE;
+            public AudioSource pressureTinnitus;
             public UIDocument uiDocument;
             public StyleSheet uiStyle;
             public AudioClip uiClick;
@@ -65,6 +68,9 @@ namespace Game
                 Game.Camera.Vignette.intensity.value = Mathf.Lerp(0.2f, 0.7f, factor);
                 Game.Camera.ChromaticAberration.intensity.value = factor;
                 Game.Camera.ShadowsMidtonesHighlights.shadows.value = new Vector4(1, Mathf.Lerp(1, 0.4f, factor), Mathf.Lerp(1, 0.4f, factor), 0);
+                Refs.pressureRumble.volume = factor;
+                Refs.pressureLFE.volume = factor;
+                Refs.pressureTinnitus.volume = Mathf.Lerp(0, 0.2f, factor);
 
                 UI.Hud.Instance.SetPressure(Instance.pressure);
             }
