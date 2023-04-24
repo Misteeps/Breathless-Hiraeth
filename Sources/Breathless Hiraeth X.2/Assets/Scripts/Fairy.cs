@@ -159,6 +159,18 @@ namespace Game
                 case "Grove of Beginnings" when CurrentPosition == 3:
                     UI.Hud.Instance.Tip("Swing your sword with [Left Click]\nZoom in and out with [Scroll Wheel]\nRotate the camera with [Scroll Click]", 8000);
                     return true;
+                case "Azure Valley" when CurrentPosition == 6:
+                    pressureScale = 2;
+                    Progress.abilities = 3;
+                    UI.Hud.Instance.UpdateAbilities();
+                    UI.Hud.Instance.Banner("Unlocked Abilities\n3: Void Warp");
+                    return true;
+                case "Azure Valley" when CurrentPosition == 9:
+                    pressureScale = 3;
+                    Progress.abilities = 4;
+                    UI.Hud.Instance.UpdateAbilities();
+                    UI.Hud.Instance.Banner("Unlocked Abilities\n4: Radiant Sunburst");
+                    return true;
             }
         }
 
