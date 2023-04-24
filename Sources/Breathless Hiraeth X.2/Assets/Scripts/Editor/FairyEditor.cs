@@ -85,7 +85,7 @@ namespace Game.Editor
             root.Create<VerticalSpace>();
             root.Create<Labeled<IntInput>>().Bind(fairy.IValue("spinSpeed"));
             root.Create<VerticalSpace>();
-            root.Create<Labeled<FloatInputSlider>>().Bind(fairy.IValue("pressureScale")).Elements(e => e.Modify(1, 10));
+            root.Create<Labeled<FloatInputSlider>>().Bind(fairy.IValue("pressureScale")).Elements(e => e.Modify(0, 10));
             root.Create<Labeled<StringInput>>().Bind(fairy.IValue("currentScene"));
             root.Create<Labeled<StringInput>>().Bind(fairy.IValue("nextScene"));
             root.Create<VerticalSpace>();

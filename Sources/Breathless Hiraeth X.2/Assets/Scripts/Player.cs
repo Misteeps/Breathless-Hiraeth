@@ -121,6 +121,7 @@ namespace Game
 
                 if (value)
                 {
+                    Health += Monolith.PressureStage;
                     enabled = false;
                     invincible = true;
                     VisibleSword = false;

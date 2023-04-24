@@ -102,7 +102,7 @@ namespace Game.UI
         public void SetPressure(float amount)
         {
             pressure.style.width = new UnityEngine.UIElements.Length(amount, UnityEngine.UIElements.LengthUnit.Percent);
-            breath.style.opacity = Mathf.InverseLerp(40, 70, amount);
+            breath.style.opacity = Mathf.InverseLerp(30, 70, amount);
             if (Monolith.PressureStage != currentStage)
             {
                 currentStage = Monolith.PressureStage;
