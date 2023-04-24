@@ -689,6 +689,7 @@ namespace Game
 
             if (CheckAggro())
             {
+                audio.PlayOneShot(Monolith.Refs.upgrade2, 0.4f);
                 UI.Hud.Instance.FairyDialog((RNG.Generic.Int(0, 4)) switch
                 {
                     0 => "Shouldn't you deal with those monsters first?",
@@ -725,11 +726,8 @@ namespace Game
                     UI.Hud.Instance.PositionFairyDialog(fairy.transform.position);
 
                     if (Inputs.Click.Down || Inputs.Breath.Down)
-                    {
-                        audio.PlayOneShot(Monolith.Refs.upgrade2, 0.4f);
                         if (!fairy.DisplayDialog(fairy.CurrentDialog + 1))
                             break;
-                    }
 
                     if (Vector3.Distance(transform.position, fairy.transform.position) > 6)
                     {

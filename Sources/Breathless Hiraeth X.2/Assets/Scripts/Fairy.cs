@@ -65,6 +65,7 @@ namespace Game
 
         public bool DisplayDialog(int index, bool autoNextPosition = true)
         {
+            Monolith.Player.audio.PlayOneShot(Monolith.Refs.upgrade2, 0.4f);
             Position position = positions[CurrentPosition];
             if (position.dialog.OutOfRange(index))
             {
