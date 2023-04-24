@@ -13,6 +13,10 @@ namespace Game
         [SerializeField] private ParticleSystem dome;
         [SerializeField] private ParticleSystem rain;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource castAudio;
+        [SerializeField] private AudioSource rainAudio;
+
 
         public override void Aim()
         {
@@ -24,6 +28,7 @@ namespace Game
             Monolith.Player.castingSuper = true;
             aimDecal.enabled = false;
 
+            castAudio.Play();
             Monolith.Player.animator.CrossFade("Ability Super 4", 0.1f);
             await GeneralUtilities.DelayMS(1400);
             Monolith.Player.celestialBreath.Play();
@@ -35,6 +40,8 @@ namespace Game
             Monolith.Player.Breathing = false;
             await GeneralUtilities.DelayMS(200);
 
+            rainAudio.Play();
+            rainAudio.Transition(AudioSourceField.Volume, Unit.X, 0, 0.5f).Curve(Function.Linear, Direction.In, 800).Start();
             var rainMain = rain.main;
             rainMain.loop = true;
             rain.Play();
@@ -57,6 +64,7 @@ namespace Game
             }
 
             dome.Play();
+            rainAudio.Transition(AudioSourceField.Volume, Unit.X, 0.5f, 0).Curve(Function.Linear, Direction.In, 800).Start();
             await GeneralUtilities.DelayMS(2000);
 
             Destroy();

@@ -11,6 +11,9 @@ namespace Game
     {
         [SerializeField] private ParticleSystem rain;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource rainAudio;
+
 
         public override async void Cast()
         {
@@ -25,6 +28,8 @@ namespace Game
             summonMain.loop = true;
             rainMain.loop = true;
 
+            rainAudio.Play();
+            rainAudio.Transition(AudioSourceField.Volume, Unit.X, 0, 0.5f).Curve(Function.Linear, Direction.In, 800).Start();
             rain.Play();
             for (int tick = 0; tick < 25; tick++)
             {
@@ -42,6 +47,7 @@ namespace Game
                 if (tick > 20) rainMain.loop = false;
             }
 
+            rainAudio.Transition(AudioSourceField.Volume, Unit.X, 0.5f, 0).Curve(Function.Linear, Direction.In, 800).Start();
             await GeneralUtilities.DelayMS(1500);
 
             Destroy();
