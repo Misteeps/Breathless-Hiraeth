@@ -188,6 +188,7 @@ namespace Game
                 {
                     GameObject gameObject = root.transform.GetChild(i).gameObject;
                     gameObject.SetActive(!Progress.guids.Contains(gameObject.name));
+                    if (!gameObject.activeSelf) continue;
                     AudioSource audio = gameObject.GetComponent<AudioSource>();
                     audio.clip = (RNG.Generic.Bool()) ? Refs.memorySparkle1 : Refs.memorySparkle2;
                     audio.Play();

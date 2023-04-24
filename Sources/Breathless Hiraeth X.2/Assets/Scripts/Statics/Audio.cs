@@ -45,6 +45,7 @@ namespace Game
                 source.outputAudioMixerGroup = output;
                 source.playOnAwake = false;
 
+                source.volume = 0.5f;
                 source.spatialBlend = 0;
                 source.dopplerLevel = 0;
                 source.spread = 0;
@@ -63,6 +64,7 @@ namespace Game
                 source.outputAudioMixerGroup = output;
                 source.playOnAwake = false;
 
+                source.volume = 0.5f;
                 source.spatialBlend = 1;
 
                 return source;

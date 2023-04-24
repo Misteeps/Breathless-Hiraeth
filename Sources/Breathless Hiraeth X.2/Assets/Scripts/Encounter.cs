@@ -257,16 +257,18 @@ namespace Game
             await GeneralUtilities.DelayMS(2000);
             Progress.guids.Add(guid);
 
+            AudioClip clip = Monolith.Refs.upgrade1;
             switch (reward)
             {
                 case "Heart": Progress.hearts++; Monolith.Player.Health++; Monolith.Player.heartsUpgrade.Play(); UI.Hud.Instance.Banner("Hearts Increased"); break;
-                case "Memory": Progress.memories++; Monolith.Player.memoriesUpgrade.Play(); UI.Hud.Instance.Banner("Memory Found"); break;
+                case "Memory": Progress.memories++; Monolith.Player.memoriesUpgrade.Play(); UI.Hud.Instance.Banner("Memory Found"); clip = Monolith.Refs.upgrade2; break;
                 case "Damage": Progress.damage++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Damage Up"); break;
                 case "Magic": Progress.magic++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Magic Up"); break;
                 case "Speed": Progress.speed++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Speed Up"); break;
                 case "Cooldown": Progress.cooldown++; Monolith.Player.statsUpgrade.Play(); UI.Hud.Instance.Banner("Cooldowns Decrease"); break;
             }
 
+            Monolith.Player.audio.PlayOneShot(clip, 0.6f);
             Progress.Save();
         }
 

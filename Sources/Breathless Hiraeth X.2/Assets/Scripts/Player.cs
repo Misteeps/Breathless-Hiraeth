@@ -126,6 +126,7 @@ namespace Game
         [SerializeField] public bool invincible;
         [SerializeField] public bool lockActions;
         [SerializeField] private bool aimAbility;
+        [SerializeField] private float lastFootstep;
         [SerializeField] private float speed;
         [SerializeField] private float animationSpeedX;
         [SerializeField] private float animationSpeedY;
@@ -221,6 +222,7 @@ namespace Game
             abilityCooldown2 -= deltaTime;
             abilityCooldown3 -= deltaTime;
             abilityCooldown4 -= deltaTime;
+            lastFootstep -= deltaTime;
             UI.Hud.Instance.CooldownAbilities();
 
             CheckGround();
@@ -497,6 +499,7 @@ namespace Game
 
             if (cooldown > 0 || Progress.abilities < index)
             {
+                Audio.UI.global.PlayOneShot(Monolith.Refs.uiError, 0.6f);
                 label.AddToClassList("error");
                 await GeneralUtilities.DelayMS(10);
                 label.RemoveFromClassList("error");
@@ -569,7 +572,14 @@ namespace Game
             }
             castingSuper = false;
         }
-        public void Footstep(float volume) => footsteps.PlayOneShot((RNG.Generic.Bool()) ? footstep1 : footstep2, volume);
+        public void Footstep()
+        {
+            if (lastFootstep > 0) return;
+            lastFootstep = 0.2f;
+
+            float volume = Mathf.InverseLerp(0, 6, speed);
+            footsteps.PlayOneShot((RNG.Generic.Bool()) ? footstep1 : footstep2, volume);
+        }
 
         public async void AttackHit()
         {
@@ -714,7 +724,7 @@ namespace Game
 
                     if (Inputs.Click.Down || Inputs.Breath.Down)
                     {
-                        Audio.SFX.global.PlayOneShot(Monolith.Refs.upgrade2, 0.5f);
+                        audio.PlayOneShot(Monolith.Refs.upgrade2, 0.4f);
                         if (!fairy.DisplayDialog(fairy.CurrentDialog + 1))
                             break;
                     }
@@ -735,11 +745,12 @@ namespace Game
         }
         private void MemoryTrigger(GameObject memory)
         {
-            memory.GetComponent<AudioSource>().Transition(AudioSourceField.Volume, Unit.X, 1, 0, () => memory.SetActive(false)).Curve(Function.Quadratic, Direction.Out, 400).Start();
+            memory.GetComponent<ParticleSystem>().Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            memory.GetComponent<AudioSource>().Transition(AudioSourceField.Volume, Unit.X, 0.2f, 0, () => memory.SetActive(false)).Curve(Function.Quadratic, Direction.Out, 800).Start();
             if (Progress.guids.Contains(memory.name))
                 return;
 
-            Audio.SFX.global.PlayOneShot(Monolith.Refs.upgrade2, 0.5f);
+            audio.PlayOneShot(Monolith.Refs.upgrade2, 0.6f);
             Progress.guids.Add(memory.name);
             Progress.memories++;
             memoriesUpgrade.Play();
