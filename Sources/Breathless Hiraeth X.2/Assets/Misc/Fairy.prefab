@@ -51,6 +51,7 @@ MonoBehaviour:
   particles: {fileID: 9062069500483370134}
   trigger: {fileID: 1604624533153136260}
   spinSpeed: 200
+  pressureScale: 1
   currentScene: 
   nextScene: 
   currentPosition: 0

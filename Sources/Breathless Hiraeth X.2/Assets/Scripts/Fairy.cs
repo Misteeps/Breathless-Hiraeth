@@ -30,6 +30,7 @@ namespace Game
         public SphereCollider trigger;
 
         [SerializeField] private int spinSpeed = 200;
+        [SerializeField] private float pressureScale;
         [SerializeField] private string currentScene;
         [SerializeField] private string nextScene;
         [SerializeField] private int currentPosition;
@@ -45,6 +46,7 @@ namespace Game
             }
         }
         public int SpinSpeed { get => spinSpeed; set => spinSpeed = value; }
+        public float PressureScale => pressureScale;
         public string CurrentScene => currentScene;
         public string NextScene => nextScene;
         public int CurrentPosition { get => currentPosition; private set => currentPosition = value; }

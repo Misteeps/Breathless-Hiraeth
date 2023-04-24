@@ -53,7 +53,6 @@ namespace Game
         public static Encounter[] encounters;
 
         private float pressure;
-        private float pressureScale;
         public static float Pressure
         {
             get => Instance.pressure;
@@ -74,7 +73,7 @@ namespace Game
                 UI.Hud.Instance.SetPressure(Instance.pressure);
             }
         }
-        public static float PressureScale { get => Instance.pressureScale; set => Instance.pressureScale = value; }
+        public static float PressureScale => fairy.PressureScale;
         public static int PressureStage => (Pressure < 30) ? 0 : (Pressure < 60) ? 1 : (Pressure < 90) ? 2 : 3;
 
         private static float lastMouseX;
@@ -215,7 +214,6 @@ namespace Game
             ScanMemories();
 
             Pressure = 0;
-            PressureScale = 1;
             Game.Camera.ColorAdjustments.saturation.value = 0;
         }
 
