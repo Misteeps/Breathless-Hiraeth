@@ -14,5 +14,10 @@ namespace Game
             await GeneralUtilities.DelayMS(8000);
             UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
         }
+        private void Update()
+        {
+            if (Monolith.Pressure > 20)
+                Monolith.Pressure = 20;
+        }
     }
 }

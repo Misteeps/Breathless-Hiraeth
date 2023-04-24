@@ -153,6 +153,15 @@ namespace Game
                 lastMouseX = Inputs.MouseX;
             }
 
+            switch (PressureStage)
+            {
+                default: break;
+                case 0: Pressure = Mathf.Max(0, Pressure - Time.deltaTime); break;
+                case 1: Pressure = Mathf.Max(30, Pressure - Time.deltaTime); break;
+                case 2: Pressure = Mathf.Max(60, Pressure - Time.deltaTime); break;
+                case 3: Pressure = Mathf.Max(90, Pressure - Time.deltaTime); break;
+            }
+
             // Debug
             if (Input.GetKeyDown(KeyCode.Keypad0)) Pressure = 0;
             if (Input.GetKeyDown(KeyCode.Keypad1)) Pressure = 10;
