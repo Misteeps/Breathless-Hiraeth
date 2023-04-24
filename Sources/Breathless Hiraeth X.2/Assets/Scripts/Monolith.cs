@@ -125,6 +125,9 @@ namespace Game
             Progress.Load();
             Settings.Load();
 
+            encounters = new Encounter[0];
+            Player.Enable(false);
+
             UI.Hud.Show();
             UI.Menu.Hide();
             UI.Settings.Hide();
@@ -132,10 +135,9 @@ namespace Game
             UI.Splash.Show();
 
             UI.Root.Instance.Add(UI.Overlay.Instance);
-            UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
 
-            encounters = new Encounter[0];
-            InitializeScene();
+            //UI.Hud.Instance.Tip("Move around with [W][A][S][D]");
+            //InitializeScene();
         }
 
         private void Update()
@@ -175,7 +177,12 @@ namespace Game
         public static void ScanEncounters()
         {
             GameObject root = GameObject.FindWithTag("Encounters");
-            if (root == null) ConsoleUtilities.Warn($"No encounters found");
+            if (root == null)
+            {
+                ConsoleUtilities.Warn($"No encounters found");
+                encounters = new Encounter[0];
+                return;
+            }
 
             List<Encounter> list = new List<Encounter>();
             for (int i = 0; i < root.transform.childCount; i++)
@@ -187,7 +194,7 @@ namespace Game
         public static void ScanMemories()
         {
             GameObject root = GameObject.FindWithTag("Memories");
-            if (root == null) ConsoleUtilities.Warn($"No memories found");
+            if (root == null) { ConsoleUtilities.Warn($"No memories found"); return; }
 
             for (int i = 0; i < root.transform.childCount; i++)
                 try
@@ -203,7 +210,7 @@ namespace Game
         }
         public static void InitializeScene()
         {
-            fairy = GameObject.FindWithTag("Fairy").GetComponent<Fairy>();
+            fairy = GameObject.FindWithTag("Fairy")?.GetComponent<Fairy>();
 
             ScanEncounters();
             ScanMemories();
@@ -214,11 +221,19 @@ namespace Game
             UI.Hud.Instance.UpdateAbilities();
         }
 
-        public static async Task Load(string scene) => await Load(scene, new Vector3(0, 100, 0));
-        public static async Task Load(string scene, Vector3 playerPosition)
+        public static void Load(string scene) => LoadSequence(scene, new Vector3(0, 100, 0));
+        public static void Load(string scene, Vector3 playerPosition)
+        {
+            // Verify scene
+            LoadSequence(scene, playerPosition);
+        }
+        private static async void LoadSequence(string scene, Vector3 playerPosition)
         {
             ConsoleUtilities.Log($"Loading scene {scene:info}");
+            Player.invincible = true;
+            Instance.enabled = false;
 
+            new Transition(() => Settings.masterVolume, value => Audio.Master.SetVolume((int)value), Settings.masterVolume, 0, "Master Volume").Curve(Function.Quadratic, Direction.In, 400).Start();
             UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 0, 1).Curve(Function.Quadratic, Direction.In, 400).Start();
             UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(0, LengthUnit.Percent);
             UI.Overlay.Instance.loading.AddToClassList("show");
@@ -238,19 +253,22 @@ namespace Game
             UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(operation.progress * 100, LengthUnit.Percent);
             await GeneralUtilities.DelayMS(400);
 
-            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Quadratic, Direction.Out, 600).Start();
-            UI.Overlay.Instance.loadingBar.style.width = new UnityEngine.UIElements.Length(90, LengthUnit.Percent);
-            UI.Overlay.Instance.loading.RemoveFromClassList("show");
-
             Game.Camera.Rotation = 0;
             Game.Camera.ReleaseHijack();
             Player.Enable(true, playerPosition);
+            Player.enabled = false;
             operation.allowSceneActivation = true;
 
-            ConsoleUtilities.Log($"Loaded scene {scene:info}");
+            UI.Overlay.Instance.loading.RemoveFromClassList("show");
+            await GeneralUtilities.DelayMS(1000);
+            Player.enabled = true;
+            Instance.enabled = true;
 
-            await GeneralUtilities.DelayMS(100);
+            new Transition(() => 0, value => Audio.Master.SetVolume((int)value), 0, Settings.masterVolume, "Master Volume").Curve(Function.Quadratic, Direction.Out, 600).Start();
+            UI.Overlay.Instance.Transition(VisualElementField.BackgroundColor, Unit.A, 1, 0).Curve(Function.Quadratic, Direction.Out, 600).Start();
+
             InitializeScene();
+            ConsoleUtilities.Log($"Loaded scene {scene:info}");
         }
     }
 }

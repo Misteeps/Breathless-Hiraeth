@@ -273,13 +273,12 @@ namespace Game
 
         public void Enable(bool enabled, Vector3 position)
         {
-            transform.eulerAngles = Vector3.zero;
+            transform.rotation = new Quaternion();
             transform.position = position;
             Enable(enabled);
         }
         public void Enable(bool enabled)
         {
-            Health = Progress.hearts;
             grounded = true;
             invincible = false;
             lockActions = false;
@@ -288,6 +287,12 @@ namespace Game
             abilityCooldown2 = 0;
             abilityCooldown3 = 0;
             abilityCooldown4 = 0;
+            breathing = false;
+            castingSuper = false;
+            invincible = false;
+            lockActions = false;
+            aimAbility = false;
+            lastFootstep = 0;
             speed = 0;
             animationSpeedX = 0;
             animationSpeedY = 0;
@@ -297,6 +302,10 @@ namespace Game
             jumpCooldownTimer = 0;
             fallTime = 0;
             encounters = new List<Encounter>();
+
+            Health = Progress.hearts;
+            VisibleSword = false;
+            Combat = false;
 
             this.enabled = enabled;
             animator.enabled = enabled;
