@@ -1,0 +1,820 @@
+/*
+https://docs.unity3d.com/Manual/UIE-USS-Properties-Reference.html
+
+Appearance
+    display:                                flex | none
+    visibility:                             visible | hidden
+    opacity:                                <number>
+    overflow:                               hidden | visible
+    -unity-overflow-clip-box:               padding-box | content-box
+Position
+    position:                               absolute | relative
+    top:                                    <length> | auto
+    bottom:                                 <length> | auto
+    left:                                   <length> | auto
+    right:                                  <length> | auto
+Layout
+    margin:                                 <length> | auto
+    padding:                                <length>
+    width:                                  <length> | auto
+    min-width:                              <length> | auto
+    max-width:                              <length> | none
+    height:                                 <length> | auto
+    min-height:                             <length> | auto
+    max-height:                             <length> | none
+Flex
+    flex:                                   none | <number> [0-2] & <length> (grow, shrink, basis)
+    flex-grow:                              <number>
+    flex-shrink:                            <number>
+    flex-basis:                             <length> | auto
+    flex-direction:                         row | row-reverse | column | column-reverse
+    flex-wrap:                              nowrap | wrap | wrap-reverse
+    align-self:                             auto | flex-start | flex-end | center | stretch
+    align-items:                            flex-start | flex-end | center | stretch
+    align-content:                          flex-start | flex-end | center | stretch
+    justify-content:                        flex-start | flex-end | center | space-between | space-around
+Text
+    -unity-font:                            <resource> | <url>
+    -unity-font-definition:                 <resource> | <url>
+    font-size:                              <number>
+    -unity-font-style:                      normal | italic | bold | bold-and-italic
+    -unity-text-align:                      upper-left | middle-left | lower-left | upper-center | middle-center | lower-center | upper-right | middle-right | lower-right
+    white-space:                            normal | nowrap
+    text-overflow:                          clip | ellipsis
+    -unity-text-overflow-position:          start | middle | end
+    color:                                  <color>
+    text-shadow:                            <length> [2-3] & <color> (offset X, offset Y, blur, color)
+    -unity-text-outline:                    <length> & <color>
+    -unity-text-outline-width:              <length>
+    -unity-text-outline-color:              <color>
+    letter-spacing:                         <length>
+    word-spacing:                           <length>
+    -unity-paragraph-spacing:               <length>
+Background
+    border-width:                           <length>
+    border-radius:                          <length>
+    border-color:                           <color>
+    background-color:                       <color>
+    background-image:                       <resource> | <url> | none
+    background-position:                    ?
+    background-size:                        ?
+    background-repeat:                      ?
+    -unity-slice:                           <integer>
+    -unity-slice-scale:                     <length>
+    -unity-background-scale-mode:           stretch-to-fill | scale-and-crop | scale-to-fit
+    -unity-background-image-tint-color:     <color>
+*/
+
+.static {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    flex: 0 0 auto;
+}
+
+.flexible {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    flex: 1 1 auto;
+}
+
+.body > .field {
+	margin: 2px 8px;
+}
+
+.body > .labeled > .field {
+	margin: 2px 8px;
+}
+
+.body > .collapsible-view {
+	margin: 2px 8px;
+}
+
+.collapsible-view > .field {
+	margin: 2px 8px;
+}
+
+.collapsible-view > .labeled > .field {
+	margin: 2px 8px;
+}
+
+.collapsible-view > .collapsible-view {
+	margin: 2px 8px;
+}
+
+/* space */
+
+.space.horizontal.mini {
+    width: 1px;
+}
+
+.space.horizontal.small {
+    width: 2px;
+}
+
+.space.horizontal.medium {
+    width: 4px;
+}
+
+.space.horizontal.large {
+    width: 8px;
+}
+
+.space.horizontal.huge {
+    width: 12px;
+}
+
+.space.vertical.mini {
+    height: 1px;
+}
+
+.space.vertical.small {
+    height: 2px;
+}
+
+.space.vertical.medium {
+    height: 4px;
+}
+
+.space.vertical.large {
+    height: 8px;
+}
+
+.space.vertical.huge {
+    height: 12px;
+}
+
+/* text */
+
+.text {
+    -unity-font-style: normal;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.text.mini {
+    font-size: 8px;
+}
+
+.text.small {
+    font-size: 10px;
+}
+
+.text.medium {
+    font-size: 12px;
+}
+
+.text.large {
+    font-size: 14px;
+}
+
+.text.huge {
+    font-size: 18px;
+}
+
+/* icon */
+
+.icon {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon.mini {
+    background-size: auto 60%;
+}
+
+.icon.small {
+    background-size: auto 70%;
+}
+
+.icon.medium {
+    background-size: auto 80%;
+}
+
+.icon.large {
+    background-size: auto 90%;
+}
+
+.icon.huge {
+    background-size: auto 100%;
+}
+
+/* label */
+
+.label {
+    padding: 0 8px;
+}
+
+.labeled {
+    flex-direction: row;
+}
+
+.labeled.mini > .label {
+    padding: 0 1px;
+    width: 20px;
+}
+
+.labeled.small > .label {
+    padding: 0 4px;
+    width: 80px;
+}
+
+.labeled.medium > .label {
+    width: 140px;
+}
+
+.labeled.large > .label {
+    width: 200px;
+}
+
+.labeled.huge > .label {
+    width: 260px;
+}
+
+.labeled.highlight:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* field */
+
+.field.mini {
+    height: 14px;
+    min-height: 14px;
+    min-width: 14px;
+}
+
+.field.small {
+    height: 16px;
+    min-height: 16px;
+    min-width: 16px;
+}
+
+.field.medium {
+    height: 18px;
+    min-height: 18px;
+    min-width: 18px;
+}
+
+.field.large {
+    height: 20px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+.field.huge {
+    height: 24px;
+    min-height: 24px;
+    min-width: 24px;
+}
+
+.field.inset {
+    padding: 0 4px;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.field.outset {
+    padding: 0 4px;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.field.toggle.slide {
+    overflow: visible;
+    padding: 0;
+    width: 48px;
+    max-width: 48px;
+    flex-direction: row;
+    border-radius: 8px;
+}
+
+.field.toggle.slide > .fill {
+    overflow: visible;
+    width: 12px;
+    height: 100%;
+    justify-content: center;
+    border-radius: 8px;
+    transition: width 200ms ease-out-elastic;
+}
+
+.field.toggle.slide > .fill > .knob {
+    position: absolute;
+    right: -12px;
+    width: 24px;
+    height: 100%;
+    border-radius: 6px;
+}
+
+.field.toggle.slide.on > .fill {
+    width: 36px;
+}
+
+.field.toggle.check {
+    width: 0;
+    max-width: 0;
+}
+
+.field.toggle.check.on {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Mark Check.png?fileID=2800000&guid=9441a357402d8304882c3acade18ebf2&type=3#Mark Check');
+}
+
+.field.slider {
+    overflow: visible;
+    flex-direction: row;
+}
+
+.field.slider > .gauge {
+    overflow: visible;
+    margin: auto;
+    height: 6px;
+    justify-content: center;
+    border-width: 1px 1px 1px 0;
+    border-radius: 3px;
+}
+
+.field.slider > .gauge > .fill {
+    overflow: visible;
+    width: 50%;
+    height: 6px;
+    justify-content: center;
+    border-width: 1px 0 1px 1px;
+    border-radius: 3px;
+}
+
+.field.slider > .gauge > .fill > .knob {
+    position: absolute;
+    right: -8px;
+    width: 16px;
+    height: 8px;
+    border-radius: 2px;
+}
+
+.field.input {
+    cursor: text;
+}
+
+.field.input:focus {
+    text-overflow: clip;
+}
+
+.field.input.string {
+    height: auto;
+    white-space: normal;
+    -unity-text-align: middle-left;
+}
+
+.field.input.label {
+    height: auto;
+    white-space: normal;
+    -unity-text-align: middle-left;
+}
+
+.field.input-slider {
+    overflow: visible;
+    flex-direction: row;
+}
+
+.field.input-slider > .field.input {
+    margin-right: 8px;
+    width: 48px;
+}
+
+.field.dropdown {
+    padding-right: 20px;
+    -unity-text-align: middle-left;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Down.png?fileID=2800000&guid=4c1dc0dad23e8c044a167c2e76bbe9c7&type=3#Arrow Triangle Down');
+    background-position-x: right 4px;
+}
+
+.field.object {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-position-x: left 4px;
+}
+
+.field.object.valid:hover {
+    border-color: green;
+}
+
+.field.object.invalid:hover {
+    border-color: red;
+}
+
+.field.object > .search {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Magnify Search.png?fileID=2800000&guid=7820ee851c074b34ebb658e54fafc428&type=3#Magnify Search');
+}
+
+/* toolbar */
+
+.toolbar {
+    height: 24px;
+    flex-direction: row;
+    align-items: center;
+    border-width: 1px 0;
+}
+
+.toolbar > .space.horizontal {
+    height: 100%;
+}
+
+.toolbar > .space.horizontal.short {
+    height: 75%;
+}
+
+.toolbar > .space.vertical {
+    width: 100%;
+}
+
+.toolbar > .space.vertical.short {
+    width: 75%;
+}
+
+.toolbar .field {
+    margin: 0 2px;
+    min-width: 26px;
+}
+
+.toolbar .field.outset {
+    margin: 0;
+    min-width: 26px;
+    height: 100%;
+    border-width: 0;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.toolbar .field.outset:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* scroll-view */
+
+.scroll-view > .container > .contents {
+    overflow: scroll;
+    transition: translate 300ms ease-out-circ;
+}
+
+.scroll-view.horizontal {
+    flex-direction: column;
+}
+
+.scroll-view.horizontal > .container {
+    flex-direction: row;
+}
+
+.scroll-view.horizontal > .container > .contents {
+    flex-direction: row;
+}
+
+.scroll-view.vertical {
+    flex-direction: row;
+}
+
+.scroll-view.vertical > .container {
+    flex-direction: column;
+}
+
+.scroll-view.vertical > .container > .contents {
+    flex-direction: column;
+}
+
+/* scroll-bar */
+
+.scroll-bar {
+    opacity: 1;
+    border-width: 1px;
+    border-radius: 4px;
+}
+
+.scroll-bar > .track {
+    margin: 4px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: background-color 300ms ease-out-circ;
+}
+
+.scroll-bar > .track > .bar {
+    opacity: 0.7;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    transition: all 300ms ease-out-circ;
+}
+
+.scroll-bar:hover > .track {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.scroll-bar:hover > .track > .bar {
+    opacity: 0.9;
+}
+
+.scroll-bar:disabled > .track {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.scroll-bar:disabled > .track > .bar {
+    opacity: 0;
+}
+
+.scroll-bar.vertical {
+    margin: 24px 0;
+    width: 16px;
+    flex-direction: column;
+    border-right-width: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: width 300ms ease-out-circ;
+}
+
+.scroll-bar.vertical .arrow#start {
+    margin-bottom: -2px;
+    height: 16px;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Up.png?fileID=2800000&guid=c7395ae16855fb144b81af851130123a&type=3#Arrow Triangle Up');
+}
+
+.scroll-bar.vertical .arrow#end {
+    margin-top: -2px;
+    height: 16px;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Down.png?fileID=2800000&guid=4c1dc0dad23e8c044a167c2e76bbe9c7&type=3#Arrow Triangle Down');
+}
+
+.scroll-bar.vertical:disabled {
+    width: 0;
+    border-width: 0;
+}
+
+.scroll-bar.horizontal {
+    margin: 0 24px;
+    height: 16px;
+    flex-direction: row;
+    border-bottom-width: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: height 300ms ease-out-circ;
+}
+
+.scroll-bar.horizontal .arrow#start {
+    margin-right: -2px;
+    width: 16px;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Left.png?fileID=2800000&guid=feb5ce63ad8939a49aac022374f94b69&type=3#Arrow Triangle Left');
+}
+
+.scroll-bar.horizontal .arrow#end {
+    margin-left: -2px;
+    width: 16px;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Right.png?fileID=2800000&guid=e8d081e6501ec6b4e84a4ac75390070f&type=3#Arrow Triangle Right');
+}
+
+.scroll-bar.horizontal:disabled {
+    height: 0;
+    border-width: 0;
+}
+
+/* collapsible-view */
+
+.collapsible-view {
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.collapsible-view > .header {
+    height: 18px;
+    flex-direction: row;
+    border-width: 0;
+    border-radius: 3px 3px 0 0;
+}
+
+.collapsible-view > .header > .button#arrow {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Down.png?fileID=2800000&guid=4c1dc0dad23e8c044a167c2e76bbe9c7&type=3#Arrow Triangle Down');
+    background-size: auto 90%;
+}
+
+.collapsible-view > .body {
+    display: flex;
+    flex: 0 1 auto;
+    border-top-width: 1px;
+}
+
+.collapsible-view > .body.vertical {
+    max-height: 600px;
+}
+
+.collapsible-view > .body.vertical > .scroll-bar.vertical {
+    margin: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 0;
+}
+
+.collapsible-view.collapsed > .header {
+    border-radius: 3px;
+}
+
+.collapsible-view.collapsed > .header > .button#arrow {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Right.png?fileID=2800000&guid=e8d081e6501ec6b4e84a4ac75390070f&type=3#Arrow Triangle Right');
+}
+
+.collapsible-view.collapsed > .body {
+    display: none;
+}
+
+/* collection-view */
+
+.collection-view > .header > .button#arrow {
+    width: 42px;
+    min-width: 42px;
+    flex-direction: row;
+    background-image: none;
+}
+
+.collection-view > .header > .button#arrow > .icon#list {
+    width: 50%;
+    height: 100%;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Menu List.png?fileID=2800000&guid=f4423e6f57e3e2443a584dd516b3b713&type=3#Menu List');
+}
+
+.collection-view > .header > .button#arrow > .icon#arrow {
+    width: 50%;
+    height: 100%;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Down.png?fileID=2800000&guid=4c1dc0dad23e8c044a167c2e76bbe9c7&type=3#Arrow Triangle Down');
+    background-size: auto 90%;
+}
+
+.collection-view > .header > .button#add {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Count Plus.png?fileID=2800000&guid=d4ee28b6842f6d544b26a945372cd227&type=3#Count Plus');
+}
+
+.collection-view > .header > .button#delete {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Count Minus.png?fileID=2800000&guid=96ed2aec190385f40b513b61859efab3&type=3#Count Minus');
+}
+
+.collection-view > .header > .input#size {
+    min-width: 48px;
+    width: 48px;
+}
+
+.collection-view > .body .dragline {
+    height: 2px;
+}
+
+.collection-view.collapsed > .header > .button#arrow {
+    background-image: none;
+}
+
+.collection-view.collapsed > .header > .button#arrow > .icon#arrow {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Right.png?fileID=2800000&guid=e8d081e6501ec6b4e84a4ac75390070f&type=3#Arrow Triangle Right');
+}
+
+/* collection-element */
+
+.collection-element {
+    padding: 2px;
+    min-height: 20px;
+    flex-direction: row;
+    border-radius: 3px;
+}
+
+.collection-element > .index {
+    margin-right: 9px;
+    padding: 0;
+    width: 32px;
+    -unity-font-style: bold;
+    background-size: 70% auto;
+}
+
+.collection-element > .index.draggable:hover {
+    color: rgba(0, 0, 0, 0);
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Double Vertical Outward.png?fileID=2800000&guid=b5d97ad55dea34c47824f6d9e056f7fb&type=3#Arrow Double Vertical Outward');
+    cursor: pan;
+}
+
+.collection-element > .contents > .label {
+    -unity-text-align: middle-left;
+}
+
+.collection-element > .row {
+    margin: 1px 0;
+    flex-direction: row;
+}
+
+.collection-element > .row > .field {
+    margin-right: 2px;
+}
+
+.collection-element > .row > .field.wide0 {
+    width: 1px;
+}
+
+.collection-element > .row > .field.wide1 {
+    width: 20px;
+}
+
+.collection-element > .row > .field.wide2 {
+    width: 40px;
+}
+
+.collection-element > .row > .field.wide3 {
+    width: 60px;
+}
+
+.collection-element > .row > .field.wide4 {
+    width: 80px;
+}
+
+.collection-element > .row > .field.wide5 {
+    width: 100px;
+}
+
+.collection-element.drag {
+    position: absolute;
+    opacity: 0.7;
+    width: 70%;
+}
+
+/* directory-view */
+
+.directory-view > .header > .searchbar {
+    padding-left: 20px;
+    width: 80px;
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Magnify Search.png?fileID=2800000&guid=7820ee851c074b34ebb658e54fafc428&type=3#Magnify Search');
+    background-position-x: left 4px;
+    background-size: 14px;
+}
+
+/* directory-element */
+
+.directory-element > .header {
+    padding: 0 4px;
+    flex-direction: row;
+}
+
+.directory-element > .header > .icon {
+    display: flex;
+    width: 18px;
+    height: 18px;
+    background-size: auto 90%;
+}
+
+.directory-element > .header > .icon:disabled {
+    display: none;
+}
+
+.directory-element > .header > .icon#arrow {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Down.png?fileID=2800000&guid=4c1dc0dad23e8c044a167c2e76bbe9c7&type=3#Arrow Triangle Down');
+}
+
+.directory-element > .header > .icon#check {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Mark Check.png?fileID=2800000&guid=9441a357402d8304882c3acade18ebf2&type=3#Mark Check');
+}
+
+.directory-element > .header > #title {
+    padding: 0 4px;
+    height: 18px;
+    -unity-text-align: middle-left;
+    background-position-x: left;
+}
+
+.directory-element > .header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.directory-element > .body {
+    display: flex;
+    margin-left: 12px;
+    flex: 0 1 auto;
+    border-left-width: 1px;
+}
+
+.directory-element.collapsed > .header > .icon#arrow {
+    background-image: url('project://database/Packages/com.misteeps.simplex/Editor/UI/Icons/Arrow Triangle Right.png?fileID=2800000&guid=e8d081e6501ec6b4e84a4ac75390070f&type=3#Arrow Triangle Right');
+}
+
+.directory-element.collapsed > .body {
+    display: none;
+}
+
+/* popup */
+
+.popup-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.popup-window {
+    position: absolute;
+    min-width: 64px;
+    min-height: 16px;
+    border-width: 1px;
+    border-radius: 4px;
+}

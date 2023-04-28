@@ -1,0 +1,11 @@
+{
+  "name": "com.misteeps.simplex",
+  "version": "0.1.0",
+  "unity": "2023.1",
+  "displayName": "Simplex",
+  "description": "A simple library for personal packages, tools, and UI.",
+  "author": { "name": "Misteeps" },
+  "dependencies": {
+    "com.unity.modules.uielements": "1.0.0"
+  }
+}

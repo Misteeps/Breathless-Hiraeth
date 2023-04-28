@@ -1,0 +1,192 @@
+@import url('project://database/Packages/com.misteeps.simplex/Editor/UI/Styles/Simplex Inspector Base.uss?fileID=7433441132597879392&guid=d8910e7dc84289e40b86590cd2e5e17c&type=3#Simplex Inspector Base');
+
+.inspector {
+    background-color: rgb(56, 56, 56);
+}
+
+/* text */
+
+.text {
+    color: rgb(255, 255, 255);
+}
+
+/* icon */
+
+.icon {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+/* field */
+
+.field.inset {
+    border-color: rgb(33, 33, 33);
+    border-top-color: rgb(13, 13, 13);
+    background-color: rgb(42, 42, 42);
+}
+
+.field.inset:hover {
+    border-color: rgb(101, 101, 101);
+}
+
+.field.inset:hover:focus {
+    border-color: rgb(58, 121, 187);
+}
+
+.field.outset {
+    border-color: rgb(48, 48, 48);
+    border-bottom-color: rgb(36, 36, 36);
+    background-color: rgb(88, 88, 88);
+}
+
+.field.outset:hover {
+    background-color: rgb(103, 103, 103);
+}
+
+.field.outset:hover:focus {
+    border-color: rgb(58, 121, 187);
+}
+
+.field.toggle.slide > .fill {
+    background-color: rgb(0, 77, 0);
+}
+
+.field.toggle.slide > .fill > .knob {
+    background-color: rgb(255, 255, 255);
+}
+
+.field.toggle.button.on {
+    background-color: rgb(60, 60, 60);
+}
+
+.field.slider > .gauge {
+    border-color: rgb(33, 33, 33);
+    border-top-color: rgb(13, 13, 13);
+    background-color: rgb(42, 42, 42);
+}
+
+.field.slider > .gauge > .fill {
+    border-color: rgb(48, 48, 48);
+    border-bottom-color: rgb(36, 36, 36);
+    background-color: rgb(179, 179, 179);
+}
+
+.field.slider > .gauge > .fill > .knob {
+    background-color: rgb(255, 255, 255);
+}
+
+.field.slider:hover > .gauge {
+    border-color: rgb(101, 101, 101);
+    background-color: rgb(36, 36, 36);
+}
+
+.field.slider:hover > .gauge > .fill {
+    background-color: rgb(103, 103, 103);
+    background-color: rgb(220, 220, 220);
+}
+
+.field.slider:hover:focus > .gauge {
+    border-color: rgb(58, 121, 187);
+}
+
+.field.slider:hover:focus > .gauge > .fill {
+    border-color: rgb(58, 121, 187);
+}
+
+.field.input:focus {
+    border-color: rgb(58, 121, 187);
+}
+
+.field.dropdown:active {
+    border-color: rgb(58, 121, 187);
+}
+
+.field.object > .search {
+    background-color: rgb(55, 55, 55);
+}
+
+.field.object > .search:hover {
+    background-color: rgb(76, 76, 76);
+}
+
+/* toolbar */
+
+.toolbar {
+    border-color: rgb(26, 26, 26);
+    background-color: rgb(76, 76, 76);
+}
+
+.toolbar .space {
+    background-color: rgb(26, 26, 26);
+}
+
+/* scroll-bar */
+
+.scroll-bar {
+    border-color: rgb(26, 26, 26);
+    background-color: rgb(76, 76, 76);
+}
+
+/* collapsible-view */
+
+.collapsible-view {
+    border-color: rgb(44, 44, 44);
+    border-bottom-color: rgb(40, 40, 40);
+    background-color: rgb(60, 60, 60);
+}
+
+.collapsible-view > .header {
+    background-color: rgb(76, 76, 76);
+}
+
+.collapsible-view > .header > .space {
+    background-color: rgb(44, 44, 44);
+}
+
+.collapsible-view > .body {
+    border-color: rgb(44, 44, 44);
+}
+
+/* collection-view */
+
+.collection-view > .body .dragline {
+    background-color: rgb(0, 204, 255);
+}
+
+/* collection-element */
+
+.collection-element.even {
+    background-color: rgb(68, 68, 68);
+}
+
+.collection-element.odd {
+    background-color: rgb(60, 60, 60);
+}
+
+.collection-element:hover {
+    background-color: rgb(80, 80, 80);
+}
+
+.collection-element.drag {
+    background-color: rgb(58, 121, 187);
+}
+
+/* directory-element */
+
+.directory-element > .body {
+    border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.directory-element.selected > .header {
+    background-color: rgba(58, 121, 187, 0.6);
+}
+
+.directory-element.selected > .header:hover {
+    background-color: rgba(58, 121, 187, 0.8);
+}
+
+/* popup */
+
+.popup-window {
+    background-color: rgb(56, 56, 56);
+    border-color: rgb(58, 121, 187);
+}
